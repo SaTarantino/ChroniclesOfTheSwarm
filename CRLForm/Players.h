@@ -1,5 +1,7 @@
 #pragma once
 #include "Card.h"
+
+//Base class for the Players object (human and AI).
 ref class Players
 {
 public:
@@ -13,4 +15,3 @@ public:
 private:
 	int totalPower;
 };
-

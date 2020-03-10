@@ -1,24 +1,12 @@
 #pragma once
-//Base class for the Card object
+
+//Base class for the Card object.
 ref class Card
 {
 public:
-	Card(const int &cardId, const int &effectId);
+	Card();
 
-	void setCardId(const int &cardId);
-	void setEffectId(const int &effectId);	// This will be 1 for PowerUpCards, 2 for PowerDownCards, 3 for StealCard
-
-	int getCardId();
-	int getEffectId();
-
+	virtual int cardType(int) = 0;
+	virtual int cardPower() = 0;
 	virtual void cardEffect() = 0;
-
-private:
-	int cdID;
-	int effectID;
 };
-
-
-
-
-

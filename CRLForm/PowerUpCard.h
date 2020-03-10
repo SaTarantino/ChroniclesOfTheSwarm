@@ -3,15 +3,15 @@
 
 ref class PowerUpCard : public Card
 {
+
 public:
-	PowerUpCard(const int &cardID, const int &effectID, int &cardPower);
+	PowerUpCard(int *cardType, int *cardPower);
 
-	void setCardPower(int &);
-	int getCardPower();
-
+	virtual int cardType(int) override;
+	virtual int cardPower() override;
 	virtual void cardEffect() override;
 
 private:
-	int cardPower;
+	int powerUPCard = 0;
+	int totalPower;
 };
-

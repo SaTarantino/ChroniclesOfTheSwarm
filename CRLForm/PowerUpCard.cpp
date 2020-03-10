@@ -1,24 +1,24 @@
+#include <cstdlib>
 #include "PowerUpCard.h"
 
-PowerUpCard::PowerUpCard(const int &cardID, const int &effID, int &cardPower)
-	: Card(cardID, effID), cardPower(cardPower)
+PowerUpCard::PowerUpCard(int *cardT, int *power) : Card()
 {
-	setCardPower(cardPower);
+	this->powerUPCard = *cardT;
+	cardPower();
+	this->cardPower = *power;
 }
 
-void PowerUpCard::setCardPower(int &power)
+int PowerUpCard::cardType(int)
 {
-	cardPower = power;
+	return powerUPCard;
 }
 
-int PowerUpCard::getCardPower()
+int PowerUpCard::cardPower()
 {
-	return cardPower;
+	totalPower = rand() % 10 + 1;
 }
 
 void PowerUpCard::cardEffect()
 {
-	if (cardPower > 0) {
-		//Set the total power = cardPower;
-	} // else destroy this card;
+	
 }

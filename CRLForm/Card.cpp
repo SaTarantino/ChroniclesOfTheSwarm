@@ -1,26 +1,18 @@
+#include <cstdlib>
 #include "Card.h"
 
-Card::Card(const int &cardID, const int &effID) 
-	: cdID(cardID), effectID(effID)
+Card::Card()
 {
 }
 
-void Card::setCardId(const int &cardID)
+int Card::cardType(int)
 {
-	cdID = cardID;
 }
 
-int Card::getCardId()
+int Card::cardPower()
 {
-	return cdID;
 }
 
-void Card::setEffectId(const int &effID)
+void Card::cardEffect()
 {
-	effectID = effID;
-}
-
-int Card::getEffectId()
-{
-	return effectID;
 }
