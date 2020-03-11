@@ -1,4 +1,6 @@
 #pragma once
+#include "Controller.h"
+#include "BaseCard.h"
 
 namespace CRLForm {
 
@@ -44,7 +46,7 @@ namespace CRLForm {
 
 
 	protected:
-
+		Controller cont;
 	private:
 		/// <summary>
 		/// Required designer variable.
@@ -76,21 +78,21 @@ namespace CRLForm {
 			// textBox1
 			// 
 			this->CardType->Location = System::Drawing::Point(217, 258);
-			this->CardType->Name = L"textBox1";
+			this->CardType->Name = L"CardType";
 			this->CardType->Size = System::Drawing::Size(100, 20);
 			this->CardType->TabIndex = 1;
 			// 
 			// textBox2
 			// 
 			this->CardPower->Location = System::Drawing::Point(349, 258);
-			this->CardPower->Name = L"textBox2";
+			this->CardPower->Name = L"CardPower";
 			this->CardPower->Size = System::Drawing::Size(100, 20);
 			this->CardPower->TabIndex = 2;
 			// 
 			// textBox3
 			// 
 			this->CardName->Location = System::Drawing::Point(486, 258);
-			this->CardName->Name = L"textBox3";
+			this->CardName->Name = L"CardName";
 			this->CardName->Size = System::Drawing::Size(100, 20);
 			this->CardName->TabIndex = 3;
 			// 
@@ -103,14 +105,22 @@ namespace CRLForm {
 			this->Controls->Add(this->CardPower);
 			this->Controls->Add(this->CardType);
 			this->Controls->Add(this->button1);
-			this->Name = L"MyForm";
-			this->Text = L"MyForm";
+			this->Name = L"Chronicles Of The Swarm";
+			this->Text = L"Chronicles Of The Swarm";
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+		int cardType = cont.getCardType(cardType);
+		int cardPower = cont.getCardPower(cardPower);
+		String^ type;
+		String^ power;
+		type = System::Convert::ToString(cardType);
+		this->CardType->Text = type;
+		power = System::Convert::ToString(cardPower);
+		this->CardPower->Text = power;
 	}
 	};
 }

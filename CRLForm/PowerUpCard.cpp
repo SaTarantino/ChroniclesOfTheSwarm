@@ -12,7 +12,7 @@ void PowerUpCard::setDetail(int *cardT, int *power)
 {
 	this->powerUPCard = *cardT;
 	setCardPower();
-	this->setCardPower = *power;
+	this->totalPower = *power;
 }
 void PowerUpCard::setCardPower()
 {

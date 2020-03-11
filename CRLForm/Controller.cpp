@@ -7,9 +7,12 @@ Controller::Controller()
 {
 }
 
-void Controller::getCardInfo(int cardType, int cardPower)
+int Controller::getCardType(int cardType)
 {
-	PowerUpCard a;
-	a.getCardType(cardType);
-	a.getCardPower(cardPower);
+	return a.getCardType(cardType);
+}
+
+int Controller::getCardPower(int cardPower)
+{
+	return a.getCardPower(cardPower);
 }

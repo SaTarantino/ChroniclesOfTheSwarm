@@ -8,13 +8,9 @@ ref class Controller
 public:
 	Controller();
 
-	void getCardInfo(int cardType, int cardPower);
+	int getCardType(int cardType);
+	int getCardPower(int cardPower);
 
 public:
 	PowerUpCard a;
-
-private:
-	int type;
-	int power;
-	int name;
 };
