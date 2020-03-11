@@ -4,7 +4,7 @@
 BaseCard::BaseCard()
 {
 }
-
+// Not implemented in a pure virtual function
 //void BaseCard::setDetail()
 //{
 //}

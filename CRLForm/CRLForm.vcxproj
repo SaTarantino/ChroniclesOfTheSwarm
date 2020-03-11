@@ -86,6 +86,7 @@
     <ClCompile Include="MatchClass.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="Players.cpp" />
+    <ClCompile Include="PowerDownCard.cpp" />
     <ClCompile Include="PowerUpCard.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +98,7 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Players.h" />
+    <ClInclude Include="PowerDownCard.h" />
     <ClInclude Include="PowerUpCard.h" />
   </ItemGroup>
   <ItemGroup>

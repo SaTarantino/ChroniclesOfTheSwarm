@@ -31,5 +31,6 @@ int PowerUpCard::getCardType(int)
 
 int PowerUpCard::getCardPower(int) 
 {
+	setCardPower();
 	return totalPower;
 }

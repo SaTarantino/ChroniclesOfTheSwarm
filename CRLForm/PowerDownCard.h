@@ -1,10 +1,10 @@
 #pragma once
 #include "BaseCard.h"
 
-ref class PowerUpCard : public BaseCard
+ref class PowerDownCard : public BaseCard
 {
 public:
-	PowerUpCard(); //int *cardType, int *cardPower
+	PowerDownCard();
 
 	virtual void setDetail(int *cardType, int *cardPower) override;
 	virtual void setCardPower() override;
@@ -16,6 +16,7 @@ public:
 	int getCardPower(int);
 
 private:
-	int powerUPCard = 0;
+	int powerDOWNCard = 1;
 	int totalPower;
 };
+

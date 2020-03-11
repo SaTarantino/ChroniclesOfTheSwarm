@@ -48,6 +48,9 @@
     <ClCompile Include="Controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PowerDownCard.cpp">
+      <Filter>Source Files\Cards</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyForm.h">
@@ -70,6 +73,9 @@
     </ClInclude>
     <ClInclude Include="Controller.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerDownCard.h">
+      <Filter>Header Files\Cards</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
