@@ -1,15 +1,20 @@
 #pragma once
-#include "Card.h"
+#include "BaseCard.h"
 
-ref class PowerUpCard : public Card
+ref class PowerUpCard : public BaseCard
 {
 
 public:
-	PowerUpCard(int *cardType, int *cardPower);
+	PowerUpCard(); //int *cardType, int *cardPower
 
-	virtual int cardType(int) override;
-	virtual int cardPower() override;
+	virtual void setDetail(int *cardType, int *cardPower) override;
+	virtual void setCardPower() override;
+
 	virtual void cardEffect() override;
+
+	virtual int getCardType(int) override;
+
+	int getCardPower(int);
 
 private:
 	int powerUPCard = 0;

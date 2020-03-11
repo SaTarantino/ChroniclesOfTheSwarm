@@ -1,5 +1,5 @@
 #pragma once
-#include "Card.h"
+#include "BaseCard.h"
 
 //Base class for the Players object (human and AI).
 ref class Players

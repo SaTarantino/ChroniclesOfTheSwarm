@@ -1,7 +1,6 @@
 #pragma once
 #include <list>
 #include <iterator>
-#include "Card.h"
 
 using namespace std;
 

@@ -80,7 +80,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Card.cpp" />
+    <ClCompile Include="BaseCard.cpp" />
+    <ClCompile Include="Controller.cpp" />
     <ClCompile Include="HumanPlayer.cpp" />
     <ClCompile Include="MatchClass.cpp" />
     <ClCompile Include="MyForm.cpp" />
@@ -88,7 +89,8 @@
     <ClCompile Include="PowerUpCard.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Card.h" />
+    <ClInclude Include="BaseCard.h" />
+    <ClInclude Include="Controller.h" />
     <ClInclude Include="HumanPlayer.h" />
     <ClInclude Include="MatchClass.h" />
     <ClInclude Include="MyForm.h">

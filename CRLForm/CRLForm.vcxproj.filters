@@ -13,24 +13,39 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Cards">
+      <UniqueIdentifier>{ed2bd720-e272-4393-82a3-cceb1a09d419}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Players">
+      <UniqueIdentifier>{67a040ac-e125-407e-a6b3-cdc869b2f215}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Cards">
+      <UniqueIdentifier>{a51afb16-ee1c-44b6-a07f-9e4199c23002}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Players">
+      <UniqueIdentifier>{53eadcab-5d11-4805-b515-380338f9ab16}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MyForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Card.cpp">
+    <ClCompile Include="MatchClass.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseCard.cpp">
+      <Filter>Source Files\Cards</Filter>
     </ClCompile>
     <ClCompile Include="PowerUpCard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Players.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Cards</Filter>
     </ClCompile>
     <ClCompile Include="HumanPlayer.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Players</Filter>
     </ClCompile>
-    <ClCompile Include="MatchClass.cpp">
+    <ClCompile Include="Players.cpp">
+      <Filter>Source Files\Players</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,19 +53,22 @@
     <ClInclude Include="MyForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Card.h">
+    <ClInclude Include="MatchClass.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseCard.h">
+      <Filter>Header Files\Cards</Filter>
     </ClInclude>
     <ClInclude Include="PowerUpCard.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Players.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Cards</Filter>
     </ClInclude>
     <ClInclude Include="HumanPlayer.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Players</Filter>
     </ClInclude>
-    <ClInclude Include="MatchClass.h">
+    <ClInclude Include="Players.h">
+      <Filter>Header Files\Players</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

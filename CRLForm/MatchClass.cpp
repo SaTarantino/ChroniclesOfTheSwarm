@@ -1,6 +1,5 @@
 #include <cstdlib>
 #include "MatchClass.h"
-#include "Card.h"
 #include "PowerUpCard.h"
 #include "HumanPlayer.h"
 
