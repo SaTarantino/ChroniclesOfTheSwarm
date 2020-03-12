@@ -114,14 +114,14 @@ namespace CRLForm {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-		int cardType = cont.getCardType(cardType);
+		/*int cardType = cont.getCardType(cardType);
 		int cardPower = cont.getCardPower(cardPower);
 		String^ type;
 		String^ power;
 		type = System::Convert::ToString(cardType);
 		this->CardType->Text = type;
 		power = System::Convert::ToString(cardPower);
-		this->CardPower->Text = power;
+		this->CardPower->Text = power;*/
 	}
 	};
 }

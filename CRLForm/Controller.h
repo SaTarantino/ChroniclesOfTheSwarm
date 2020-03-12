@@ -1,5 +1,7 @@
 #pragma once
+#include "BaseCard.h"
 #include "PowerUpCard.h"
+#include "PowerDownCard.h"
 
 using namespace std;
 
@@ -12,5 +14,7 @@ public:
 	int getCardPower(int cardPower);
 
 public:
-	PowerUpCard a;
+	
+	PowerUpCard PowerUpCard;
+	PowerDownCard PowerDownCard;
 };

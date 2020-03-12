@@ -1,7 +1,8 @@
 #include "Controller.h"
+#include "BaseCard.h"
 #include "PowerUpCard.h"
-
-using namespace std;
+#include "PowerDownCard.h"
+#include "MatchClass.h"
 
 Controller::Controller()
 {
@@ -9,10 +10,11 @@ Controller::Controller()
 
 int Controller::getCardType(int cardType)
 {
-	return a.getCardType(cardType);
+	//return PowerUpCard.getCardType(cardType);
+	
 }
 
 int Controller::getCardPower(int cardPower)
 {
-	return a.getCardPower(cardPower);
+	return PowerDownCard.getCardPower(cardPower);
 }
