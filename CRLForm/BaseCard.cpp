@@ -19,4 +19,5 @@ BaseCard::BaseCard()
 //
 //int BaseCard::getCardType(int)
 //{
+//	return cType;
 //}

@@ -11,11 +11,11 @@ public:
 
 	virtual void cardEffect() override;
 
-	virtual int getCardType(int) override;
+	int getCardType(int) override;
 
 	int getCardPower(int);
 
 private:
-	int powerUPCard = 0;
+	int cType = 0;
 	int totalPower;
 };

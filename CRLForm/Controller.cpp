@@ -2,19 +2,34 @@
 #include "BaseCard.h"
 #include "PowerUpCard.h"
 #include "PowerDownCard.h"
-#include "MatchClass.h"
+#include <cstdlib>
 
 Controller::Controller()
 {
 }
 
-int Controller::getCardType(int cardType)
+int Controller::getCardsType(int cardType)
 {
-	//return PowerUpCard.getCardType(cardType);
-	
+	generateNumber();
+	if (n == 0)
+	{
+		//return 10;
+		return PowerUpCard.getCardType(cardType);
+	}
+	if (n == 1)
+	{
+		//return 20;
+		return PowerDownCard.getCardType(cardType);
+	}
 }
 
 int Controller::getCardPower(int cardPower)
 {
 	return PowerDownCard.getCardPower(cardPower);
+	//return n;
+}
+
+void Controller::generateNumber()
+{
+	n = rand() % 2;
 }

@@ -16,7 +16,6 @@ public:
 	int getCardPower(int);
 
 private:
-	int powerDOWNCard = 1;
+	int cType = 1;
 	int totalPower;
 };
-

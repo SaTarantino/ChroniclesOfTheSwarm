@@ -12,7 +12,7 @@ void MatchClass::generateDecks(System::Collections::Generic::List<BaseCard ^> ^i
 {
 	// I have to decleare the List using this odd declaretion in order to avoid Error C3699.
 	System::Collections::Generic::List<BaseCard^> ^deck;
-	for (int i = 0; i = MAXHAND; i++) {
+	for (int i = 0; i = 2; i++) {
 		int n = rand() % 1;
 		if (n = 0) 
 		{
@@ -20,11 +20,11 @@ void MatchClass::generateDecks(System::Collections::Generic::List<BaseCard ^> ^i
 			//deck->AddFirst(gcnew PowerUpCard);	// This works with Linked List.
 			deck->Add(gcnew PowerUpCard);
 		}
-		if (n = 1)
-		{
-			//deck.push_back(gcnew PowerDownCard);
-			//deck->AddFirst(gcnew PowerDownCard);
-			deck->Add(gcnew PowerDownCard);
-		}
+		//if (n = 1)
+		//{
+		//	//deck.push_back(gcnew PowerDownCard);
+		//	//deck->AddFirst(gcnew PowerDownCard);
+		//	deck->Add(gcnew PowerDownCard);
+		//}
 	}
 }

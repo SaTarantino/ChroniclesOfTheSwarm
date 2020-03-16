@@ -7,7 +7,7 @@ PowerDownCard::PowerDownCard() : BaseCard()
 
 void PowerDownCard::setDetail(int *cardT, int *power)
 {
-	this->powerDOWNCard = *cardT;
+	this->cType = *cardT;
 	setCardPower();
 	this->totalPower = *power;
 }
@@ -23,7 +23,7 @@ void PowerDownCard::cardEffect()
 
 int PowerDownCard::getCardType(int)
 {
-	return powerDOWNCard;
+	return cType;
 }
 
 int PowerDownCard::getCardPower(int)

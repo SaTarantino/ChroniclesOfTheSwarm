@@ -10,7 +10,7 @@ PowerUpCard::PowerUpCard() : BaseCard() //int *cardT, int *power
 
 void PowerUpCard::setDetail(int *cardT, int *power)
 {
-	this->powerUPCard = *cardT;
+	this->cType = *cardT;
 	setCardPower();
 	this->totalPower = *power;
 }
@@ -26,7 +26,7 @@ void PowerUpCard::cardEffect()
 
 int PowerUpCard::getCardType(int)
 {
-	return powerUPCard;
+	return cType;
 }
 
 int PowerUpCard::getCardPower(int) 

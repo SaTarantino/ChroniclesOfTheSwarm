@@ -1,6 +1,6 @@
 #pragma once
 
-//Base class for the Card object.
+//Base pure virtual class for the Cards object.
 ref class BaseCard
 {
 public:

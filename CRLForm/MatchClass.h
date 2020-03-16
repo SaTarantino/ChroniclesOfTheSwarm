@@ -9,5 +9,5 @@ public:
 	void generateDecks(System::Collections::Generic::List<BaseCard ^> ^in);
 
 private:
-	const int MAXHAND = 5;
+	const int MAXHAND = 2;
 };

@@ -10,11 +10,14 @@ ref class Controller
 public:
 	Controller();
 
-	int getCardType(int cardType);
+	int getCardsType(int cardType);
 	int getCardPower(int cardPower);
+	void generateNumber();
 
 public:
-	
 	PowerUpCard PowerUpCard;
 	PowerDownCard PowerDownCard;
+
+private:
+	int n;
 };
