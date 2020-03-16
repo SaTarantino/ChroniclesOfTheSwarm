@@ -5,12 +5,10 @@
 ref class Players
 {
 public:
-	Players(int &power);
+	Players();
 
 	void setTotalPower(int &power);
-	int getTotalPower();
-
-	virtual void playerDeck() = 0;
+	int getTotalPower(int);
 
 private:
 	int totalPower;

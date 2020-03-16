@@ -1,9 +1,7 @@
 #include "Players.h"
 
-Players::Players(int &power)
-	: totalPower(power)
+Players::Players()
 {
-	totalPower = 0;
 }
 
 void Players::setTotalPower(int &power)
@@ -11,7 +9,7 @@ void Players::setTotalPower(int &power)
 	totalPower = power;
 }
 
-int Players::getTotalPower()
+int Players::getTotalPower(int)
 {
 	return totalPower;
 }

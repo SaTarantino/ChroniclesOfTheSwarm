@@ -1,11 +1,5 @@
 #include "HumanPlayer.h"
 
-HumanPlayer::HumanPlayer(int &power)
-	: Players(power)
+HumanPlayer::HumanPlayer(int &power) : Players()
 {
-}
-
-void HumanPlayer::playerDeck()
-{
-
 }
