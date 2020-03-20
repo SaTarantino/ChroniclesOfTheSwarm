@@ -1,4 +1,5 @@
 #include <cstdlib>
+#include <random>
 #include <ctime>
 #include "PowerDownCard.h"
 
@@ -15,12 +16,12 @@ void PowerDownCard::setDetail(int *cardT, int *power)
 
 void PowerDownCard::setCardPower()
 {
-	totalPower = rand() % 5 + 1;
+	totalPower = rand() % 5 + 5;
 }
 
-void PowerDownCard::cardEffect()
-{
-}
+//void PowerDownCard::cardEffect()
+//{
+//}
 
 int PowerDownCard::getCardType(int)
 {

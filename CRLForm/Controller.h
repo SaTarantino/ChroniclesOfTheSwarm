@@ -3,21 +3,21 @@
 #include "PowerUpCard.h"
 #include "PowerDownCard.h"
 
-using namespace std;
+using namespace System;
+#define ARRAY_SIZE 5
 
 ref class Controller
 {
 public:
 	Controller();
 
-	int getCardsType(int cardType);
-	int getCardPower(int cardPower);
-	void generateNumber();
+	int getCardsType(int n, int cardType);
+	int getCardPower(int n, int cardPower);
+	//void generateNumber(); //Obsolete
+
+	array<Int32> ^generateDeck();
 
 public:
 	PowerUpCard PowerUpCard;
 	PowerDownCard PowerDownCard;
-
-private:
-	int n;
 };

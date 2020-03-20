@@ -1,7 +1,7 @@
 #pragma once
 #include "BaseCard.h"
 
-//Base class for the Players object (human and AI).
+//Base class for the Players object (Human and AI).
 ref class Players
 {
 public:

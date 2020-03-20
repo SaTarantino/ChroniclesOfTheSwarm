@@ -37,19 +37,12 @@ namespace CRLForm {
 			}
 		}
 
-
-	protected:
-
-	protected:
-
-
 	protected:
 		Controller cont;
 
-
-	private: System::Windows::Forms::Button^  Start;
-	
-	// Player's Hand
+	///
+	/// Player's Hand
+	///
 	private: System::Windows::Forms::TextBox^  CardType0;
 	private: System::Windows::Forms::TextBox^  CardPower0;
 
@@ -64,7 +57,9 @@ namespace CRLForm {
 
 	private: System::Windows::Forms::TextBox^  CardType4;
 	private: System::Windows::Forms::TextBox^  CardPower4;
-
+	///
+	/// Playe's Board and Play button  
+	///
 	private: System::Windows::Forms::Button^  Play0;
 	private: System::Windows::Forms::TextBox^  CardType0_0;
 	private: System::Windows::Forms::TextBox^  CardPower0_0;
@@ -84,16 +79,61 @@ namespace CRLForm {
 	private: System::Windows::Forms::Button^  Play4;
 	private: System::Windows::Forms::TextBox^  CardType4_4;
 	private: System::Windows::Forms::TextBox^  CardPower4_4;
+	///
+	/// AI's Hand
+	///
+	private: System::Windows::Forms::TextBox^  _CardType0;
+	private: System::Windows::Forms::TextBox^  _CardPower0;
 
-	
+	private: System::Windows::Forms::TextBox^  _CardType1;
+	private: System::Windows::Forms::TextBox^  _CardPower1;
+
+	private: System::Windows::Forms::TextBox^  _CardType2;
+	private: System::Windows::Forms::TextBox^  _CardPower2;
+
+	private: System::Windows::Forms::TextBox^  _CardType3;
+	private: System::Windows::Forms::TextBox^  _CardPower3;
+
+	private: System::Windows::Forms::TextBox^  _CardType4;
+	private: System::Windows::Forms::TextBox^  _CardPower4;
+	///
+	/// AI's Board
+	///
+	private: System::Windows::Forms::TextBox^  _CardType0_0;
+	/// Roll Button
 	private: System::Windows::Forms::Button^  Roll;
+	/// Play Button
+	private: System::Windows::Forms::Button^  Start;
+	/// Player's Total Power
 	private: System::Windows::Forms::TextBox^  TotalPower_P;
 
+
+
 	private:
+		/// Player
 		int cardType0_P, cardType1_P, cardType2_P, cardType3_P, cardType4_P;
+		String ^type0, ^type1, ^type2, ^type3, ^type4;
 		int cardPower0_P, cardPower1_P, cardPower2_P, cardPower3_P, cardPower4_P;
-		int totalPower_P;
-		String^ playerTotalPower;
+		String ^power0, ^power1, ^power2, ^power3, ^power4;
+		/// AI
+		int cardType0_A, cardType1_A, cardType2_A, cardType3_A, cardType4_A;
+		String ^_type0, ^_type1, ^_type2, ^_type3, ^_type4;
+		int cardPower0_A, cardPower1_A, cardPower2_A, cardPower3_A, cardPower4_A;
+		String ^_power0, ^_power1, ^_power2, ^_power3, ^_power4;
+
+		int totalPower_P, totalPower_A;
+		String ^playerTotalPower, ^AiTotalPower;
+private: System::Windows::Forms::TextBox^  _CardPower0_0;
+private: System::Windows::Forms::TextBox^  _CardType1_1;
+private: System::Windows::Forms::TextBox^  _CardPower1_1;
+private: System::Windows::Forms::TextBox^  _CardType2_2;
+private: System::Windows::Forms::TextBox^  _CardPower2_2;
+private: System::Windows::Forms::TextBox^  _CardType3_3;
+private: System::Windows::Forms::TextBox^  _CardPower3_3;
+private: System::Windows::Forms::TextBox^  _CardType4_4;
+private: System::Windows::Forms::TextBox^  _CardPower4_4;
+
+
 
 	private:
 		/// <summary>
@@ -109,7 +149,6 @@ namespace CRLForm {
 
 		void InitializeComponent(void)
 		{
-			this->Start = (gcnew System::Windows::Forms::Button());
 			this->CardType0 = (gcnew System::Windows::Forms::TextBox());
 			this->CardPower0 = (gcnew System::Windows::Forms::TextBox());
 			this->CardType1 = (gcnew System::Windows::Forms::TextBox());
@@ -135,19 +174,30 @@ namespace CRLForm {
 			this->Play4 = (gcnew System::Windows::Forms::Button());
 			this->CardType4_4 = (gcnew System::Windows::Forms::TextBox());
 			this->CardPower4_4 = (gcnew System::Windows::Forms::TextBox());
-			this->Roll = (gcnew System::Windows::Forms::Button());
 			this->TotalPower_P = (gcnew System::Windows::Forms::TextBox());
+			this->Roll = (gcnew System::Windows::Forms::Button());
+			this->Start = (gcnew System::Windows::Forms::Button());
+			this->_CardType0 = (gcnew System::Windows::Forms::TextBox());
+			this->_CardPower0 = (gcnew System::Windows::Forms::TextBox());
+			this->_CardType1 = (gcnew System::Windows::Forms::TextBox());
+			this->_CardPower1 = (gcnew System::Windows::Forms::TextBox());
+			this->_CardType2 = (gcnew System::Windows::Forms::TextBox());
+			this->_CardPower2 = (gcnew System::Windows::Forms::TextBox());
+			this->_CardType3 = (gcnew System::Windows::Forms::TextBox());
+			this->_CardPower3 = (gcnew System::Windows::Forms::TextBox());
+			this->_CardType4 = (gcnew System::Windows::Forms::TextBox());
+			this->_CardPower4 = (gcnew System::Windows::Forms::TextBox());
+			this->_CardType0_0 = (gcnew System::Windows::Forms::TextBox());
+			this->_CardPower0_0 = (gcnew System::Windows::Forms::TextBox());
+			this->_CardType1_1 = (gcnew System::Windows::Forms::TextBox());
+			this->_CardPower1_1 = (gcnew System::Windows::Forms::TextBox());
+			this->_CardType2_2 = (gcnew System::Windows::Forms::TextBox());
+			this->_CardPower2_2 = (gcnew System::Windows::Forms::TextBox());
+			this->_CardType3_3 = (gcnew System::Windows::Forms::TextBox());
+			this->_CardPower3_3 = (gcnew System::Windows::Forms::TextBox());
+			this->_CardType4_4 = (gcnew System::Windows::Forms::TextBox());
+			this->_CardPower4_4 = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
-			// 
-			// Start
-			// 
-			this->Start->Location = System::Drawing::Point(71, 2);
-			this->Start->Name = L"Start";
-			this->Start->Size = System::Drawing::Size(51, 23);
-			this->Start->TabIndex = 0;
-			this->Start->Text = L"Start";
-			this->Start->UseVisualStyleBackColor = true;
-			this->Start->Click += gcnew System::EventHandler(this, &MyForm::Start_Click);
 			// 
 			// CardType0
 			// 
@@ -359,6 +409,14 @@ namespace CRLForm {
 			this->CardPower4_4->Size = System::Drawing::Size(100, 20);
 			this->CardPower4_4->TabIndex = 25;
 			// 
+			// TotalPower_P
+			// 
+			this->TotalPower_P->Location = System::Drawing::Point(776, 277);
+			this->TotalPower_P->Name = L"TotalPower_P";
+			this->TotalPower_P->ReadOnly = true;
+			this->TotalPower_P->Size = System::Drawing::Size(100, 20);
+			this->TotalPower_P->TabIndex = 27;
+			// 
 			// Roll
 			// 
 			this->Roll->Location = System::Drawing::Point(12, 2);
@@ -369,19 +427,201 @@ namespace CRLForm {
 			this->Roll->UseVisualStyleBackColor = true;
 			this->Roll->Click += gcnew System::EventHandler(this, &MyForm::Roll_Click);
 			// 
-			// TotalPower_P
+			// Start
 			// 
-			this->TotalPower_P->Location = System::Drawing::Point(776, 280);
-			this->TotalPower_P->Name = L"TotalPower_P";
-			this->TotalPower_P->ReadOnly = true;
-			this->TotalPower_P->Size = System::Drawing::Size(100, 20);
-			this->TotalPower_P->TabIndex = 27;
+			this->Start->Location = System::Drawing::Point(71, 2);
+			this->Start->Name = L"Start";
+			this->Start->Size = System::Drawing::Size(51, 23);
+			this->Start->TabIndex = 0;
+			this->Start->Text = L"Start";
+			this->Start->UseVisualStyleBackColor = true;
+			this->Start->Click += gcnew System::EventHandler(this, &MyForm::Start_Click);
+			// 
+			// _CardType0
+			// 
+			this->_CardType0->Location = System::Drawing::Point(22, 96);
+			this->_CardType0->Name = L"_CardType0";
+			this->_CardType0->ReadOnly = true;
+			this->_CardType0->Size = System::Drawing::Size(100, 20);
+			this->_CardType0->TabIndex = 28;
+			// 
+			// _CardPower0
+			// 
+			this->_CardPower0->Location = System::Drawing::Point(22, 59);
+			this->_CardPower0->Name = L"_CardPower0";
+			this->_CardPower0->ReadOnly = true;
+			this->_CardPower0->Size = System::Drawing::Size(100, 20);
+			this->_CardPower0->TabIndex = 29;
+			// 
+			// _CardType1
+			// 
+			this->_CardType1->Location = System::Drawing::Point(188, 96);
+			this->_CardType1->Name = L"_CardType1";
+			this->_CardType1->ReadOnly = true;
+			this->_CardType1->Size = System::Drawing::Size(100, 20);
+			this->_CardType1->TabIndex = 30;
+			// 
+			// _CardPower1
+			// 
+			this->_CardPower1->Location = System::Drawing::Point(188, 59);
+			this->_CardPower1->Name = L"_CardPower1";
+			this->_CardPower1->ReadOnly = true;
+			this->_CardPower1->Size = System::Drawing::Size(100, 20);
+			this->_CardPower1->TabIndex = 31;
+			// 
+			// _CardType2
+			// 
+			this->_CardType2->Location = System::Drawing::Point(351, 96);
+			this->_CardType2->Name = L"_CardType2";
+			this->_CardType2->ReadOnly = true;
+			this->_CardType2->Size = System::Drawing::Size(100, 20);
+			this->_CardType2->TabIndex = 32;
+			// 
+			// _CardPower2
+			// 
+			this->_CardPower2->Location = System::Drawing::Point(351, 59);
+			this->_CardPower2->Name = L"_CardPower2";
+			this->_CardPower2->ReadOnly = true;
+			this->_CardPower2->Size = System::Drawing::Size(100, 20);
+			this->_CardPower2->TabIndex = 33;
+			// 
+			// _CardType3
+			// 
+			this->_CardType3->Location = System::Drawing::Point(509, 96);
+			this->_CardType3->Name = L"_CardType3";
+			this->_CardType3->ReadOnly = true;
+			this->_CardType3->Size = System::Drawing::Size(100, 20);
+			this->_CardType3->TabIndex = 34;
+			// 
+			// _CardPower3
+			// 
+			this->_CardPower3->Location = System::Drawing::Point(509, 59);
+			this->_CardPower3->Name = L"_CardPower3";
+			this->_CardPower3->ReadOnly = true;
+			this->_CardPower3->Size = System::Drawing::Size(100, 20);
+			this->_CardPower3->TabIndex = 35;
+			// 
+			// _CardType4
+			// 
+			this->_CardType4->Location = System::Drawing::Point(666, 96);
+			this->_CardType4->Name = L"_CardType4";
+			this->_CardType4->ReadOnly = true;
+			this->_CardType4->Size = System::Drawing::Size(100, 20);
+			this->_CardType4->TabIndex = 36;
+			// 
+			// _CardPower4
+			// 
+			this->_CardPower4->Location = System::Drawing::Point(666, 59);
+			this->_CardPower4->Name = L"_CardPower4";
+			this->_CardPower4->ReadOnly = true;
+			this->_CardPower4->Size = System::Drawing::Size(100, 20);
+			this->_CardPower4->TabIndex = 37;
+			// 
+			// _CardType0_0
+			// 
+			this->_CardType0_0->Location = System::Drawing::Point(22, 209);
+			this->_CardType0_0->Name = L"_CardType0_0";
+			this->_CardType0_0->ReadOnly = true;
+			this->_CardType0_0->Size = System::Drawing::Size(100, 20);
+			this->_CardType0_0->TabIndex = 38;
+			// 
+			// _CardPower0_0
+			// 
+			this->_CardPower0_0->Location = System::Drawing::Point(22, 174);
+			this->_CardPower0_0->Name = L"_CardPower0_0";
+			this->_CardPower0_0->ReadOnly = true;
+			this->_CardPower0_0->Size = System::Drawing::Size(100, 20);
+			this->_CardPower0_0->TabIndex = 39;
+			// 
+			// _CardType1_1
+			// 
+			this->_CardType1_1->Location = System::Drawing::Point(188, 209);
+			this->_CardType1_1->Name = L"_CardType1_1";
+			this->_CardType1_1->ReadOnly = true;
+			this->_CardType1_1->Size = System::Drawing::Size(100, 20);
+			this->_CardType1_1->TabIndex = 40;
+			// 
+			// _CardPower1_1
+			// 
+			this->_CardPower1_1->Location = System::Drawing::Point(188, 174);
+			this->_CardPower1_1->Name = L"_CardPower1_1";
+			this->_CardPower1_1->ReadOnly = true;
+			this->_CardPower1_1->Size = System::Drawing::Size(100, 20);
+			this->_CardPower1_1->TabIndex = 41;
+			// 
+			// _CardType2_2
+			// 
+			this->_CardType2_2->Location = System::Drawing::Point(351, 209);
+			this->_CardType2_2->Name = L"_CardType2_2";
+			this->_CardType2_2->ReadOnly = true;
+			this->_CardType2_2->Size = System::Drawing::Size(100, 20);
+			this->_CardType2_2->TabIndex = 42;
+			// 
+			// _CardPower2_2
+			// 
+			this->_CardPower2_2->Location = System::Drawing::Point(351, 174);
+			this->_CardPower2_2->Name = L"_CardPower2_2";
+			this->_CardPower2_2->ReadOnly = true;
+			this->_CardPower2_2->Size = System::Drawing::Size(100, 20);
+			this->_CardPower2_2->TabIndex = 43;
+			// 
+			// _CardType3_3
+			// 
+			this->_CardType3_3->Location = System::Drawing::Point(509, 209);
+			this->_CardType3_3->Name = L"_CardType3_3";
+			this->_CardType3_3->ReadOnly = true;
+			this->_CardType3_3->Size = System::Drawing::Size(100, 20);
+			this->_CardType3_3->TabIndex = 44;
+			// 
+			// _CardPower3_3
+			// 
+			this->_CardPower3_3->Location = System::Drawing::Point(509, 174);
+			this->_CardPower3_3->Name = L"_CardPower3_3";
+			this->_CardPower3_3->ReadOnly = true;
+			this->_CardPower3_3->Size = System::Drawing::Size(100, 20);
+			this->_CardPower3_3->TabIndex = 45;
+			// 
+			// _CardType4_4
+			// 
+			this->_CardType4_4->Location = System::Drawing::Point(666, 209);
+			this->_CardType4_4->Name = L"_CardType4_4";
+			this->_CardType4_4->ReadOnly = true;
+			this->_CardType4_4->Size = System::Drawing::Size(100, 20);
+			this->_CardType4_4->TabIndex = 46;
+			// 
+			// _CardPower4_4
+			// 
+			this->_CardPower4_4->Location = System::Drawing::Point(666, 174);
+			this->_CardPower4_4->Name = L"_CardPower4_4";
+			this->_CardPower4_4->ReadOnly = true;
+			this->_CardPower4_4->Size = System::Drawing::Size(100, 20);
+			this->_CardPower4_4->TabIndex = 47;
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(888, 534);
+			this->Controls->Add(this->_CardPower4_4);
+			this->Controls->Add(this->_CardType4_4);
+			this->Controls->Add(this->_CardPower3_3);
+			this->Controls->Add(this->_CardType3_3);
+			this->Controls->Add(this->_CardPower2_2);
+			this->Controls->Add(this->_CardType2_2);
+			this->Controls->Add(this->_CardPower1_1);
+			this->Controls->Add(this->_CardType1_1);
+			this->Controls->Add(this->_CardPower0_0);
+			this->Controls->Add(this->_CardType0_0);
+			this->Controls->Add(this->_CardPower4);
+			this->Controls->Add(this->_CardType4);
+			this->Controls->Add(this->_CardPower3);
+			this->Controls->Add(this->_CardType3);
+			this->Controls->Add(this->_CardPower2);
+			this->Controls->Add(this->_CardType2);
+			this->Controls->Add(this->_CardPower1);
+			this->Controls->Add(this->_CardType1);
+			this->Controls->Add(this->_CardType0);
+			this->Controls->Add(this->_CardPower0);
 			this->Controls->Add(this->TotalPower_P);
 			this->Controls->Add(this->Roll);
 			this->Controls->Add(this->CardPower4_4);
@@ -417,66 +657,81 @@ namespace CRLForm {
 			this->PerformLayout();
 
 		}
+
+		// Old way to generate a deck.
+		/*array<Int32>^ generateDeck() {
+			int i, m;
+			array<Int32> ^local = gcnew array<Int32>(ARRAY_SIZE);
+			srand(time(NULL));
+			for (i = 0; i < ARRAY_SIZE; i++)
+			{
+				
+				m = rand() % 2;
+				local[i] = m;
+			}
+			return local;
+		}*/
+
 #pragma endregion
 	private: System::Void Roll_Click(System::Object^  sender, System::EventArgs^  e) {
 
+		array<Int32> ^playerDeck = cont.generateDeck();
+		array<Int32> ^aiDeck = cont.generateDeck();
 		Start->Enabled = true;
+
+		//array<Int32>^ deck = generateDeck(); // Part of the old way to generate a deck.
 
 		//
 		// Return Player's Card Type
 		//
-		cardType0_P = cont.getCardsType(cardType0_P);
-		String^ type0;
+		cardType0_P = cont.getCardsType(playerDeck[0], cardType0_P);
 		type0 = System::Convert::ToString(cardType0_P);
 		this->CardType0->Text = type0;
 
-		cardType1_P = cont.getCardsType(cardType1_P);
-		String^ type1;
+		cardType1_P = cont.getCardsType(playerDeck[1], cardType1_P);
 		type1 = System::Convert::ToString(cardType1_P);
 		this->CardType1->Text = type1;
 
-		cardType2_P = cont.getCardsType(cardType2_P);
-		String^ type2;
+		cardType2_P = cont.getCardsType(playerDeck[2], cardType2_P);
 		type2 = System::Convert::ToString(cardType2_P);
 		this->CardType2->Text = type2;
 
-		cardType3_P = cont.getCardsType(cardType3_P);
-		String^ type3;
+		cardType3_P = cont.getCardsType(playerDeck[3], cardType3_P);
 		type3 = System::Convert::ToString(cardType3_P);
 		this->CardType3->Text = type3;
 
-		cardType4_P = cont.getCardsType(cardType4_P);
-		String^ type4;
+		cardType4_P = cont.getCardsType(playerDeck[4], cardType4_P);
 		type4 = System::Convert::ToString(cardType4_P);
 		this->CardType4->Text = type4;
 
 		//
 		// Return Player's Card Power
 		//
-		cardPower0_P = cont.getCardPower(cardPower0_P);
-		String^ power0;
+		cardPower0_P = cont.getCardPower(playerDeck[0], cardPower0_P);
 		power0 = System::Convert::ToString(cardPower0_P);
 		this->CardPower0->Text = power0;
 
-		cardPower1_P = cont.getCardPower(cardPower1_P);
-		String^ power1;
+		cardPower1_P = cont.getCardPower(playerDeck[1], cardPower1_P);
 		power1 = System::Convert::ToString(cardPower1_P);
 		this->CardPower1->Text = power1;
 
-		cardPower2_P = cont.getCardPower(cardPower2_P);
-		String^ power2;
+		cardPower2_P = cont.getCardPower(playerDeck[2], cardPower2_P);
 		power2 = System::Convert::ToString(cardPower2_P);
 		this->CardPower2->Text = power2;
 
-		cardPower3_P = cont.getCardPower(cardPower3_P);
-		String^ power3;
+		cardPower3_P = cont.getCardPower(playerDeck[3], cardPower3_P);
 		power3 = System::Convert::ToString(cardPower3_P);
 		this->CardPower3->Text = power3;
 
-		cardPower4_P = cont.getCardPower(cardPower4_P);
-		String^ power4;
+		cardPower4_P = cont.getCardPower(playerDeck[4], cardPower4_P);
 		power4 = System::Convert::ToString(cardPower4_P);
 		this->CardPower4->Text = power4;
+
+		//
+		// Return AI's Card Type
+		//
+
+
 	}
 
 	private: System::Void Start_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -497,11 +752,11 @@ namespace CRLForm {
 		this->CardType0_0->Text = CardType0->Text;
 		this->CardPower0_0->Text = CardPower0->Text;
 
-		//if (cardType0_P == 0) {
-		//	playerTotalPower = playerTotalPower + cardPower0_P;
-		//	playerTotalPower = System::Convert::ToString(cardPower0_P);
-		//	this->TotalPower_P->Text = playerTotalPower;
-		//}
+		if (cardType0_P == 0) {
+			totalPower_P = totalPower_P + cardPower0_P;
+			playerTotalPower = System::Convert::ToString(totalPower_P);
+			this->TotalPower_P->Text = playerTotalPower;
+		}
 
 		Play0->Enabled = false;
 		CardType0->Enabled = false;
@@ -513,6 +768,12 @@ namespace CRLForm {
 		// Set the board text box with the value of the card
 		this->CardType1_1->Text = CardType1->Text;
 		this->CardPower1_1->Text = CardPower1->Text;
+
+		if (cardType1_P == 0) {
+			totalPower_P = totalPower_P + cardPower1_P;
+			playerTotalPower = System::Convert::ToString(totalPower_P);
+			this->TotalPower_P->Text = playerTotalPower;
+		}
 
 		Play1->Enabled = false;
 		CardType1->Enabled = false;
@@ -559,13 +820,19 @@ namespace CRLForm {
 		this->CardType4_4->Text = CardType4->Text;
 		this->CardPower4_4->Text = CardPower4->Text;
 
+		if (cardType4_P == 0) {
+			totalPower_P = totalPower_P + cardPower4_P;
+			playerTotalPower = System::Convert::ToString(totalPower_P);
+			this->TotalPower_P->Text = playerTotalPower;
+		}
+
 		Play4->Enabled = false;
 		CardType4->Enabled = false;
 		CardPower4->Enabled = false;
 	}
 
 	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) {
-
+		
 		Play0->Enabled = false;
 		Play1->Enabled = false;
 		Play2->Enabled = false;

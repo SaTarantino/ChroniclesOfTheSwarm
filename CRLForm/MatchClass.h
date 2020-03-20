@@ -1,13 +1,12 @@
 #pragma once
 #include "BaseCard.h"
 
+using namespace System;
+using namespace System::Collections;
+using namespace System::Collections::Generic;
+
 ref class MatchClass
 {
 public:
 	MatchClass();
-
-	void generateDecks(System::Collections::Generic::List<BaseCard ^> ^in);
-
-private:
-	const int MAXHAND = 2;
 };

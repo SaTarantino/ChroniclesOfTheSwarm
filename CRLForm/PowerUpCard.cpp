@@ -1,12 +1,10 @@
 #include <cstdlib>
+#include <random>
 #include <ctime>
 #include "PowerUpCard.h"
 
-PowerUpCard::PowerUpCard() : BaseCard() 
+PowerUpCard::PowerUpCard() : BaseCard()
 {
-	/*this->powerUPCard = *cardT;
-	cardPower();
-	this->cardPower = *power;*/
 }
 
 void PowerUpCard::setDetail(int *cardT, int *power)
@@ -18,20 +16,19 @@ void PowerUpCard::setDetail(int *cardT, int *power)
 
 void PowerUpCard::setCardPower()
 {
-	totalPower = rand() % 20 + 1;
+	totalPower = rand() % 10 + 5;
 }
 
-void PowerUpCard::cardEffect()
-{
-	
-}
+//void PowerUpCard::cardEffect()
+//{
+//}
 
 int PowerUpCard::getCardType(int)
 {
 	return cType;
 }
 
-int PowerUpCard::getCardPower(int) 
+int PowerUpCard::getCardPower(int)
 {
 	setCardPower();
 	return totalPower;
