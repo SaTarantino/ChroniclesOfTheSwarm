@@ -9,4 +9,6 @@ ref class MatchClass
 {
 public:
 	MatchClass();
+
+	array<BaseCard^> ^generateDeck();
 };

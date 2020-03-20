@@ -11,11 +11,11 @@ ref class Controller
 public:
 	Controller();
 
-	int getCardsType(int n, int cardType);
-	int getCardPower(int n, int cardPower);
+	//int getCardsType(int n, int cardType);
+	//int getCardPower(int n, int cardPower);
 	//void generateNumber(); //Obsolete
 
-	array<Int32> ^generateDeck();
+	//array<Int32> ^generateDeck();
 
 public:
 	PowerUpCard PowerUpCard;

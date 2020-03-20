@@ -9,29 +9,29 @@ Controller::Controller()
 {
 }
 
-int Controller::getCardsType(int n, int cardType)
-{
-	if (n == 0)
-	{
-		return PowerUpCard.getCardType(cardType);
-	}
-	if (n == 1)
-	{
-		return PowerDownCard.getCardType(cardType);
-	}
-}
+//int Controller::getCardsType(int n, int cardType)
+//{
+//	if (n == 0)
+//	{
+//		return PowerUpCard.getCardType(cardType);
+//	}
+//	if (n == 1)
+//	{
+//		return PowerDownCard.getCardType(cardType);
+//	}
+//}
 
-int Controller::getCardPower(int n, int cardPower)
-{
-	if (n == 0) 
-	{
-		return PowerUpCard.getCardPower(cardPower);
-	}
-	if (n == 1)
-	{
-		return PowerDownCard.getCardPower(cardPower);
-	}
-}
+//int Controller::getCardPower(int n, int cardPower)
+//{
+//	if (n == 0) 
+//	{
+//		return PowerUpCard.getCardPower(cardPower);
+//	}
+//	if (n == 1)
+//	{
+//		return PowerDownCard.getCardPower(cardPower);
+//	}
+//}
 
 // Obsolite
 //void Controller::generateNumber()
@@ -40,15 +40,15 @@ int Controller::getCardPower(int n, int cardPower)
 //	n = rand() % 2;
 //}
 
-array<Int32> ^Controller::generateDeck()
-{
-	int i, m;
-	array<Int32> ^deck = gcnew array<Int32>(ARRAY_SIZE);
-	srand(time(NULL));
-	for (i = 0; i < ARRAY_SIZE; i++)
-	{
-		m = rand() % 2;
-		deck[i] = m;
-	}
-	return deck;
-}
+//array<Int32> ^Controller::generateDeck()
+//{
+//	int i, m;
+//	array<Int32> ^deck = gcnew array<Int32>(ARRAY_SIZE);
+//	srand(time(NULL));
+//	for (i = 0; i < ARRAY_SIZE; i++)
+//	{
+//		m = rand() % 2;
+//		deck[i] = m;
+//	}
+//	return deck;
+//}

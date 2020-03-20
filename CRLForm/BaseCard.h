@@ -10,6 +10,6 @@ public:
 	virtual void setCardPower() = 0;
 	
 	//virtual void cardEffect() = 0;
-
+	virtual int getCardPower(int) = 0;
 	virtual int getCardType(int) = 0;
 };

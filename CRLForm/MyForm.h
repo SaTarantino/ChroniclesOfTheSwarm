@@ -1,6 +1,9 @@
 #pragma once
 #include "Controller.h"
-#include "Players.h"
+#include "Player.h"
+#include "AiPlayer.h"
+#include "MatchClass.h"
+#include "BaseCard.h"
 
 namespace CRLForm {
 
@@ -36,9 +39,6 @@ namespace CRLForm {
 				delete components;
 			}
 		}
-
-	protected:
-		Controller cont;
 
 	///
 	/// Player's Hand
@@ -100,6 +100,15 @@ namespace CRLForm {
 	/// AI's Board
 	///
 	private: System::Windows::Forms::TextBox^  _CardType0_0;
+	private: System::Windows::Forms::TextBox^  _CardPower0_0;
+	private: System::Windows::Forms::TextBox^  _CardType1_1;
+	private: System::Windows::Forms::TextBox^  _CardPower1_1;
+	private: System::Windows::Forms::TextBox^  _CardType2_2;
+	private: System::Windows::Forms::TextBox^  _CardPower2_2;
+	private: System::Windows::Forms::TextBox^  _CardType3_3;
+	private: System::Windows::Forms::TextBox^  _CardPower3_3;
+	private: System::Windows::Forms::TextBox^  _CardType4_4;
+	private: System::Windows::Forms::TextBox^  _CardPower4_4;
 	/// Roll Button
 	private: System::Windows::Forms::Button^  Roll;
 	/// Play Button
@@ -107,32 +116,25 @@ namespace CRLForm {
 	/// Player's Total Power
 	private: System::Windows::Forms::TextBox^  TotalPower_P;
 
-
-
 	private:
 		/// Player
 		int cardType0_P, cardType1_P, cardType2_P, cardType3_P, cardType4_P;
 		String ^type0, ^type1, ^type2, ^type3, ^type4;
 		int cardPower0_P, cardPower1_P, cardPower2_P, cardPower3_P, cardPower4_P;
 		String ^power0, ^power1, ^power2, ^power3, ^power4;
+		String ^playerTotalPower;
 		/// AI
-		int cardType0_A, cardType1_A, cardType2_A, cardType3_A, cardType4_A;
+		int _cardType0_A, _cardType1_A, _cardType2_A, _cardType3_A, _cardType4_A;
 		String ^_type0, ^_type1, ^_type2, ^_type3, ^_type4;
-		int cardPower0_A, cardPower1_A, cardPower2_A, cardPower3_A, cardPower4_A;
+		int _cardPower0_A, _cardPower1_A, _cardPower2_A, _cardPower3_A, _cardPower4_A;
 		String ^_power0, ^_power1, ^_power2, ^_power3, ^_power4;
+		String ^_aiTotalPower;
 
-		int totalPower_P, totalPower_A;
-		String ^playerTotalPower, ^AiTotalPower;
-private: System::Windows::Forms::TextBox^  _CardPower0_0;
-private: System::Windows::Forms::TextBox^  _CardType1_1;
-private: System::Windows::Forms::TextBox^  _CardPower1_1;
-private: System::Windows::Forms::TextBox^  _CardType2_2;
-private: System::Windows::Forms::TextBox^  _CardPower2_2;
-private: System::Windows::Forms::TextBox^  _CardType3_3;
-private: System::Windows::Forms::TextBox^  _CardPower3_3;
-private: System::Windows::Forms::TextBox^  _CardType4_4;
-private: System::Windows::Forms::TextBox^  _CardPower4_4;
-
+	private:
+		Controller cont;
+		MatchClass matchClass;
+		Player player;
+		AiPlayer _aiPlayer;
 
 
 	private:
@@ -658,80 +660,111 @@ private: System::Windows::Forms::TextBox^  _CardPower4_4;
 
 		}
 
-		// Old way to generate a deck.
-		/*array<Int32>^ generateDeck() {
-			int i, m;
-			array<Int32> ^local = gcnew array<Int32>(ARRAY_SIZE);
-			srand(time(NULL));
-			for (i = 0; i < ARRAY_SIZE; i++)
-			{
-				
-				m = rand() % 2;
-				local[i] = m;
-			}
-			return local;
-		}*/
+		array<BaseCard^> ^playerDeck;
+		array<BaseCard^> ^_aiDeck;
+		
 
 #pragma endregion
 	private: System::Void Roll_Click(System::Object^  sender, System::EventArgs^  e) {
 
-		array<Int32> ^playerDeck = cont.generateDeck();
-		array<Int32> ^aiDeck = cont.generateDeck();
-		Start->Enabled = true;
+		//array<Int32> ^playerDeck = cont.generateDeck();
+		//array<Int32> ^aiDeck = cont.generateDeck();
+		playerDeck = matchClass.generateDeck();
+		_aiDeck = matchClass.generateDeck();
 
-		//array<Int32>^ deck = generateDeck(); // Part of the old way to generate a deck.
+		Start->Enabled = true;
 
 		//
 		// Return Player's Card Type
 		//
-		cardType0_P = cont.getCardsType(playerDeck[0], cardType0_P);
-		type0 = System::Convert::ToString(cardType0_P);
+		cardType0_P = playerDeck[0]->getCardType(cardType0_P);
+		type0 = Convert::ToString(cardType0_P);
 		this->CardType0->Text = type0;
 
-		cardType1_P = cont.getCardsType(playerDeck[1], cardType1_P);
-		type1 = System::Convert::ToString(cardType1_P);
+		cardType1_P = playerDeck[1]->getCardType(cardType1_P);
+		type1 = Convert::ToString(cardType1_P);
 		this->CardType1->Text = type1;
 
-		cardType2_P = cont.getCardsType(playerDeck[2], cardType2_P);
-		type2 = System::Convert::ToString(cardType2_P);
+		cardType2_P = playerDeck[2]->getCardType(cardType2_P);
+		type2 = Convert::ToString(cardType2_P);
 		this->CardType2->Text = type2;
 
-		cardType3_P = cont.getCardsType(playerDeck[3], cardType3_P);
-		type3 = System::Convert::ToString(cardType3_P);
+		cardType3_P = playerDeck[3]->getCardType(cardType3_P);
+		type3 = Convert::ToString(cardType3_P);
 		this->CardType3->Text = type3;
 
-		cardType4_P = cont.getCardsType(playerDeck[4], cardType4_P);
-		type4 = System::Convert::ToString(cardType4_P);
+		cardType4_P = playerDeck[4]->getCardType(cardType4_P);
+		type4 = Convert::ToString(cardType4_P);
 		this->CardType4->Text = type4;
 
 		//
 		// Return Player's Card Power
 		//
-		cardPower0_P = cont.getCardPower(playerDeck[0], cardPower0_P);
-		power0 = System::Convert::ToString(cardPower0_P);
+		cardPower0_P = playerDeck[0]->getCardPower(cardPower0_P);
+		power0 = Convert::ToString(cardPower0_P);
 		this->CardPower0->Text = power0;
 
-		cardPower1_P = cont.getCardPower(playerDeck[1], cardPower1_P);
-		power1 = System::Convert::ToString(cardPower1_P);
+		cardPower1_P = playerDeck[1]->getCardPower(cardPower1_P);
+		power1 = Convert::ToString(cardPower1_P);
 		this->CardPower1->Text = power1;
 
-		cardPower2_P = cont.getCardPower(playerDeck[2], cardPower2_P);
-		power2 = System::Convert::ToString(cardPower2_P);
+		cardPower2_P = playerDeck[2]->getCardPower(cardPower2_P);
+		power2 = Convert::ToString(cardPower2_P);
 		this->CardPower2->Text = power2;
 
-		cardPower3_P = cont.getCardPower(playerDeck[3], cardPower3_P);
-		power3 = System::Convert::ToString(cardPower3_P);
+		cardPower3_P = playerDeck[3]->getCardPower(cardPower3_P);
+		power3 = Convert::ToString(cardPower3_P);
 		this->CardPower3->Text = power3;
 
-		cardPower4_P = cont.getCardPower(playerDeck[4], cardPower4_P);
-		power4 = System::Convert::ToString(cardPower4_P);
+		cardPower4_P = playerDeck[4]->getCardPower(cardPower4_P);
+		power4 = Convert::ToString(cardPower4_P);
 		this->CardPower4->Text = power4;
 
 		//
 		// Return AI's Card Type
 		//
+		_cardType0_A = _aiDeck[0]->getCardType(_cardType0_A);
+		_type0 = Convert::ToString(_cardType0_A);
+		this->_CardType0->Text = _type0;
 
+		_cardType1_A = _aiDeck[1]->getCardType(_cardType1_A);
+		_type1 = Convert::ToString(_cardType1_A);
+		this->_CardType1->Text = _type1;
 
+		_cardType2_A = _aiDeck[2]->getCardType(_cardType2_A);
+		_type2 = Convert::ToString(_cardType2_A);
+		this->_CardType2->Text = _type2;
+
+		_cardType3_A = _aiDeck[3]->getCardType(_cardType3_A);
+		_type3 = Convert::ToString(_cardType3_A);
+		this->_CardType3->Text = _type3;
+
+		_cardType4_A = _aiDeck[4]->getCardType(_cardType4_A);
+		_type4 = Convert::ToString(_cardType4_A);
+		this->_CardType4->Text = _type4;
+
+		//
+		// Return AI's Card Power
+		//
+		_cardPower0_A = _aiDeck[0]->getCardPower(_cardPower0_A);
+		_power0 = Convert::ToString(_cardPower0_A);
+		this->_CardPower0->Text = _power0;
+
+		_cardPower1_A = _aiDeck[1]->getCardPower(_cardPower1_A);
+		_power1 = Convert::ToString(_cardPower1_A);
+		this->_CardPower1->Text = _power1;
+
+		_cardPower2_A = _aiDeck[2]->getCardPower(_cardPower2_A);
+		_power2 = Convert::ToString(_cardPower2_A);
+		this->_CardPower2->Text = _power2;
+
+		_cardPower3_A = _aiDeck[3]->getCardPower(_cardPower3_A);
+		_power3 = Convert::ToString(_cardPower3_A);
+		this->_CardPower3->Text = _power3;
+
+		_cardPower4_A = _aiDeck[4]->getCardPower(_cardPower4_A);
+		_power4 = Convert::ToString(_cardPower4_A);
+		this->_CardPower4->Text = _power4;
 	}
 
 	private: System::Void Start_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -744,6 +777,9 @@ private: System::Windows::Forms::TextBox^  _CardPower4_4;
 
 		Start->Enabled = false;
 		Roll->Enabled = false;
+
+		playerTotalPower = Convert::ToString(player.getTotalPower());
+		this->TotalPower_P->Text = playerTotalPower;
 	}
 
 	private: System::Void Play0_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -752,9 +788,10 @@ private: System::Windows::Forms::TextBox^  _CardPower4_4;
 		this->CardType0_0->Text = CardType0->Text;
 		this->CardPower0_0->Text = CardPower0->Text;
 
-		if (cardType0_P == 0) {
-			totalPower_P = totalPower_P + cardPower0_P;
-			playerTotalPower = System::Convert::ToString(totalPower_P);
+		if (cardType0_P == 0)
+		{
+			player.setTotalPower(cardPower0_P);
+			playerTotalPower = Convert::ToString(player.getTotalPower());
 			this->TotalPower_P->Text = playerTotalPower;
 		}
 
@@ -769,9 +806,10 @@ private: System::Windows::Forms::TextBox^  _CardPower4_4;
 		this->CardType1_1->Text = CardType1->Text;
 		this->CardPower1_1->Text = CardPower1->Text;
 
-		if (cardType1_P == 0) {
-			totalPower_P = totalPower_P + cardPower1_P;
-			playerTotalPower = System::Convert::ToString(totalPower_P);
+		if (cardType1_P == 0)
+		{
+			player.setTotalPower(cardPower1_P);
+			playerTotalPower = Convert::ToString(player.getTotalPower());
 			this->TotalPower_P->Text = playerTotalPower;
 		}
 
@@ -786,9 +824,10 @@ private: System::Windows::Forms::TextBox^  _CardPower4_4;
 		this->CardType2_2->Text = CardType2->Text;
 		this->CardPower2_2->Text = CardPower2->Text;
 
-		if (cardType2_P == 0) {
-			totalPower_P = totalPower_P + cardPower2_P;
-			playerTotalPower = System::Convert::ToString(totalPower_P);
+		if (cardType2_P == 0) 
+		{
+			player.setTotalPower(cardPower2_P);
+			playerTotalPower = Convert::ToString(player.getTotalPower());
 			this->TotalPower_P->Text = playerTotalPower;
 		}
 
@@ -803,9 +842,10 @@ private: System::Windows::Forms::TextBox^  _CardPower4_4;
 		this->CardType3_3->Text = CardType3->Text;
 		this->CardPower3_3->Text = CardPower3->Text;
 
-		if (cardType3_P == 0) {
-			totalPower_P = totalPower_P + cardPower3_P;
-			playerTotalPower = System::Convert::ToString(totalPower_P);
+		if (cardType3_P == 0)
+		{
+			player.setTotalPower(cardPower3_P);
+			playerTotalPower = Convert::ToString(player.getTotalPower());
 			this->TotalPower_P->Text = playerTotalPower;
 		}
 
@@ -820,9 +860,10 @@ private: System::Windows::Forms::TextBox^  _CardPower4_4;
 		this->CardType4_4->Text = CardType4->Text;
 		this->CardPower4_4->Text = CardPower4->Text;
 
-		if (cardType4_P == 0) {
-			totalPower_P = totalPower_P + cardPower4_P;
-			playerTotalPower = System::Convert::ToString(totalPower_P);
+		if (cardType4_P == 0)
+		{
+			player.setTotalPower(cardPower4_P);
+			playerTotalPower = Convert::ToString(player.getTotalPower());
 			this->TotalPower_P->Text = playerTotalPower;
 		}
 

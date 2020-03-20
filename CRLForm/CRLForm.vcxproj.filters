@@ -39,17 +39,17 @@
     <ClCompile Include="PowerUpCard.cpp">
       <Filter>Source Files\Cards</Filter>
     </ClCompile>
-    <ClCompile Include="HumanPlayer.cpp">
-      <Filter>Source Files\Players</Filter>
-    </ClCompile>
-    <ClCompile Include="Players.cpp">
-      <Filter>Source Files\Players</Filter>
-    </ClCompile>
     <ClCompile Include="Controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PowerDownCard.cpp">
       <Filter>Source Files\Cards</Filter>
+    </ClCompile>
+    <ClCompile Include="AiPlayer.cpp">
+      <Filter>Source Files\Players</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\Players</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -65,17 +65,17 @@
     <ClInclude Include="PowerUpCard.h">
       <Filter>Header Files\Cards</Filter>
     </ClInclude>
-    <ClInclude Include="HumanPlayer.h">
-      <Filter>Header Files\Players</Filter>
-    </ClInclude>
-    <ClInclude Include="Players.h">
-      <Filter>Header Files\Players</Filter>
-    </ClInclude>
     <ClInclude Include="Controller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PowerDownCard.h">
       <Filter>Header Files\Cards</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\Players</Filter>
+    </ClInclude>
+    <ClInclude Include="AiPlayer.h">
+      <Filter>Header Files\Players</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

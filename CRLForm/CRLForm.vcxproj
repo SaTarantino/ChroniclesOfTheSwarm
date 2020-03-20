@@ -82,22 +82,22 @@
   <ItemGroup>
     <ClCompile Include="BaseCard.cpp" />
     <ClCompile Include="Controller.cpp" />
-    <ClCompile Include="HumanPlayer.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="MatchClass.cpp" />
     <ClCompile Include="MyForm.cpp" />
-    <ClCompile Include="Players.cpp" />
+    <ClCompile Include="AiPlayer.cpp" />
     <ClCompile Include="PowerDownCard.cpp" />
     <ClCompile Include="PowerUpCard.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseCard.h" />
     <ClInclude Include="Controller.h" />
-    <ClInclude Include="HumanPlayer.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="MatchClass.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="Players.h" />
+    <ClInclude Include="AiPlayer.h" />
     <ClInclude Include="PowerDownCard.h" />
     <ClInclude Include="PowerUpCard.h" />
   </ItemGroup>

@@ -13,7 +13,7 @@ public:
 
 	virtual int getCardType(int) override;
 
-	int getCardPower(int);
+	virtual int getCardPower(int) override;
 
 private:
 	int cType = 1;

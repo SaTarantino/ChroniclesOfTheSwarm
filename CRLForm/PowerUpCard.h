@@ -11,9 +11,9 @@ public:
 
 	//virtual void cardEffect() override;
 
-	int getCardType(int) override;
+	virtual int getCardType(int) override;
 
-	int getCardPower(int);
+	virtual int getCardPower(int) override;
 
 private:
 	int cType = 0;
