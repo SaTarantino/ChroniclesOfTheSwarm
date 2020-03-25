@@ -9,6 +9,7 @@ ref class MatchClass
 {
 public:
 	MatchClass();
-
-	array<BaseCard^> ^generateDeck();
+	
+	array<BaseCard^>^ generateDeck();
+	array<bool>^ setDeckKnolegde();
 };

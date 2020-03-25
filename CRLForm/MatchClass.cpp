@@ -31,3 +31,15 @@ array<BaseCard^> ^MatchClass::generateDeck()
 	}
 	return deck;
 }
+
+array<bool>^ MatchClass::setDeckKnolegde()
+{
+	int i;
+	array<bool> ^boolArray = gcnew array<bool>(ARRAY_SIZE);
+
+	for (i = 0; i < ARRAY_SIZE; i++)
+	{
+		boolArray[i] = true;
+	}
+	return boolArray;
+}

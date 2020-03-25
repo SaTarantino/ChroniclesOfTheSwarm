@@ -11,13 +11,5 @@ ref class Controller
 public:
 	Controller();
 
-	//int getCardsType(int n, int cardType);
-	//int getCardPower(int n, int cardPower);
-	//void generateNumber(); //Obsolete
-
-	//array<Int32> ^generateDeck();
-
-public:
-	PowerUpCard PowerUpCard;
-	PowerDownCard PowerDownCard;
+	void populateArray(array<int> ^, int, int, int, int, int);
 };

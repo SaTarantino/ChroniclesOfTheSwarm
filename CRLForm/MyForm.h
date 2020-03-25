@@ -23,9 +23,6 @@ namespace CRLForm {
 		MyForm(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
 		}
 
 	protected:
@@ -115,6 +112,8 @@ namespace CRLForm {
 	private: System::Windows::Forms::Button^  Start;
 	/// Player's Total Power
 	private: System::Windows::Forms::TextBox^  TotalPower_P;
+	/// AI's Total Power
+	private: System::Windows::Forms::TextBox^  _TotalPower_A;
 
 	private:
 		/// Player
@@ -136,12 +135,14 @@ namespace CRLForm {
 		Player player;
 		AiPlayer _aiPlayer;
 
+private: System::ComponentModel::IContainer^  components;
+
 
 	private:
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -199,6 +200,7 @@ namespace CRLForm {
 			this->_CardPower3_3 = (gcnew System::Windows::Forms::TextBox());
 			this->_CardType4_4 = (gcnew System::Windows::Forms::TextBox());
 			this->_CardPower4_4 = (gcnew System::Windows::Forms::TextBox());
+			this->_TotalPower_A = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
 			// 
 			// CardType0
@@ -599,11 +601,20 @@ namespace CRLForm {
 			this->_CardPower4_4->Size = System::Drawing::Size(100, 20);
 			this->_CardPower4_4->TabIndex = 47;
 			// 
+			// _TotalPower_A
+			// 
+			this->_TotalPower_A->Location = System::Drawing::Point(776, 240);
+			this->_TotalPower_A->Name = L"textBox1";
+			this->_TotalPower_A->ReadOnly = true;
+			this->_TotalPower_A->Size = System::Drawing::Size(100, 20);
+			this->_TotalPower_A->TabIndex = 48;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(888, 534);
+			this->Controls->Add(this->_TotalPower_A);
 			this->Controls->Add(this->_CardPower4_4);
 			this->Controls->Add(this->_CardType4_4);
 			this->Controls->Add(this->_CardPower3_3);
@@ -659,9 +670,11 @@ namespace CRLForm {
 			this->PerformLayout();
 
 		}
-
+		array<int> ^arrayCardType_P = gcnew array<int>(ARRAY_SIZE);
 		array<BaseCard^> ^playerDeck;
 		array<BaseCard^> ^_aiDeck;
+		array<bool> ^bool_P;
+		array<bool> ^bool_A;
 		
 
 #pragma endregion
@@ -672,18 +685,20 @@ namespace CRLForm {
 		playerDeck = matchClass.generateDeck();
 		_aiDeck = matchClass.generateDeck();
 
-		Start->Enabled = true;
+		//cont.populateArray(arrayCardType_P, cardType0_P, cardType1_P, cardType2_P, cardType3_P, cardType4_P);
 
+		Start->Enabled = true;
 		//
 		// Return Player's Card Type
 		//
-		cardType0_P = playerDeck[0]->getCardType(cardType0_P);
-		type0 = Convert::ToString(cardType0_P);
-		this->CardType0->Text = type0;
+		/*cardType0_P = playerDeck[0]->getCardType(cardType0_P);
+		type0 = Convert::ToString(cardType0_P);*/
+		this->CardType0->Text = Convert::ToString(playerDeck[0]->returnCardType());
 
-		cardType1_P = playerDeck[1]->getCardType(cardType1_P);
-		type1 = Convert::ToString(cardType1_P);
-		this->CardType1->Text = type1;
+		/*cardType1_P = playerDeck[1]->getCardType(cardType1_P);
+		type1 = Convert::ToString(cardType1_P);*/
+		//this->CardType1->Text = type1;
+		//this->CardType1->Text = Convert::ToString(playerDeck[1]->getCardType());
 
 		cardType2_P = playerDeck[2]->getCardType(cardType2_P);
 		type2 = Convert::ToString(cardType2_P);
@@ -696,7 +711,6 @@ namespace CRLForm {
 		cardType4_P = playerDeck[4]->getCardType(cardType4_P);
 		type4 = Convert::ToString(cardType4_P);
 		this->CardType4->Text = type4;
-
 		//
 		// Return Player's Card Power
 		//
@@ -719,7 +733,6 @@ namespace CRLForm {
 		cardPower4_P = playerDeck[4]->getCardPower(cardPower4_P);
 		power4 = Convert::ToString(cardPower4_P);
 		this->CardPower4->Text = power4;
-
 		//
 		// Return AI's Card Type
 		//
@@ -742,7 +755,6 @@ namespace CRLForm {
 		_cardType4_A = _aiDeck[4]->getCardType(_cardType4_A);
 		_type4 = Convert::ToString(_cardType4_A);
 		this->_CardType4->Text = _type4;
-
 		//
 		// Return AI's Card Power
 		//
@@ -780,6 +792,8 @@ namespace CRLForm {
 
 		playerTotalPower = Convert::ToString(player.getTotalPower());
 		this->TotalPower_P->Text = playerTotalPower;
+		_aiTotalPower = Convert::ToString(_aiPlayer.getTotalPower());
+		this->_TotalPower_A->Text = _aiTotalPower;
 	}
 
 	private: System::Void Play0_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -788,16 +802,28 @@ namespace CRLForm {
 		this->CardType0_0->Text = CardType0->Text;
 		this->CardPower0_0->Text = CardPower0->Text;
 
-		if (cardType0_P == 0)
+		if (playerDeck[0]->returnCardType() == 0)
 		{
 			player.setTotalPower(cardPower0_P);
 			playerTotalPower = Convert::ToString(player.getTotalPower());
 			this->TotalPower_P->Text = playerTotalPower;
-		}
 
-		Play0->Enabled = false;
-		CardType0->Enabled = false;
-		CardPower0->Enabled = false;
+			Play0->Enabled = false;
+			CardType0->Enabled = false;
+			CardPower0->Enabled = false;
+			bool_P[0] = false;
+		}
+		else if (playerDeck[0]->returnCardType() == 1)
+		{
+			_aiPlayer.setTotalPower(-cardPower0_P);
+			_aiTotalPower = Convert::ToString(_aiPlayer.getTotalPower());
+			this->_TotalPower_A->Text = _aiTotalPower;
+
+			Play0->Enabled = false;
+			CardType0->Enabled = false;
+			CardPower0->Enabled = false;
+			bool_P[0] = false;
+		}
 	}
 
 	private: System::Void Play1_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -811,11 +837,23 @@ namespace CRLForm {
 			player.setTotalPower(cardPower1_P);
 			playerTotalPower = Convert::ToString(player.getTotalPower());
 			this->TotalPower_P->Text = playerTotalPower;
+			
+			Play1->Enabled = false;
+			CardType1->Enabled = false;
+			CardPower1->Enabled = false;
+			bool_P[1] = false;
 		}
+		else if (cardType1_P == 1)
+		{
+			_aiPlayer.setTotalPower(-cardPower1_P);
+			_aiTotalPower = Convert::ToString(_aiPlayer.getTotalPower());
+			this->_TotalPower_A->Text = _aiTotalPower;
 
-		Play1->Enabled = false;
-		CardType1->Enabled = false;
-		CardPower1->Enabled = false;
+			Play1->Enabled = false;
+			CardType1->Enabled = false;
+			CardPower1->Enabled = false;
+			bool_P[1] = false;
+		}
 	}
 
 	private: System::Void Play2_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -829,11 +867,23 @@ namespace CRLForm {
 			player.setTotalPower(cardPower2_P);
 			playerTotalPower = Convert::ToString(player.getTotalPower());
 			this->TotalPower_P->Text = playerTotalPower;
-		}
 
-		Play2->Enabled = false;
-		CardType2->Enabled = false;
-		CardPower2->Enabled = false;
+			Play2->Enabled = false;
+			CardType2->Enabled = false;
+			CardPower2->Enabled = false;
+			bool_P[2] = false;
+		}
+		else if (cardType2_P == 1)
+		{
+			_aiPlayer.setTotalPower(-cardPower2_P);
+			_aiTotalPower = Convert::ToString(_aiPlayer.getTotalPower());
+			this->_TotalPower_A->Text = _aiTotalPower;
+
+			Play2->Enabled = false;
+			CardType2->Enabled = false;
+			CardPower2->Enabled = false;
+			bool_P[2] = false;
+		}
 	}
 
 	private: System::Void Play3_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -847,11 +897,23 @@ namespace CRLForm {
 			player.setTotalPower(cardPower3_P);
 			playerTotalPower = Convert::ToString(player.getTotalPower());
 			this->TotalPower_P->Text = playerTotalPower;
-		}
 
-		Play3->Enabled = false;
-		CardType3->Enabled = false;
-		CardPower3->Enabled = false;
+			Play3->Enabled = false;
+			CardType3->Enabled = false;
+			CardPower3->Enabled = false;
+			bool_P[3] = false;
+		}
+		else if (cardType3_P == 1)
+		{
+			_aiPlayer.setTotalPower(-cardPower3_P);
+			_aiTotalPower = Convert::ToString(_aiPlayer.getTotalPower());
+			this->_TotalPower_A->Text = _aiTotalPower;
+
+			Play3->Enabled = false;
+			CardType3->Enabled = false;
+			CardPower3->Enabled = false;
+			bool_P[3] = false;
+		}
 	}
 
 	private: System::Void Play4_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -865,11 +927,23 @@ namespace CRLForm {
 			player.setTotalPower(cardPower4_P);
 			playerTotalPower = Convert::ToString(player.getTotalPower());
 			this->TotalPower_P->Text = playerTotalPower;
-		}
 
-		Play4->Enabled = false;
-		CardType4->Enabled = false;
-		CardPower4->Enabled = false;
+			Play4->Enabled = false;
+			CardType4->Enabled = false;
+			CardPower4->Enabled = false;
+			bool_P[4] = false;
+		}
+		else if (cardType4_P == 1)
+		{
+			_aiPlayer.setTotalPower(-cardPower4_P);
+			_aiTotalPower = Convert::ToString(_aiPlayer.getTotalPower());
+			this->_TotalPower_A->Text = _aiTotalPower;
+
+			Play4->Enabled = false;
+			CardType4->Enabled = false;
+			CardPower4->Enabled = false;
+			bool_P[4] = false;
+		}
 	}
 
 	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) {

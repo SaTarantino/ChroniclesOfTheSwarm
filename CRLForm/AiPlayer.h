@@ -1,6 +1,8 @@
 #pragma once
 #include "BaseCard.h"
 
+#define ARRAY_SIZE 5
+
 ref class AiPlayer
 {
 public:
@@ -8,14 +10,11 @@ public:
 
 	void setTotalPower(int power);
 	int getTotalPower();
-
-	void setAiDeckKnolegde(array<BaseCard^> ^deck);
-	void playCard(int playerTotalPower, array<BaseCard^> ^deck);
+	int cardToPlay(array<bool> ^);
+	void play(array<BaseCard^> ^);
+	//void playCard(int playerTotalPower, array<BaseCard^> ^deck, array<bool> ^boolArray);
 
 private:
 	int totalPower = 0;
-	int pUpCount;
-	int pDownCount;
-	bool hasPowerDownCard = false;
-	bool hasPowerUpCard = false;
+	int card;
 };
