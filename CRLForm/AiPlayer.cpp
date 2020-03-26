@@ -1,5 +1,7 @@
 #include <cstdlib>
+#include <time.h>
 #include "AiPlayer.h"
+#include "MatchClass.h"
 
 AiPlayer::AiPlayer()
 {
@@ -18,13 +20,30 @@ int AiPlayer::getTotalPower()
 
 int AiPlayer::cardToPlay(array<bool> ^hand)
 {
-	card = rand() % 5;
+	int i;
+	generateNumber(card);
 
-	do {
+	for (i = 0; i < ARRAY_SIZE; i++)
+	{
+		if (hand[card] == true)
+		{
+			return card;
+		}
+		else
+		{
+			generateNumber(card);
+		}
+	}
+
+	/*do {
 		card = rand() % 5;
-	} while (hand[card] = true);
-	
-	return card;
+	} while (hand[card] == false);*/
+}
+
+void AiPlayer::generateNumber(int n)
+{
+	srand(time(NULL));
+	n = rand() % 5;
 }
 
 void AiPlayer::play(array<BaseCard^> ^hand)

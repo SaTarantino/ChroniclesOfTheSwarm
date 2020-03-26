@@ -11,5 +11,5 @@ ref class Controller
 public:
 	Controller();
 
-	void populateArray(array<int> ^, int, int, int, int, int);
+	//void populateArray(array<int> ^, int, int, int, int, int);
 };

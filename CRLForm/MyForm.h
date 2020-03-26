@@ -19,6 +19,13 @@ namespace CRLForm {
 	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
+		void playCard(int cardToPlay);
+		void playCard0();
+		void playCard1();
+		void playCard2();
+		void playCard3();
+		void playCard4();
+
 	public:
 		MyForm(void)
 		{
@@ -110,23 +117,22 @@ namespace CRLForm {
 	private: System::Windows::Forms::Button^  Roll;
 	/// Play Button
 	private: System::Windows::Forms::Button^  Start;
-	/// Player's Total Power
+	/// Player and AI Total Power
 	private: System::Windows::Forms::TextBox^  TotalPower_P;
-	/// AI's Total Power
 	private: System::Windows::Forms::TextBox^  _TotalPower_A;
 
 	private:
 		/// Player
-		int cardType0_P, cardType1_P, cardType2_P, cardType3_P, cardType4_P;
+		/*int cardType0_P, cardType1_P, cardType2_P, cardType3_P, cardType4_P;
 		String ^type0, ^type1, ^type2, ^type3, ^type4;
 		int cardPower0_P, cardPower1_P, cardPower2_P, cardPower3_P, cardPower4_P;
-		String ^power0, ^power1, ^power2, ^power3, ^power4;
+		String ^power0, ^power1, ^power2, ^power3, ^power4;*/
 		String ^playerTotalPower;
 		/// AI
-		int _cardType0_A, _cardType1_A, _cardType2_A, _cardType3_A, _cardType4_A;
+		/*int _cardType0_A, _cardType1_A, _cardType2_A, _cardType3_A, _cardType4_A;
 		String ^_type0, ^_type1, ^_type2, ^_type3, ^_type4;
 		int _cardPower0_A, _cardPower1_A, _cardPower2_A, _cardPower3_A, _cardPower4_A;
-		String ^_power0, ^_power1, ^_power2, ^_power3, ^_power4;
+		String ^_power0, ^_power1, ^_power2, ^_power3, ^_power4;*/
 		String ^_aiTotalPower;
 
 	private:
@@ -670,116 +676,65 @@ private: System::ComponentModel::IContainer^  components;
 			this->PerformLayout();
 
 		}
-		array<int> ^arrayCardType_P = gcnew array<int>(ARRAY_SIZE);
+		
 		array<BaseCard^> ^playerDeck;
 		array<BaseCard^> ^_aiDeck;
-		array<bool> ^bool_P;
-		array<bool> ^bool_A;
-		
+		array<bool> ^bool_P = gcnew array<bool>(ARRAY_SIZE);
+		array<bool> ^bool_A = gcnew array<bool>(ARRAY_SIZE);
+		int cardToPlay;
 
 #pragma endregion
 	private: System::Void Roll_Click(System::Object^  sender, System::EventArgs^  e) {
 
-		//array<Int32> ^playerDeck = cont.generateDeck();
-		//array<Int32> ^aiDeck = cont.generateDeck();
 		playerDeck = matchClass.generateDeck();
-		_aiDeck = matchClass.generateDeck();
-
-		//cont.populateArray(arrayCardType_P, cardType0_P, cardType1_P, cardType2_P, cardType3_P, cardType4_P);
-
+		
 		Start->Enabled = true;
 		//
 		// Return Player's Card Type
 		//
+		
+		// This is the old way. Solid but redundant. The concept is the same for the card power.
 		/*cardType0_P = playerDeck[0]->getCardType(cardType0_P);
-		type0 = Convert::ToString(cardType0_P);*/
+		type0 = Convert::ToString(cardType0_P);
+		this->CardType0->Text = type0;*/
+
 		this->CardType0->Text = Convert::ToString(playerDeck[0]->returnCardType());
+		this->CardType1->Text = Convert::ToString(playerDeck[1]->returnCardType());
+		this->CardType2->Text = Convert::ToString(playerDeck[2]->returnCardType());
+		this->CardType3->Text = Convert::ToString(playerDeck[3]->returnCardType());
+		this->CardType4->Text = Convert::ToString(playerDeck[4]->returnCardType());
 
-		/*cardType1_P = playerDeck[1]->getCardType(cardType1_P);
-		type1 = Convert::ToString(cardType1_P);*/
-		//this->CardType1->Text = type1;
-		//this->CardType1->Text = Convert::ToString(playerDeck[1]->getCardType());
-
-		cardType2_P = playerDeck[2]->getCardType(cardType2_P);
-		type2 = Convert::ToString(cardType2_P);
-		this->CardType2->Text = type2;
-
-		cardType3_P = playerDeck[3]->getCardType(cardType3_P);
-		type3 = Convert::ToString(cardType3_P);
-		this->CardType3->Text = type3;
-
-		cardType4_P = playerDeck[4]->getCardType(cardType4_P);
-		type4 = Convert::ToString(cardType4_P);
-		this->CardType4->Text = type4;
 		//
 		// Return Player's Card Power
 		//
-		cardPower0_P = playerDeck[0]->getCardPower(cardPower0_P);
-		power0 = Convert::ToString(cardPower0_P);
-		this->CardPower0->Text = power0;
-
-		cardPower1_P = playerDeck[1]->getCardPower(cardPower1_P);
-		power1 = Convert::ToString(cardPower1_P);
-		this->CardPower1->Text = power1;
-
-		cardPower2_P = playerDeck[2]->getCardPower(cardPower2_P);
-		power2 = Convert::ToString(cardPower2_P);
-		this->CardPower2->Text = power2;
-
-		cardPower3_P = playerDeck[3]->getCardPower(cardPower3_P);
-		power3 = Convert::ToString(cardPower3_P);
-		this->CardPower3->Text = power3;
-
-		cardPower4_P = playerDeck[4]->getCardPower(cardPower4_P);
-		power4 = Convert::ToString(cardPower4_P);
-		this->CardPower4->Text = power4;
-		//
-		// Return AI's Card Type
-		//
-		_cardType0_A = _aiDeck[0]->getCardType(_cardType0_A);
-		_type0 = Convert::ToString(_cardType0_A);
-		this->_CardType0->Text = _type0;
-
-		_cardType1_A = _aiDeck[1]->getCardType(_cardType1_A);
-		_type1 = Convert::ToString(_cardType1_A);
-		this->_CardType1->Text = _type1;
-
-		_cardType2_A = _aiDeck[2]->getCardType(_cardType2_A);
-		_type2 = Convert::ToString(_cardType2_A);
-		this->_CardType2->Text = _type2;
-
-		_cardType3_A = _aiDeck[3]->getCardType(_cardType3_A);
-		_type3 = Convert::ToString(_cardType3_A);
-		this->_CardType3->Text = _type3;
-
-		_cardType4_A = _aiDeck[4]->getCardType(_cardType4_A);
-		_type4 = Convert::ToString(_cardType4_A);
-		this->_CardType4->Text = _type4;
-		//
-		// Return AI's Card Power
-		//
-		_cardPower0_A = _aiDeck[0]->getCardPower(_cardPower0_A);
-		_power0 = Convert::ToString(_cardPower0_A);
-		this->_CardPower0->Text = _power0;
-
-		_cardPower1_A = _aiDeck[1]->getCardPower(_cardPower1_A);
-		_power1 = Convert::ToString(_cardPower1_A);
-		this->_CardPower1->Text = _power1;
-
-		_cardPower2_A = _aiDeck[2]->getCardPower(_cardPower2_A);
-		_power2 = Convert::ToString(_cardPower2_A);
-		this->_CardPower2->Text = _power2;
-
-		_cardPower3_A = _aiDeck[3]->getCardPower(_cardPower3_A);
-		_power3 = Convert::ToString(_cardPower3_A);
-		this->_CardPower3->Text = _power3;
-
-		_cardPower4_A = _aiDeck[4]->getCardPower(_cardPower4_A);
-		_power4 = Convert::ToString(_cardPower4_A);
-		this->_CardPower4->Text = _power4;
+		this->CardPower0->Text = Convert::ToString(playerDeck[0]->returnCardPower());
+		this->CardPower1->Text = Convert::ToString(playerDeck[1]->returnCardPower());
+		this->CardPower2->Text = Convert::ToString(playerDeck[2]->returnCardPower());
+		this->CardPower3->Text = Convert::ToString(playerDeck[3]->returnCardPower());
+		this->CardPower4->Text = Convert::ToString(playerDeck[4]->returnCardPower());
 	}
 
 	private: System::Void Start_Click(System::Object^  sender, System::EventArgs^  e) {
+
+		// Set AI deck
+		_aiDeck = matchClass.generateDeck();
+
+		//
+		// Return AI's Card Type
+		//
+		this->_CardType0->Text = Convert::ToString(_aiDeck[0]->returnCardType());
+		this->_CardType1->Text = Convert::ToString(_aiDeck[1]->returnCardType());
+		this->_CardType2->Text = Convert::ToString(_aiDeck[2]->returnCardType());
+		this->_CardType3->Text = Convert::ToString(_aiDeck[3]->returnCardType());
+		this->_CardType4->Text = Convert::ToString(_aiDeck[4]->returnCardType());
+		//
+		// Return AI's Card Power
+		//
+		this->_CardPower0->Text = Convert::ToString(_aiDeck[0]->returnCardPower());
+		this->_CardPower1->Text = Convert::ToString(_aiDeck[1]->returnCardPower());
+		this->_CardPower2->Text = Convert::ToString(_aiDeck[2]->returnCardPower());
+		this->_CardPower3->Text = Convert::ToString(_aiDeck[3]->returnCardPower());
+		this->_CardPower4->Text = Convert::ToString(_aiDeck[4]->returnCardPower());
 
 		Play0->Enabled = true;
 		Play1->Enabled = true;
@@ -790,10 +745,8 @@ private: System::ComponentModel::IContainer^  components;
 		Start->Enabled = false;
 		Roll->Enabled = false;
 
-		playerTotalPower = Convert::ToString(player.getTotalPower());
-		this->TotalPower_P->Text = playerTotalPower;
-		_aiTotalPower = Convert::ToString(_aiPlayer.getTotalPower());
-		this->_TotalPower_A->Text = _aiTotalPower;
+		this->TotalPower_P->Text = Convert::ToString(player.getTotalPower());
+		this->_TotalPower_A->Text = Convert::ToString(_aiPlayer.getTotalPower());
 	}
 
 	private: System::Void Play0_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -804,9 +757,8 @@ private: System::ComponentModel::IContainer^  components;
 
 		if (playerDeck[0]->returnCardType() == 0)
 		{
-			player.setTotalPower(cardPower0_P);
-			playerTotalPower = Convert::ToString(player.getTotalPower());
-			this->TotalPower_P->Text = playerTotalPower;
+			player.setTotalPower(playerDeck[0]->returnCardPower());
+			this->TotalPower_P->Text = Convert::ToString(player.getTotalPower());
 
 			Play0->Enabled = false;
 			CardType0->Enabled = false;
@@ -815,15 +767,17 @@ private: System::ComponentModel::IContainer^  components;
 		}
 		else if (playerDeck[0]->returnCardType() == 1)
 		{
-			_aiPlayer.setTotalPower(-cardPower0_P);
-			_aiTotalPower = Convert::ToString(_aiPlayer.getTotalPower());
-			this->_TotalPower_A->Text = _aiTotalPower;
+			_aiPlayer.setTotalPower(-playerDeck[0]->returnCardPower());
+			this->_TotalPower_A->Text = Convert::ToString(_aiPlayer.getTotalPower());
 
 			Play0->Enabled = false;
 			CardType0->Enabled = false;
 			CardPower0->Enabled = false;
 			bool_P[0] = false;
 		}
+		cardToPlay = _aiPlayer.cardToPlay(bool_A);
+		playCard(cardToPlay);
+		//playCard0();
 	}
 
 	private: System::Void Play1_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -832,28 +786,29 @@ private: System::ComponentModel::IContainer^  components;
 		this->CardType1_1->Text = CardType1->Text;
 		this->CardPower1_1->Text = CardPower1->Text;
 
-		if (cardType1_P == 0)
+		if (playerDeck[1]->returnCardType() == 0)
 		{
-			player.setTotalPower(cardPower1_P);
-			playerTotalPower = Convert::ToString(player.getTotalPower());
-			this->TotalPower_P->Text = playerTotalPower;
+			player.setTotalPower(playerDeck[1]->returnCardPower());
+			this->TotalPower_P->Text = Convert::ToString(player.getTotalPower());
 			
 			Play1->Enabled = false;
 			CardType1->Enabled = false;
 			CardPower1->Enabled = false;
 			bool_P[1] = false;
 		}
-		else if (cardType1_P == 1)
+		else if (playerDeck[1]->returnCardType() == 1)
 		{
-			_aiPlayer.setTotalPower(-cardPower1_P);
-			_aiTotalPower = Convert::ToString(_aiPlayer.getTotalPower());
-			this->_TotalPower_A->Text = _aiTotalPower;
+			_aiPlayer.setTotalPower(-playerDeck[1]->returnCardPower());
+			this->_TotalPower_A->Text = Convert::ToString(_aiPlayer.getTotalPower());
 
 			Play1->Enabled = false;
 			CardType1->Enabled = false;
 			CardPower1->Enabled = false;
 			bool_P[1] = false;
 		}
+		cardToPlay = _aiPlayer.cardToPlay(bool_A);
+		playCard(cardToPlay);
+		//playCard1();
 	}
 
 	private: System::Void Play2_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -862,28 +817,29 @@ private: System::ComponentModel::IContainer^  components;
 		this->CardType2_2->Text = CardType2->Text;
 		this->CardPower2_2->Text = CardPower2->Text;
 
-		if (cardType2_P == 0) 
+		if (playerDeck[2]->returnCardType() == 0)
 		{
-			player.setTotalPower(cardPower2_P);
-			playerTotalPower = Convert::ToString(player.getTotalPower());
-			this->TotalPower_P->Text = playerTotalPower;
+			player.setTotalPower(playerDeck[2]->returnCardPower());
+			this->TotalPower_P->Text = Convert::ToString(player.getTotalPower());
 
 			Play2->Enabled = false;
 			CardType2->Enabled = false;
 			CardPower2->Enabled = false;
 			bool_P[2] = false;
 		}
-		else if (cardType2_P == 1)
+		else if (playerDeck[2]->returnCardType() == 1)
 		{
-			_aiPlayer.setTotalPower(-cardPower2_P);
-			_aiTotalPower = Convert::ToString(_aiPlayer.getTotalPower());
-			this->_TotalPower_A->Text = _aiTotalPower;
+			_aiPlayer.setTotalPower(-playerDeck[2]->returnCardPower());
+			this->_TotalPower_A->Text = Convert::ToString(_aiPlayer.getTotalPower());
 
 			Play2->Enabled = false;
 			CardType2->Enabled = false;
 			CardPower2->Enabled = false;
 			bool_P[2] = false;
 		}
+		cardToPlay = _aiPlayer.cardToPlay(bool_A);
+		playCard(cardToPlay);
+		//playCard2();
 	}
 
 	private: System::Void Play3_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -892,28 +848,29 @@ private: System::ComponentModel::IContainer^  components;
 		this->CardType3_3->Text = CardType3->Text;
 		this->CardPower3_3->Text = CardPower3->Text;
 
-		if (cardType3_P == 0)
+		if (playerDeck[3]->returnCardType() == 0)
 		{
-			player.setTotalPower(cardPower3_P);
-			playerTotalPower = Convert::ToString(player.getTotalPower());
-			this->TotalPower_P->Text = playerTotalPower;
+			player.setTotalPower(playerDeck[3]->returnCardPower());
+			this->TotalPower_P->Text = Convert::ToString(player.getTotalPower());
 
 			Play3->Enabled = false;
 			CardType3->Enabled = false;
 			CardPower3->Enabled = false;
 			bool_P[3] = false;
 		}
-		else if (cardType3_P == 1)
+		else if (playerDeck[3]->returnCardType() == 1)
 		{
-			_aiPlayer.setTotalPower(-cardPower3_P);
-			_aiTotalPower = Convert::ToString(_aiPlayer.getTotalPower());
-			this->_TotalPower_A->Text = _aiTotalPower;
+			_aiPlayer.setTotalPower(-playerDeck[3]->returnCardPower());
+			this->_TotalPower_A->Text = Convert::ToString(_aiPlayer.getTotalPower());
 
 			Play3->Enabled = false;
 			CardType3->Enabled = false;
 			CardPower3->Enabled = false;
 			bool_P[3] = false;
 		}
+		cardToPlay = _aiPlayer.cardToPlay(bool_A);
+		playCard(cardToPlay);
+		//playCard3();
 	}
 
 	private: System::Void Play4_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -922,28 +879,29 @@ private: System::ComponentModel::IContainer^  components;
 		this->CardType4_4->Text = CardType4->Text;
 		this->CardPower4_4->Text = CardPower4->Text;
 
-		if (cardType4_P == 0)
+		if (playerDeck[4]->returnCardType() == 0)
 		{
-			player.setTotalPower(cardPower4_P);
-			playerTotalPower = Convert::ToString(player.getTotalPower());
-			this->TotalPower_P->Text = playerTotalPower;
+			player.setTotalPower(playerDeck[4]->returnCardPower());
+			this->TotalPower_P->Text = Convert::ToString(player.getTotalPower());
 
 			Play4->Enabled = false;
 			CardType4->Enabled = false;
 			CardPower4->Enabled = false;
 			bool_P[4] = false;
 		}
-		else if (cardType4_P == 1)
+		else if (playerDeck[4]->returnCardType() == 1)
 		{
-			_aiPlayer.setTotalPower(-cardPower4_P);
-			_aiTotalPower = Convert::ToString(_aiPlayer.getTotalPower());
-			this->_TotalPower_A->Text = _aiTotalPower;
+			_aiPlayer.setTotalPower(-playerDeck[4]->returnCardPower());
+			this->_TotalPower_A->Text = Convert::ToString(_aiPlayer.getTotalPower());
 
 			Play4->Enabled = false;
 			CardType4->Enabled = false;
 			CardPower4->Enabled = false;
 			bool_P[4] = false;
 		}
+		cardToPlay = _aiPlayer.cardToPlay(bool_A);
+		playCard(cardToPlay);
+		//playCard4();
 	}
 
 	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) {

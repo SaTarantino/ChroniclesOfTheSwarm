@@ -5,18 +5,19 @@
 
 PowerDownCard::PowerDownCard() : BaseCard()
 {
+	setCardPower();
 }
 
-void PowerDownCard::setDetail(int *cardT, int *power)
+void PowerDownCard::setDetail(int *type, int *power)
 {
-	this->cType = *cardT;
+	/*this->cardType = *type;
 	setCardPower();
-	this->totalPower = *power;
+	this->cardPower = *power;*/
 }
 
 void PowerDownCard::setCardPower()
 {
-	totalPower = rand() % 6;
+	cardPower = rand() % 9 + 1;
 }
 
 //void PowerDownCard::cardEffect(int, int)
@@ -25,16 +26,20 @@ void PowerDownCard::setCardPower()
 
 int PowerDownCard::getCardType(int)
 {
-	return cType;
+	return cardType;
 }
 
 int PowerDownCard::getCardPower(int)
 {
-	setCardPower();
-	return totalPower;
+	return cardPower;
 }
 
 int PowerDownCard::returnCardType()
 {
-	return cType;
+	return cardType;
+}
+
+int PowerDownCard::returnCardPower()
+{
+	return cardPower;
 }

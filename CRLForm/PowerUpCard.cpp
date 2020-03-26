@@ -5,18 +5,19 @@
 
 PowerUpCard::PowerUpCard() : BaseCard()
 {
+	setCardPower();
 }
 
-void PowerUpCard::setDetail(int *cardT, int *power)
+void PowerUpCard::setDetail(int *type, int *power)
 {
-	this->cType = *cardT;
+	/*this->cardType = *type;
 	setCardPower();
-	this->totalPower = *power;
+	this->cardPower = *power;*/
 }
 
 void PowerUpCard::setCardPower()
 {
-	totalPower = rand() % 9 + 11;
+	cardPower = rand() % 9 + 11;
 }
 
 //void PowerUpCard::cardEffect(int power, int tot)
@@ -25,16 +26,20 @@ void PowerUpCard::setCardPower()
 
 int PowerUpCard::getCardType(int)
 {
-	return cType;
+	return cardType;
 }
 
 int PowerUpCard::getCardPower(int)
 {
-	setCardPower();
-	return totalPower;
+	return cardPower;
 }
 
 int PowerUpCard::returnCardType()
 {
-	return cType;
+	return cardType;
+}
+
+int PowerUpCard::returnCardPower()
+{
+	return cardPower;
 }

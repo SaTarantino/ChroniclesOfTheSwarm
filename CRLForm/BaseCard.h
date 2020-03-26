@@ -14,4 +14,5 @@ public:
 	virtual int getCardType(int) = 0;
 
 	virtual int returnCardType() = 0;
+	virtual int returnCardPower() = 0;
 };

@@ -12,6 +12,8 @@ public:
 	int getTotalPower();
 	int cardToPlay(array<bool> ^);
 	void play(array<BaseCard^> ^);
+
+	void generateNumber(int);
 	//void playCard(int playerTotalPower, array<BaseCard^> ^deck, array<bool> ^boolArray);
 
 private:

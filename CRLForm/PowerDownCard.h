@@ -12,12 +12,12 @@ public:
 	//virtual void cardEffect(int, int) override;
 
 	virtual int getCardType(int) override;
-
 	virtual int getCardPower(int) override;
 
 	virtual int returnCardType() override;
+	virtual int returnCardPower() override;
 
 private:
-	int cType = 1;
-	int totalPower;
+	int cardType = 1;
+	int cardPower;
 };
