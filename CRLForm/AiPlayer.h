@@ -10,13 +10,15 @@ public:
 
 	void setTotalPower(int power);
 	int getTotalPower();
-	int cardToPlay(array<bool> ^);
+	int cardToPlay(array<bool> ^hand);
 	void play(array<BaseCard^> ^);
 
-	void generateNumber(int);
+	int generateNumber();
+
 	//void playCard(int playerTotalPower, array<BaseCard^> ^deck, array<bool> ^boolArray);
 
 private:
 	int totalPower = 0;
 	int card;
+	int counter;
 };

@@ -127,13 +127,13 @@ namespace CRLForm {
 		String ^type0, ^type1, ^type2, ^type3, ^type4;
 		int cardPower0_P, cardPower1_P, cardPower2_P, cardPower3_P, cardPower4_P;
 		String ^power0, ^power1, ^power2, ^power3, ^power4;*/
-		String ^playerTotalPower;
+		//String ^playerTotalPower;
 		/// AI
 		/*int _cardType0_A, _cardType1_A, _cardType2_A, _cardType3_A, _cardType4_A;
 		String ^_type0, ^_type1, ^_type2, ^_type3, ^_type4;
 		int _cardPower0_A, _cardPower1_A, _cardPower2_A, _cardPower3_A, _cardPower4_A;
 		String ^_power0, ^_power1, ^_power2, ^_power3, ^_power4;*/
-		String ^_aiTotalPower;
+		//String ^_aiTotalPower;
 
 	private:
 		Controller cont;
@@ -775,9 +775,8 @@ private: System::ComponentModel::IContainer^  components;
 			CardPower0->Enabled = false;
 			bool_P[0] = false;
 		}
-		cardToPlay = _aiPlayer.cardToPlay(bool_A);
-		playCard(cardToPlay);
-		//playCard0();
+		
+		playCard(_aiPlayer.cardToPlay(bool_A));
 	}
 
 	private: System::Void Play1_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -806,9 +805,7 @@ private: System::ComponentModel::IContainer^  components;
 			CardPower1->Enabled = false;
 			bool_P[1] = false;
 		}
-		cardToPlay = _aiPlayer.cardToPlay(bool_A);
-		playCard(cardToPlay);
-		//playCard1();
+		playCard(_aiPlayer.cardToPlay(bool_A));
 	}
 
 	private: System::Void Play2_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -837,9 +834,7 @@ private: System::ComponentModel::IContainer^  components;
 			CardPower2->Enabled = false;
 			bool_P[2] = false;
 		}
-		cardToPlay = _aiPlayer.cardToPlay(bool_A);
-		playCard(cardToPlay);
-		//playCard2();
+		playCard(_aiPlayer.cardToPlay(bool_A));
 	}
 
 	private: System::Void Play3_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -868,9 +863,7 @@ private: System::ComponentModel::IContainer^  components;
 			CardPower3->Enabled = false;
 			bool_P[3] = false;
 		}
-		cardToPlay = _aiPlayer.cardToPlay(bool_A);
-		playCard(cardToPlay);
-		//playCard3();
+		playCard(_aiPlayer.cardToPlay(bool_A));
 	}
 
 	private: System::Void Play4_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -899,9 +892,7 @@ private: System::ComponentModel::IContainer^  components;
 			CardPower4->Enabled = false;
 			bool_P[4] = false;
 		}
-		cardToPlay = _aiPlayer.cardToPlay(bool_A);
-		playCard(cardToPlay);
-		//playCard4();
+		playCard(_aiPlayer.cardToPlay(bool_A));
 	}
 
 	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) {

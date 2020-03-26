@@ -20,30 +20,27 @@ int AiPlayer::getTotalPower()
 
 int AiPlayer::cardToPlay(array<bool> ^hand)
 {
-	int i;
-	generateNumber(card);
-
-	for (i = 0; i < ARRAY_SIZE; i++)
+	if (counter == ARRAY_SIZE) 
 	{
-		if (hand[card] == true)
-		{
-			return card;
-		}
-		else
-		{
-			generateNumber(card);
-		}
+		return 6;
 	}
 
-	/*do {
-		card = rand() % 5;
-	} while (hand[card] == false);*/
+	do {
+		//srand(time(NULL));
+		//card = rand() % 5;
+		card = generateNumber();
+	} while (hand[card] == true);
+	
+	hand[card] = false;
+	counter++;
+	return card;
 }
 
-void AiPlayer::generateNumber(int n)
+int AiPlayer::generateNumber()
 {
 	srand(time(NULL));
-	n = rand() % 5;
+	int n = rand() % 5;
+	return n;
 }
 
 void AiPlayer::play(array<BaseCard^> ^hand)

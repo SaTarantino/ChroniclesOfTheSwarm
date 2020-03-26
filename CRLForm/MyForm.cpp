@@ -25,6 +25,8 @@ void CRLForm::MyForm::playCard(int cardToPlay)
 		playCard3();
 	if (cardToPlay == 4)
 		playCard4();
+	if (cardToPlay == 6)
+		Roll->Enabled = true;
 }
 
 void CRLForm::MyForm::playCard0()
@@ -43,6 +45,8 @@ void CRLForm::MyForm::playCard0()
 	{
 		player.setTotalPower(-_aiDeck[0]->returnCardPower());
 		this->TotalPower_P->Text = Convert::ToString(player.getTotalPower());
+
+		bool_A[0] = false;
 	}
 }
 
@@ -62,6 +66,8 @@ void CRLForm::MyForm::playCard1()
 	{
 		player.setTotalPower(-_aiDeck[1]->returnCardPower());
 		this->TotalPower_P->Text = Convert::ToString(player.getTotalPower());
+
+		bool_A[1] = false;
 	}
 }
 
@@ -81,6 +87,8 @@ void CRLForm::MyForm::playCard2()
 	{
 		player.setTotalPower(-_aiDeck[2]->returnCardPower());
 		this->TotalPower_P->Text = Convert::ToString(player.getTotalPower());
+
+		bool_A[2] = false;
 	}
 }
 
@@ -100,6 +108,8 @@ void CRLForm::MyForm::playCard3()
 	{
 		player.setTotalPower(-_aiDeck[3]->returnCardPower());
 		this->TotalPower_P->Text = Convert::ToString(player.getTotalPower());
+
+		bool_A[3] = false;
 	}
 }
 
@@ -119,5 +129,7 @@ void CRLForm::MyForm::playCard4()
 	{
 		player.setTotalPower(-_aiDeck[4]->returnCardPower());
 		this->TotalPower_P->Text = Convert::ToString(player.getTotalPower());
+
+		bool_A[4] = false;
 	}
 }
