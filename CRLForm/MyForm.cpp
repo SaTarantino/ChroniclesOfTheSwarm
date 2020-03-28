@@ -1,4 +1,4 @@
-#include "MyForm.h"
+#include "MainForm.h"
 
 using namespace System;
 using namespace System::Windows::Forms;
@@ -9,50 +9,49 @@ void Main()
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
 
-	CRLForm::MyForm form;
+	CRLForm::MainForm form;
 	Application::Run(%form);
 }
 
-void CRLForm::MyForm::playCard(int cardToPlay)
+void CRLForm::MainForm::playCard(int cardToPlay)
 {
 	if (cardToPlay == 0) 
 	{
 		//Sleep(sleep);
-		sleep - 1000;
+		sleep - 800;
 		playCard0();
 	}
 	if (cardToPlay == 1)
 	{
 		//Sleep(sleep);
-		sleep - 1000;
+		sleep - 800;
 		playCard1();
 	}
 	if (cardToPlay == 2)
 	{
 		//Sleep(sleep);
-		sleep - 1000;
+		sleep - 800;
 		playCard2();
 	}
 	if (cardToPlay == 3)
 	{
 		//Sleep(sleep);
-		sleep - 1000;
+		sleep - 800;
 		playCard3();
 	}
 	if (cardToPlay == 4)
 	{
 		//Sleep(sleep);
-		sleep - 1000;
+		sleep - 800;
 		playCard4();
 	}
 	if (cardToPlay >= 6) 
 	{
 		Roll->Enabled = true;
 	}
-
 }
 
-void CRLForm::MyForm::playCard0()
+void CRLForm::MainForm::playCard0()
 {
 	this->_CardType0_0->Text = _CardType0->Text;
 	this->_CardPower0_0->Text = _CardPower0->Text;
@@ -82,7 +81,7 @@ void CRLForm::MyForm::playCard0()
 	checkGameStatus(bool_P, bool_A);
 }
 
-void CRLForm::MyForm::playCard1()
+void CRLForm::MainForm::playCard1()
 {
 	this->_CardType1_1->Text = _CardType1->Text;
 	this->_CardPower1_1->Text = _CardPower1->Text;
@@ -112,7 +111,7 @@ void CRLForm::MyForm::playCard1()
 	checkGameStatus(bool_P, bool_A);
 }
 
-void CRLForm::MyForm::playCard2()
+void CRLForm::MainForm::playCard2()
 {
 	this->_CardType2_2->Text = _CardType2->Text;
 	this->_CardPower2_2->Text = _CardPower2->Text;
@@ -142,7 +141,7 @@ void CRLForm::MyForm::playCard2()
 	checkGameStatus(bool_P, bool_A);
 }
 
-void CRLForm::MyForm::playCard3()
+void CRLForm::MainForm::playCard3()
 {
 	this->_CardType3_3->Text = _CardType3->Text;
 	this->_CardPower3_3->Text = _CardPower3->Text;
@@ -172,7 +171,7 @@ void CRLForm::MyForm::playCard3()
 	checkGameStatus(bool_P, bool_A);
 }
 
-void CRLForm::MyForm::playCard4()
+void CRLForm::MainForm::playCard4()
 {
 	this->_CardType4_4->Text = _CardType4->Text;
 	this->_CardPower4_4->Text = _CardPower4->Text;
@@ -202,7 +201,7 @@ void CRLForm::MyForm::playCard4()
 	checkGameStatus(bool_P, bool_A);
 }
 
-void CRLForm::MyForm::checkGameStatus(array<bool> ^playerHand, array<bool> ^aiHand)
+void CRLForm::MainForm::checkGameStatus(array<bool> ^playerHand, array<bool> ^aiHand)
 {
 	int i, playerCount, aiCount;
 
@@ -222,5 +221,10 @@ void CRLForm::MyForm::checkGameStatus(array<bool> ^playerHand, array<bool> ^aiHa
 			if (aiHand[i] == true)
 				playCard(i);
 		}
+	}
+
+	if (playerCount == ARRAY_SIZE && aiCount == ARRAY_SIZE)
+	{
+		
 	}
 }

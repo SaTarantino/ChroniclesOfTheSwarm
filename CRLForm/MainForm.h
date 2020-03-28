@@ -15,7 +15,7 @@ namespace CRLForm {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
-	public ref class MyForm : public System::Windows::Forms::Form
+	public ref class MainForm : public System::Windows::Forms::Form
 	{
 		void playCard(int cardToPlay);
 		void playCard0();
@@ -26,13 +26,13 @@ namespace CRLForm {
 		void checkGameStatus(array<bool> ^, array<bool> ^);
 
 	public:
-		MyForm(void)
+		MainForm(void)
 		{
 			InitializeComponent();
 		}
 
 	protected:
-		~MyForm()
+		~MainForm()
 		{
 			if (components)
 			{
@@ -113,6 +113,8 @@ namespace CRLForm {
 	private: System::Windows::Forms::Button^  Roll;
 	/// Play Button
 	private: System::Windows::Forms::Button^  Start;
+	/// New Game Button
+	private: System::Windows::Forms::Button^  NewGame;
 	/// Player and AI Total Power
 	private: System::Windows::Forms::TextBox^  TotalPower_P;
 	private: System::Windows::Forms::TextBox^  _TotalPower_A;
@@ -187,6 +189,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->_CardType4_4 = (gcnew System::Windows::Forms::TextBox());
 			this->_CardPower4_4 = (gcnew System::Windows::Forms::TextBox());
 			this->_TotalPower_A = (gcnew System::Windows::Forms::TextBox());
+			this->NewGame = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// CardType0
@@ -277,7 +280,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->Play0->TabIndex = 11;
 			this->Play0->Text = L"Play";
 			this->Play0->UseVisualStyleBackColor = true;
-			this->Play0->Click += gcnew System::EventHandler(this, &MyForm::Play0_Click);
+			this->Play0->Click += gcnew System::EventHandler(this, &MainForm::Play0_Click);
 			// 
 			// CardType0_0
 			// 
@@ -303,7 +306,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->Play1->TabIndex = 14;
 			this->Play1->Text = L"Play";
 			this->Play1->UseVisualStyleBackColor = true;
-			this->Play1->Click += gcnew System::EventHandler(this, &MyForm::Play1_Click);
+			this->Play1->Click += gcnew System::EventHandler(this, &MainForm::Play1_Click);
 			// 
 			// CardType1_1
 			// 
@@ -329,7 +332,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->Play2->TabIndex = 17;
 			this->Play2->Text = L"Play";
 			this->Play2->UseVisualStyleBackColor = true;
-			this->Play2->Click += gcnew System::EventHandler(this, &MyForm::Play2_Click);
+			this->Play2->Click += gcnew System::EventHandler(this, &MainForm::Play2_Click);
 			// 
 			// CardType2_2
 			// 
@@ -355,7 +358,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->Play3->TabIndex = 20;
 			this->Play3->Text = L"Play";
 			this->Play3->UseVisualStyleBackColor = true;
-			this->Play3->Click += gcnew System::EventHandler(this, &MyForm::Play3_Click);
+			this->Play3->Click += gcnew System::EventHandler(this, &MainForm::Play3_Click);
 			// 
 			// CardType3_3
 			// 
@@ -381,7 +384,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->Play4->TabIndex = 23;
 			this->Play4->Text = L"Play";
 			this->Play4->UseVisualStyleBackColor = true;
-			this->Play4->Click += gcnew System::EventHandler(this, &MyForm::Play4_Click);
+			this->Play4->Click += gcnew System::EventHandler(this, &MainForm::Play4_Click);
 			// 
 			// CardType4_4
 			// 
@@ -409,23 +412,23 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			// Roll
 			// 
-			this->Roll->Location = System::Drawing::Point(12, 2);
+			this->Roll->Location = System::Drawing::Point(99, 2);
 			this->Roll->Name = L"Roll";
 			this->Roll->Size = System::Drawing::Size(51, 23);
 			this->Roll->TabIndex = 26;
 			this->Roll->Text = L"Roll";
 			this->Roll->UseVisualStyleBackColor = true;
-			this->Roll->Click += gcnew System::EventHandler(this, &MyForm::Roll_Click);
+			this->Roll->Click += gcnew System::EventHandler(this, &MainForm::Roll_Click);
 			// 
 			// Start
 			// 
-			this->Start->Location = System::Drawing::Point(71, 2);
+			this->Start->Location = System::Drawing::Point(165, 2);
 			this->Start->Name = L"Start";
 			this->Start->Size = System::Drawing::Size(51, 23);
 			this->Start->TabIndex = 0;
 			this->Start->Text = L"Start";
 			this->Start->UseVisualStyleBackColor = true;
-			this->Start->Click += gcnew System::EventHandler(this, &MyForm::Start_Click);
+			this->Start->Click += gcnew System::EventHandler(this, &MainForm::Start_Click);
 			// 
 			// _CardType0
 			// 
@@ -595,11 +598,22 @@ private: System::ComponentModel::IContainer^  components;
 			this->_TotalPower_A->Size = System::Drawing::Size(100, 20);
 			this->_TotalPower_A->TabIndex = 48;
 			// 
+			// New_Game
+			// 
+			this->NewGame->Location = System::Drawing::Point(12, 2);
+			this->NewGame->Name = L"NewGame";
+			this->NewGame->Size = System::Drawing::Size(75, 23);
+			this->NewGame->TabIndex = 49;
+			this->NewGame->Text = L"New Game";
+			this->NewGame->UseVisualStyleBackColor = true;
+			this->NewGame->Click += gcnew System::EventHandler(this, &MainForm::NewGame_Click);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(888, 534);
+			this->Controls->Add(this->NewGame);
 			this->Controls->Add(this->_TotalPower_A);
 			this->Controls->Add(this->_CardPower4_4);
 			this->Controls->Add(this->_CardType4_4);
@@ -651,7 +665,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->Controls->Add(this->Start);
 			this->Name = L"MyForm";
 			this->Text = L"Chronicles Of The Swarm";
-			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
+			this->Load += gcnew System::EventHandler(this, &MainForm::MainForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -669,7 +683,7 @@ private: System::ComponentModel::IContainer^  components;
 		array<bool> ^bool_A = gcnew array<bool>(ARRAY_SIZE);
 		array<int> ^intTry = gcnew array<int>(ARRAY_SIZE);
 		int counter;
-		int sleep = 5000;
+		int sleep = 4000;
 
 #pragma endregion
 	private: System::Void Roll_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -915,7 +929,12 @@ private: System::ComponentModel::IContainer^  components;
 		matchClass.checkGameStatus(bool_P, bool_A);
 	}
 
-	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) {
+	private: System::Void NewGame_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		Application::Restart();
+	}
+
+	private: System::Void MainForm_Load(System::Object^  sender, System::EventArgs^  e) {
 		
 		Play0->Enabled = false;
 		Play1->Enabled = false;
