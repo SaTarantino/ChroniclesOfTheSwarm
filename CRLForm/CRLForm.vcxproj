@@ -88,6 +88,7 @@
     <ClCompile Include="AiPlayer.cpp" />
     <ClCompile Include="PowerDownCard.cpp" />
     <ClCompile Include="PowerUpCard.cpp" />
+    <ClCompile Include="StealCard.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseCard.h" />
@@ -100,6 +101,7 @@
     <ClInclude Include="AiPlayer.h" />
     <ClInclude Include="PowerDownCard.h" />
     <ClInclude Include="PowerUpCard.h" />
+    <ClInclude Include="StealCard.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyForm.resx">

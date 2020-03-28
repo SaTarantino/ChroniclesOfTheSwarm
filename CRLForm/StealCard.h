@@ -1,10 +1,12 @@
 #pragma once
 #include "BaseCard.h"
 
-ref class PowerDownCard : public BaseCard
+using namespace System::Windows::Forms;
+
+ref class StealCard : public BaseCard
 {
 public:
-	PowerDownCard();
+	StealCard();
 
 	virtual void setDetail(int) override;
 	virtual void setCardPower() override;
@@ -20,6 +22,6 @@ public:
 	virtual int returnCardPower() override;
 
 private:
-	int cardType = 1;
+	int cardType = 2;
 	int cardPower;
 };

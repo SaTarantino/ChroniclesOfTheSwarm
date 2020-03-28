@@ -11,7 +11,7 @@ public:
 	void setTotalPower(int power);
 	int getTotalPower();
 	int cardToPlay(array<bool> ^hand);
-	void play(array<BaseCard^> ^);
+	void play(array<bool> ^);
 
 	int generateNumber();
 

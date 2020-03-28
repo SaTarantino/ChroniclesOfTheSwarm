@@ -8,11 +8,8 @@ PowerDownCard::PowerDownCard() : BaseCard()
 	setCardPower();
 }
 
-void PowerDownCard::setDetail(int *type, int *power)
+void PowerDownCard::setDetail(int power)
 {
-	/*this->cardType = *type;
-	setCardPower();
-	this->cardPower = *power;*/
 }
 
 void PowerDownCard::setCardPower()
@@ -20,9 +17,11 @@ void PowerDownCard::setCardPower()
 	cardPower = rand() % 9 + 1;
 }
 
-//void PowerDownCard::cardEffect(int, int)
-//{
-//}
+void PowerDownCard::cardEffect(TextBox ^, TextBox ^, TextBox ^, TextBox ^,
+	TextBox ^, TextBox ^, array<BaseCard^>^, array<BaseCard^>^,
+	array<bool>^, int)
+{
+}
 
 int PowerDownCard::getCardType(int)
 {

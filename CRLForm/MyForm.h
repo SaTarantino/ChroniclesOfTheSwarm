@@ -1,4 +1,5 @@
 #pragma once
+#include <Windows.h>
 #include "Controller.h"
 #include "Player.h"
 #include "AiPlayer.h"
@@ -14,9 +15,6 @@ namespace CRLForm {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
-	/// <summary>
-	/// Summary for MyForm
-	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
 		void playCard(int cardToPlay);
@@ -25,6 +23,7 @@ namespace CRLForm {
 		void playCard2();
 		void playCard3();
 		void playCard4();
+		void checkGameStatus(array<bool> ^, array<bool> ^);
 
 	public:
 		MyForm(void)
@@ -33,9 +32,6 @@ namespace CRLForm {
 		}
 
 	protected:
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
 		~MyForm()
 		{
 			if (components)
@@ -135,26 +131,10 @@ namespace CRLForm {
 		String ^_power0, ^_power1, ^_power2, ^_power3, ^_power4;*/
 		//String ^_aiTotalPower;
 
-	private:
-		Controller cont;
-		MatchClass matchClass;
-		Player player;
-		AiPlayer _aiPlayer;
 
 private: System::ComponentModel::IContainer^  components;
 
-
-	private:
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
-
-
 #pragma region Windows Form Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
 
 		void InitializeComponent(void)
 		{
@@ -449,7 +429,7 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			// _CardType0
 			// 
-			this->_CardType0->Location = System::Drawing::Point(22, 96);
+			this->_CardType0->Location = System::Drawing::Point(22, 59);
 			this->_CardType0->Name = L"_CardType0";
 			this->_CardType0->ReadOnly = true;
 			this->_CardType0->Size = System::Drawing::Size(100, 20);
@@ -457,7 +437,7 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			// _CardPower0
 			// 
-			this->_CardPower0->Location = System::Drawing::Point(22, 59);
+			this->_CardPower0->Location = System::Drawing::Point(22, 96);
 			this->_CardPower0->Name = L"_CardPower0";
 			this->_CardPower0->ReadOnly = true;
 			this->_CardPower0->Size = System::Drawing::Size(100, 20);
@@ -465,7 +445,7 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			// _CardType1
 			// 
-			this->_CardType1->Location = System::Drawing::Point(188, 96);
+			this->_CardType1->Location = System::Drawing::Point(188, 59);
 			this->_CardType1->Name = L"_CardType1";
 			this->_CardType1->ReadOnly = true;
 			this->_CardType1->Size = System::Drawing::Size(100, 20);
@@ -473,7 +453,7 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			// _CardPower1
 			// 
-			this->_CardPower1->Location = System::Drawing::Point(188, 59);
+			this->_CardPower1->Location = System::Drawing::Point(188, 96);
 			this->_CardPower1->Name = L"_CardPower1";
 			this->_CardPower1->ReadOnly = true;
 			this->_CardPower1->Size = System::Drawing::Size(100, 20);
@@ -481,7 +461,7 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			// _CardType2
 			// 
-			this->_CardType2->Location = System::Drawing::Point(351, 96);
+			this->_CardType2->Location = System::Drawing::Point(351, 59);
 			this->_CardType2->Name = L"_CardType2";
 			this->_CardType2->ReadOnly = true;
 			this->_CardType2->Size = System::Drawing::Size(100, 20);
@@ -489,7 +469,7 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			// _CardPower2
 			// 
-			this->_CardPower2->Location = System::Drawing::Point(351, 59);
+			this->_CardPower2->Location = System::Drawing::Point(351, 96);
 			this->_CardPower2->Name = L"_CardPower2";
 			this->_CardPower2->ReadOnly = true;
 			this->_CardPower2->Size = System::Drawing::Size(100, 20);
@@ -497,7 +477,7 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			// _CardType3
 			// 
-			this->_CardType3->Location = System::Drawing::Point(509, 96);
+			this->_CardType3->Location = System::Drawing::Point(509, 59);
 			this->_CardType3->Name = L"_CardType3";
 			this->_CardType3->ReadOnly = true;
 			this->_CardType3->Size = System::Drawing::Size(100, 20);
@@ -505,7 +485,7 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			// _CardPower3
 			// 
-			this->_CardPower3->Location = System::Drawing::Point(509, 59);
+			this->_CardPower3->Location = System::Drawing::Point(509, 96);
 			this->_CardPower3->Name = L"_CardPower3";
 			this->_CardPower3->ReadOnly = true;
 			this->_CardPower3->Size = System::Drawing::Size(100, 20);
@@ -513,7 +493,7 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			// _CardType4
 			// 
-			this->_CardType4->Location = System::Drawing::Point(666, 96);
+			this->_CardType4->Location = System::Drawing::Point(666, 59);
 			this->_CardType4->Name = L"_CardType4";
 			this->_CardType4->ReadOnly = true;
 			this->_CardType4->Size = System::Drawing::Size(100, 20);
@@ -521,7 +501,7 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			// _CardPower4
 			// 
-			this->_CardPower4->Location = System::Drawing::Point(666, 59);
+			this->_CardPower4->Location = System::Drawing::Point(666, 96);
 			this->_CardPower4->Name = L"_CardPower4";
 			this->_CardPower4->ReadOnly = true;
 			this->_CardPower4->Size = System::Drawing::Size(100, 20);
@@ -529,7 +509,7 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			// _CardType0_0
 			// 
-			this->_CardType0_0->Location = System::Drawing::Point(22, 209);
+			this->_CardType0_0->Location = System::Drawing::Point(22, 174);
 			this->_CardType0_0->Name = L"_CardType0_0";
 			this->_CardType0_0->ReadOnly = true;
 			this->_CardType0_0->Size = System::Drawing::Size(100, 20);
@@ -537,7 +517,7 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			// _CardPower0_0
 			// 
-			this->_CardPower0_0->Location = System::Drawing::Point(22, 174);
+			this->_CardPower0_0->Location = System::Drawing::Point(22, 209);
 			this->_CardPower0_0->Name = L"_CardPower0_0";
 			this->_CardPower0_0->ReadOnly = true;
 			this->_CardPower0_0->Size = System::Drawing::Size(100, 20);
@@ -545,7 +525,7 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			// _CardType1_1
 			// 
-			this->_CardType1_1->Location = System::Drawing::Point(188, 209);
+			this->_CardType1_1->Location = System::Drawing::Point(188, 174);
 			this->_CardType1_1->Name = L"_CardType1_1";
 			this->_CardType1_1->ReadOnly = true;
 			this->_CardType1_1->Size = System::Drawing::Size(100, 20);
@@ -553,7 +533,7 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			// _CardPower1_1
 			// 
-			this->_CardPower1_1->Location = System::Drawing::Point(188, 174);
+			this->_CardPower1_1->Location = System::Drawing::Point(188, 209);
 			this->_CardPower1_1->Name = L"_CardPower1_1";
 			this->_CardPower1_1->ReadOnly = true;
 			this->_CardPower1_1->Size = System::Drawing::Size(100, 20);
@@ -561,7 +541,7 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			// _CardType2_2
 			// 
-			this->_CardType2_2->Location = System::Drawing::Point(351, 209);
+			this->_CardType2_2->Location = System::Drawing::Point(351, 174);
 			this->_CardType2_2->Name = L"_CardType2_2";
 			this->_CardType2_2->ReadOnly = true;
 			this->_CardType2_2->Size = System::Drawing::Size(100, 20);
@@ -569,7 +549,7 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			// _CardPower2_2
 			// 
-			this->_CardPower2_2->Location = System::Drawing::Point(351, 174);
+			this->_CardPower2_2->Location = System::Drawing::Point(351, 209);
 			this->_CardPower2_2->Name = L"_CardPower2_2";
 			this->_CardPower2_2->ReadOnly = true;
 			this->_CardPower2_2->Size = System::Drawing::Size(100, 20);
@@ -577,7 +557,7 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			// _CardType3_3
 			// 
-			this->_CardType3_3->Location = System::Drawing::Point(509, 209);
+			this->_CardType3_3->Location = System::Drawing::Point(509, 174);
 			this->_CardType3_3->Name = L"_CardType3_3";
 			this->_CardType3_3->ReadOnly = true;
 			this->_CardType3_3->Size = System::Drawing::Size(100, 20);
@@ -585,7 +565,7 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			// _CardPower3_3
 			// 
-			this->_CardPower3_3->Location = System::Drawing::Point(509, 174);
+			this->_CardPower3_3->Location = System::Drawing::Point(509, 209);
 			this->_CardPower3_3->Name = L"_CardPower3_3";
 			this->_CardPower3_3->ReadOnly = true;
 			this->_CardPower3_3->Size = System::Drawing::Size(100, 20);
@@ -593,7 +573,7 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			// _CardType4_4
 			// 
-			this->_CardType4_4->Location = System::Drawing::Point(666, 209);
+			this->_CardType4_4->Location = System::Drawing::Point(666, 174);
 			this->_CardType4_4->Name = L"_CardType4_4";
 			this->_CardType4_4->ReadOnly = true;
 			this->_CardType4_4->Size = System::Drawing::Size(100, 20);
@@ -601,7 +581,7 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			// _CardPower4_4
 			// 
-			this->_CardPower4_4->Location = System::Drawing::Point(666, 174);
+			this->_CardPower4_4->Location = System::Drawing::Point(666, 209);
 			this->_CardPower4_4->Name = L"_CardPower4_4";
 			this->_CardPower4_4->ReadOnly = true;
 			this->_CardPower4_4->Size = System::Drawing::Size(100, 20);
@@ -610,7 +590,7 @@ private: System::ComponentModel::IContainer^  components;
 			// _TotalPower_A
 			// 
 			this->_TotalPower_A->Location = System::Drawing::Point(776, 240);
-			this->_TotalPower_A->Name = L"textBox1";
+			this->_TotalPower_A->Name = L"_TotalPower_A";
 			this->_TotalPower_A->ReadOnly = true;
 			this->_TotalPower_A->Size = System::Drawing::Size(100, 20);
 			this->_TotalPower_A->TabIndex = 48;
@@ -676,12 +656,20 @@ private: System::ComponentModel::IContainer^  components;
 			this->PerformLayout();
 
 		}
+
+		private:
+			Controller cont;
+			MatchClass matchClass;
+			Player player;
+			AiPlayer _aiPlayer;
 		
 		array<BaseCard^> ^playerDeck;
 		array<BaseCard^> ^_aiDeck;
 		array<bool> ^bool_P = gcnew array<bool>(ARRAY_SIZE);
 		array<bool> ^bool_A = gcnew array<bool>(ARRAY_SIZE);
-		int cardToPlay;
+		array<int> ^intTry = gcnew array<int>(ARRAY_SIZE);
+		int counter;
+		int sleep = 5000;
 
 #pragma endregion
 	private: System::Void Roll_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -718,6 +706,9 @@ private: System::ComponentModel::IContainer^  components;
 
 		// Set AI deck
 		_aiDeck = matchClass.generateDeck();
+		
+		matchClass.setHandKnolegde(bool_P);
+		matchClass.setHandKnolegde(bool_A);
 
 		//
 		// Return AI's Card Type
@@ -754,7 +745,7 @@ private: System::ComponentModel::IContainer^  components;
 		// Set the board text box with the value of the card
 		this->CardType0_0->Text = CardType0->Text;
 		this->CardPower0_0->Text = CardPower0->Text;
-
+		
 		if (playerDeck[0]->returnCardType() == 0)
 		{
 			player.setTotalPower(playerDeck[0]->returnCardPower());
@@ -775,7 +766,12 @@ private: System::ComponentModel::IContainer^  components;
 			CardPower0->Enabled = false;
 			bool_P[0] = false;
 		}
-		
+		else if (playerDeck[0]->returnCardType() == 2)
+		{
+			playerDeck[0]->cardEffect(CardType0, CardPower0, CardType0_0, CardPower0_0,
+				_CardType0, _CardPower0, playerDeck, _aiDeck, bool_A, 0);
+		}
+
 		playCard(_aiPlayer.cardToPlay(bool_A));
 	}
 
@@ -789,7 +785,7 @@ private: System::ComponentModel::IContainer^  components;
 		{
 			player.setTotalPower(playerDeck[1]->returnCardPower());
 			this->TotalPower_P->Text = Convert::ToString(player.getTotalPower());
-			
+
 			Play1->Enabled = false;
 			CardType1->Enabled = false;
 			CardPower1->Enabled = false;
@@ -805,7 +801,13 @@ private: System::ComponentModel::IContainer^  components;
 			CardPower1->Enabled = false;
 			bool_P[1] = false;
 		}
+		else if (playerDeck[1]->returnCardType() == 2)
+		{
+			playerDeck[1]->cardEffect(CardType1, CardPower1, CardType1_1, CardPower1_1,
+				_CardType1, _CardPower1, playerDeck, _aiDeck, bool_A, 1);
+		}
 		playCard(_aiPlayer.cardToPlay(bool_A));
+		matchClass.checkGameStatus(bool_P, bool_A);
 	}
 
 	private: System::Void Play2_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -834,7 +836,13 @@ private: System::ComponentModel::IContainer^  components;
 			CardPower2->Enabled = false;
 			bool_P[2] = false;
 		}
+		else if (playerDeck[2]->returnCardType() == 2)
+		{
+			playerDeck[2]->cardEffect(CardType2, CardPower2, CardType2_2, CardPower2_2,
+				_CardType2, _CardPower2, playerDeck, _aiDeck, bool_A, 2);
+		}
 		playCard(_aiPlayer.cardToPlay(bool_A));
+		matchClass.checkGameStatus(bool_P, bool_A);
 	}
 
 	private: System::Void Play3_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -863,7 +871,13 @@ private: System::ComponentModel::IContainer^  components;
 			CardPower3->Enabled = false;
 			bool_P[3] = false;
 		}
+		else if (playerDeck[3]->returnCardType() == 2)
+		{
+			playerDeck[3]->cardEffect(CardType3, CardPower3, CardType3_3, CardPower3_3,
+				_CardType3, _CardPower3, playerDeck, _aiDeck, bool_A, 3);
+		}
 		playCard(_aiPlayer.cardToPlay(bool_A));
+		matchClass.checkGameStatus(bool_P, bool_A);
 	}
 
 	private: System::Void Play4_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -892,7 +906,13 @@ private: System::ComponentModel::IContainer^  components;
 			CardPower4->Enabled = false;
 			bool_P[4] = false;
 		}
+		else if (playerDeck[4]->returnCardType() == 2)
+		{
+			playerDeck[4]->cardEffect(CardType4, CardPower4, CardType4_4, CardPower4_4,
+				_CardType4, _CardPower4, playerDeck, _aiDeck, bool_A, 4);
+		}
 		playCard(_aiPlayer.cardToPlay(bool_A));
+		matchClass.checkGameStatus(bool_P, bool_A);
 	}
 
 	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) {

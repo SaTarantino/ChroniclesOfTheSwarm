@@ -8,11 +8,9 @@ PowerUpCard::PowerUpCard() : BaseCard()
 	setCardPower();
 }
 
-void PowerUpCard::setDetail(int *type, int *power)
+void PowerUpCard::setDetail(int power)
 {
-	/*this->cardType = *type;
-	setCardPower();
-	this->cardPower = *power;*/
+	this->cardPower = power;
 }
 
 void PowerUpCard::setCardPower()
@@ -20,9 +18,11 @@ void PowerUpCard::setCardPower()
 	cardPower = rand() % 9 + 11;
 }
 
-//void PowerUpCard::cardEffect(int power, int tot)
-//{
-//}
+void PowerUpCard::cardEffect(TextBox ^, TextBox ^, TextBox ^, TextBox ^,
+	TextBox ^, TextBox ^, array<BaseCard^>^, array<BaseCard^>^,
+	array<bool>^, int)
+{
+}
 
 int PowerUpCard::getCardType(int)
 {

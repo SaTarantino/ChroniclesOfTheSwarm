@@ -15,18 +15,41 @@ void Main()
 
 void CRLForm::MyForm::playCard(int cardToPlay)
 {
-	if (cardToPlay == 0)
+	if (cardToPlay == 0) 
+	{
+		//Sleep(sleep);
+		sleep - 1000;
 		playCard0();
+	}
 	if (cardToPlay == 1)
+	{
+		//Sleep(sleep);
+		sleep - 1000;
 		playCard1();
+	}
 	if (cardToPlay == 2)
+	{
+		//Sleep(sleep);
+		sleep - 1000;
 		playCard2();
+	}
 	if (cardToPlay == 3)
+	{
+		//Sleep(sleep);
+		sleep - 1000;
 		playCard3();
+	}
 	if (cardToPlay == 4)
+	{
+		//Sleep(sleep);
+		sleep - 1000;
 		playCard4();
-	if (cardToPlay == 6)
+	}
+	if (cardToPlay >= 6) 
+	{
 		Roll->Enabled = true;
+	}
+
 }
 
 void CRLForm::MyForm::playCard0()
@@ -48,6 +71,15 @@ void CRLForm::MyForm::playCard0()
 
 		bool_A[0] = false;
 	}
+	else if (_aiDeck[0]->returnCardType() == 2)
+	{
+		_aiDeck[0]->cardEffect(_CardType0, _CardPower0, _CardType0_0, _CardPower0_0,
+			CardType0, CardPower0, _aiDeck, playerDeck, bool_P, 0);
+
+		Play0->Enabled = false;
+	}
+
+	checkGameStatus(bool_P, bool_A);
 }
 
 void CRLForm::MyForm::playCard1()
@@ -69,6 +101,15 @@ void CRLForm::MyForm::playCard1()
 
 		bool_A[1] = false;
 	}
+	else if (_aiDeck[1]->returnCardType() == 2)
+	{
+		_aiDeck[1]->cardEffect(_CardType1, _CardPower1, _CardType1_1, _CardPower1_1,
+			CardType1, CardPower1, _aiDeck, playerDeck, bool_P, 1);
+
+		Play1->Enabled = false;
+	}
+
+	checkGameStatus(bool_P, bool_A);
 }
 
 void CRLForm::MyForm::playCard2()
@@ -90,6 +131,15 @@ void CRLForm::MyForm::playCard2()
 
 		bool_A[2] = false;
 	}
+	else if (_aiDeck[2]->returnCardType() == 2)
+	{
+		_aiDeck[2]->cardEffect(_CardType2, _CardPower2, _CardType2_2, _CardPower2_2,
+			CardType2, CardPower2, _aiDeck, playerDeck, bool_P, 2);
+
+		Play2->Enabled = false;
+	}
+
+	checkGameStatus(bool_P, bool_A);
 }
 
 void CRLForm::MyForm::playCard3()
@@ -111,6 +161,15 @@ void CRLForm::MyForm::playCard3()
 
 		bool_A[3] = false;
 	}
+	else if (_aiDeck[3]->returnCardType() == 2)
+	{
+		_aiDeck[3]->cardEffect(_CardType3, _CardPower3, _CardType3_3, _CardPower3_3,
+			CardType3, CardPower3, _aiDeck, playerDeck, bool_P, 3);
+
+		Play3->Enabled = false;
+	}
+
+	checkGameStatus(bool_P, bool_A);
 }
 
 void CRLForm::MyForm::playCard4()
@@ -131,5 +190,37 @@ void CRLForm::MyForm::playCard4()
 		this->TotalPower_P->Text = Convert::ToString(player.getTotalPower());
 
 		bool_A[4] = false;
+	}
+	else if (_aiDeck[4]->returnCardType() == 2)
+	{
+		_aiDeck[4]->cardEffect(_CardType4, _CardPower4, _CardType4_4, _CardPower4_4,
+			CardType4, CardPower4, _aiDeck, playerDeck, bool_P, 4);
+
+		Play4->Enabled = false;
+	}
+
+	checkGameStatus(bool_P, bool_A);
+}
+
+void CRLForm::MyForm::checkGameStatus(array<bool> ^playerHand, array<bool> ^aiHand)
+{
+	int i, playerCount, aiCount;
+
+	for (i = 0; i < ARRAY_SIZE; i++)
+	{
+		if (playerHand[i] == false)
+			playerCount++;
+
+		if (aiHand[i] == false)
+			aiCount++;
+	}
+
+	if (playerCount == ARRAY_SIZE)
+	{
+		for (i = 0; i < ARRAY_SIZE; i++)
+		{
+			if (aiHand[i] == true)
+				playCard(i);
+		}
 	}
 }

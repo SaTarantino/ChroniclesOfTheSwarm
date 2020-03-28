@@ -20,20 +20,32 @@ int AiPlayer::getTotalPower()
 
 int AiPlayer::cardToPlay(array<bool> ^hand)
 {
-	if (counter == ARRAY_SIZE) 
+	for (int i = 0; i < ARRAY_SIZE; i++)
 	{
-		return 6;
-	}
+		int j;
+		if (hand[i] == false)
+			j++;
 
+		if (j == ARRAY_SIZE)
+			return 6;
+	}
+	
+	
 	do {
 		//srand(time(NULL));
 		//card = rand() % 5;
 		card = generateNumber();
-	} while (hand[card] == true);
+	} while (hand[card] != true);
 	
-	hand[card] = false;
-	counter++;
+	//hand[card] = false;
+	//counter++;
+
+	/*if (counter == ARRAY_SIZE) 
+	{
+		return card, 6;
+	}*/
 	return card;
+	
 }
 
 int AiPlayer::generateNumber()
@@ -43,14 +55,13 @@ int AiPlayer::generateNumber()
 	return n;
 }
 
-void AiPlayer::play(array<BaseCard^> ^hand)
+void AiPlayer::play(array<bool> ^hand)
 {
-	/*if (hand[card]->getCardType == 0)
+	for (int i = 0; i < ARRAY_SIZE; i++)
 	{
-
-	}*/
+		hand[i] = true;
+	}
 }
-
 
 //void AiPlayer::playCard(int playerTotalPower, array<BaseCard^> ^deck, array<bool> ^boolArray)
 //{

@@ -11,5 +11,6 @@ public:
 	MatchClass();
 	
 	array<BaseCard^>^ generateDeck();
-	array<bool>^ setDeckKnolegde();
+	void setHandKnolegde(array<bool> ^);
+	void checkGameStatus(array<bool> ^, array<bool> ^);
 };
