@@ -10,9 +10,9 @@ public:
 	virtual void setDetail(int) = 0;
 	virtual void setCardPower() = 0;
 	
-	virtual void cardEffect(TextBox ^, TextBox ^, TextBox ^, TextBox ^,
-		TextBox ^, TextBox ^, array<BaseCard^>^, array<BaseCard^>^, 
-		array<bool>^, int) = 0;
+	virtual void cardEffect(TextBox ^myType, TextBox ^myPower, TextBox ^tBoard, TextBox ^pBoard,
+		TextBox ^enemyType, TextBox ^enemyPower, array<BaseCard^> ^myDeck, array<BaseCard^> ^enemyDeck,
+		array<bool> ^myHand, array<bool> ^enemyHand, int i) = 0;
 	virtual int getCardPower(int) = 0;
 	virtual int getCardType(int) = 0;
 

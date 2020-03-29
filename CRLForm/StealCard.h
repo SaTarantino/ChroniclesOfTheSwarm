@@ -12,8 +12,8 @@ public:
 	virtual void setCardPower() override;
 
 	virtual void cardEffect(TextBox ^, TextBox ^, TextBox ^, TextBox ^,
-		TextBox ^, TextBox ^, array<BaseCard^>^, array<BaseCard^>^,
-		array<bool>^, int) override;
+		TextBox ^, TextBox ^, array<BaseCard^> ^, array<BaseCard^> ^,
+		array<bool> ^, array<bool> ^, int) override;
 
 	virtual int getCardType(int) override;
 	virtual int getCardPower(int) override;

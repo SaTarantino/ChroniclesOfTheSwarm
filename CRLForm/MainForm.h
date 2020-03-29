@@ -118,21 +118,7 @@ namespace CRLForm {
 	/// Player and AI Total Power
 	private: System::Windows::Forms::TextBox^  TotalPower_P;
 	private: System::Windows::Forms::TextBox^  _TotalPower_A;
-
-	private:
-		/// Player
-		/*int cardType0_P, cardType1_P, cardType2_P, cardType3_P, cardType4_P;
-		String ^type0, ^type1, ^type2, ^type3, ^type4;
-		int cardPower0_P, cardPower1_P, cardPower2_P, cardPower3_P, cardPower4_P;
-		String ^power0, ^power1, ^power2, ^power3, ^power4;*/
-		//String ^playerTotalPower;
-		/// AI
-		/*int _cardType0_A, _cardType1_A, _cardType2_A, _cardType3_A, _cardType4_A;
-		String ^_type0, ^_type1, ^_type2, ^_type3, ^_type4;
-		int _cardPower0_A, _cardPower1_A, _cardPower2_A, _cardPower3_A, _cardPower4_A;
-		String ^_power0, ^_power1, ^_power2, ^_power3, ^_power4;*/
-		//String ^_aiTotalPower;
-
+private: System::Windows::Forms::TextBox^  WinnerBox;
 
 private: System::ComponentModel::IContainer^  components;
 
@@ -190,6 +176,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->_CardPower4_4 = (gcnew System::Windows::Forms::TextBox());
 			this->_TotalPower_A = (gcnew System::Windows::Forms::TextBox());
 			this->NewGame = (gcnew System::Windows::Forms::Button());
+			this->WinnerBox = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
 			// 
 			// CardType0
@@ -598,7 +585,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->_TotalPower_A->Size = System::Drawing::Size(100, 20);
 			this->_TotalPower_A->TabIndex = 48;
 			// 
-			// New_Game
+			// NewGame
 			// 
 			this->NewGame->Location = System::Drawing::Point(12, 2);
 			this->NewGame->Name = L"NewGame";
@@ -608,11 +595,21 @@ private: System::ComponentModel::IContainer^  components;
 			this->NewGame->UseVisualStyleBackColor = true;
 			this->NewGame->Click += gcnew System::EventHandler(this, &MainForm::NewGame_Click);
 			// 
-			// MyForm
+			// WinnerBox
+			// 
+			this->WinnerBox->Location = System::Drawing::Point(351, 259);
+			this->WinnerBox->Name = L"WinnerBox";
+			this->WinnerBox->ReadOnly = true;
+			//this->WinnerBox->Hide();
+			this->WinnerBox->Size = System::Drawing::Size(100, 20);
+			this->WinnerBox->TabIndex = 50;
+			// 
+			// MainForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(888, 534);
+			this->Controls->Add(this->WinnerBox);
 			this->Controls->Add(this->NewGame);
 			this->Controls->Add(this->_TotalPower_A);
 			this->Controls->Add(this->_CardPower4_4);
@@ -663,7 +660,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->Controls->Add(this->CardPower0);
 			this->Controls->Add(this->CardType0);
 			this->Controls->Add(this->Start);
-			this->Name = L"MyForm";
+			this->Name = L"MainForm";
 			this->Text = L"Chronicles Of The Swarm";
 			this->Load += gcnew System::EventHandler(this, &MainForm::MainForm_Load);
 			this->ResumeLayout(false);
@@ -676,13 +673,12 @@ private: System::ComponentModel::IContainer^  components;
 			MatchClass matchClass;
 			Player player;
 			AiPlayer _aiPlayer;
-		
-		array<BaseCard^> ^playerDeck;
-		array<BaseCard^> ^_aiDeck;
-		array<bool> ^bool_P = gcnew array<bool>(ARRAY_SIZE);
-		array<bool> ^bool_A = gcnew array<bool>(ARRAY_SIZE);
-		array<int> ^intTry = gcnew array<int>(ARRAY_SIZE);
-		int counter;
+			array<BaseCard^> ^playerDeck;
+			array<BaseCard^> ^_aiDeck;
+			array<bool> ^bool_P = gcnew array<bool>(ARRAY_SIZE);
+			array<bool> ^bool_A = gcnew array<bool>(ARRAY_SIZE);
+			array<int> ^intTry = gcnew array<int>(ARRAY_SIZE);
+
 		int sleep = 4000;
 
 #pragma endregion
@@ -694,11 +690,6 @@ private: System::ComponentModel::IContainer^  components;
 		//
 		// Return Player's Card Type
 		//
-		
-		// This is the old way. Solid but redundant. The concept is the same for the card power.
-		/*cardType0_P = playerDeck[0]->getCardType(cardType0_P);
-		type0 = Convert::ToString(cardType0_P);
-		this->CardType0->Text = type0;*/
 
 		this->CardType0->Text = Convert::ToString(playerDeck[0]->returnCardType());
 		this->CardType1->Text = Convert::ToString(playerDeck[1]->returnCardType());
@@ -783,10 +774,10 @@ private: System::ComponentModel::IContainer^  components;
 		else if (playerDeck[0]->returnCardType() == 2)
 		{
 			playerDeck[0]->cardEffect(CardType0, CardPower0, CardType0_0, CardPower0_0,
-				_CardType0, _CardPower0, playerDeck, _aiDeck, bool_A, 0);
+				_CardType0, _CardPower0, playerDeck, _aiDeck, bool_P, bool_A, 0);
 		}
-
 		playCard(_aiPlayer.cardToPlay(bool_A));
+		checkGameStatus(bool_P, bool_A);
 	}
 
 	private: System::Void Play1_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -818,10 +809,10 @@ private: System::ComponentModel::IContainer^  components;
 		else if (playerDeck[1]->returnCardType() == 2)
 		{
 			playerDeck[1]->cardEffect(CardType1, CardPower1, CardType1_1, CardPower1_1,
-				_CardType1, _CardPower1, playerDeck, _aiDeck, bool_A, 1);
+				_CardType1, _CardPower1, playerDeck, _aiDeck, bool_P, bool_A, 1);
 		}
 		playCard(_aiPlayer.cardToPlay(bool_A));
-		matchClass.checkGameStatus(bool_P, bool_A);
+		checkGameStatus(bool_P, bool_A);
 	}
 
 	private: System::Void Play2_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -853,10 +844,10 @@ private: System::ComponentModel::IContainer^  components;
 		else if (playerDeck[2]->returnCardType() == 2)
 		{
 			playerDeck[2]->cardEffect(CardType2, CardPower2, CardType2_2, CardPower2_2,
-				_CardType2, _CardPower2, playerDeck, _aiDeck, bool_A, 2);
+				_CardType2, _CardPower2, playerDeck, _aiDeck, bool_P, bool_A, 2);
 		}
 		playCard(_aiPlayer.cardToPlay(bool_A));
-		matchClass.checkGameStatus(bool_P, bool_A);
+		checkGameStatus(bool_P, bool_A);
 	}
 
 	private: System::Void Play3_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -888,10 +879,10 @@ private: System::ComponentModel::IContainer^  components;
 		else if (playerDeck[3]->returnCardType() == 2)
 		{
 			playerDeck[3]->cardEffect(CardType3, CardPower3, CardType3_3, CardPower3_3,
-				_CardType3, _CardPower3, playerDeck, _aiDeck, bool_A, 3);
+				_CardType3, _CardPower3, playerDeck, _aiDeck, bool_P, bool_A, 3);
 		}
 		playCard(_aiPlayer.cardToPlay(bool_A));
-		matchClass.checkGameStatus(bool_P, bool_A);
+		checkGameStatus(bool_P, bool_A);
 	}
 
 	private: System::Void Play4_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -923,19 +914,19 @@ private: System::ComponentModel::IContainer^  components;
 		else if (playerDeck[4]->returnCardType() == 2)
 		{
 			playerDeck[4]->cardEffect(CardType4, CardPower4, CardType4_4, CardPower4_4,
-				_CardType4, _CardPower4, playerDeck, _aiDeck, bool_A, 4);
+				_CardType4, _CardPower4, playerDeck, _aiDeck, bool_P, bool_A, 4);
 		}
 		playCard(_aiPlayer.cardToPlay(bool_A));
-		matchClass.checkGameStatus(bool_P, bool_A);
+		checkGameStatus(bool_P, bool_A);
 	}
 
-	private: System::Void NewGame_Click(System::Object^  sender, System::EventArgs^  e)
-	{
+	private: System::Void NewGame_Click(System::Object^  sender, System::EventArgs^  e) {
+
 		Application::Restart();
 	}
 
 	private: System::Void MainForm_Load(System::Object^  sender, System::EventArgs^  e) {
-		
+	
 		Play0->Enabled = false;
 		Play1->Enabled = false;
 		Play2->Enabled = false;

@@ -3,6 +3,9 @@
 using namespace System;
 using namespace System::Windows::Forms;
 
+bool playerHasNoCard = false;
+bool aiHasNoCard = false;
+
 [STAThread]
 void Main()
 {
@@ -17,37 +20,38 @@ void CRLForm::MainForm::playCard(int cardToPlay)
 {
 	if (cardToPlay == 0) 
 	{
-		//Sleep(sleep);
+		Sleep(sleep);
 		sleep - 800;
 		playCard0();
 	}
 	if (cardToPlay == 1)
 	{
-		//Sleep(sleep);
+		Sleep(sleep);
 		sleep - 800;
 		playCard1();
 	}
 	if (cardToPlay == 2)
 	{
-		//Sleep(sleep);
+		Sleep(sleep);
 		sleep - 800;
 		playCard2();
 	}
 	if (cardToPlay == 3)
 	{
-		//Sleep(sleep);
+		Sleep(sleep);
 		sleep - 800;
 		playCard3();
 	}
 	if (cardToPlay == 4)
 	{
-		//Sleep(sleep);
+		Sleep(sleep);
 		sleep - 800;
 		playCard4();
 	}
 	if (cardToPlay >= 6) 
 	{
 		Roll->Enabled = true;
+		aiHasNoCard = true;
 	}
 }
 
@@ -73,7 +77,7 @@ void CRLForm::MainForm::playCard0()
 	else if (_aiDeck[0]->returnCardType() == 2)
 	{
 		_aiDeck[0]->cardEffect(_CardType0, _CardPower0, _CardType0_0, _CardPower0_0,
-			CardType0, CardPower0, _aiDeck, playerDeck, bool_P, 0);
+			CardType0, CardPower0, _aiDeck, playerDeck, bool_A, bool_P, 0);
 
 		Play0->Enabled = false;
 	}
@@ -103,7 +107,7 @@ void CRLForm::MainForm::playCard1()
 	else if (_aiDeck[1]->returnCardType() == 2)
 	{
 		_aiDeck[1]->cardEffect(_CardType1, _CardPower1, _CardType1_1, _CardPower1_1,
-			CardType1, CardPower1, _aiDeck, playerDeck, bool_P, 1);
+			CardType1, CardPower1, _aiDeck, playerDeck, bool_A, bool_P, 1);
 
 		Play1->Enabled = false;
 	}
@@ -133,7 +137,7 @@ void CRLForm::MainForm::playCard2()
 	else if (_aiDeck[2]->returnCardType() == 2)
 	{
 		_aiDeck[2]->cardEffect(_CardType2, _CardPower2, _CardType2_2, _CardPower2_2,
-			CardType2, CardPower2, _aiDeck, playerDeck, bool_P, 2);
+			CardType2, CardPower2, _aiDeck, playerDeck, bool_A, bool_P, 2);
 
 		Play2->Enabled = false;
 	}
@@ -163,7 +167,7 @@ void CRLForm::MainForm::playCard3()
 	else if (_aiDeck[3]->returnCardType() == 2)
 	{
 		_aiDeck[3]->cardEffect(_CardType3, _CardPower3, _CardType3_3, _CardPower3_3,
-			CardType3, CardPower3, _aiDeck, playerDeck, bool_P, 3);
+			CardType3, CardPower3, _aiDeck, playerDeck, bool_A, bool_P, 3);
 
 		Play3->Enabled = false;
 	}
@@ -193,7 +197,7 @@ void CRLForm::MainForm::playCard4()
 	else if (_aiDeck[4]->returnCardType() == 2)
 	{
 		_aiDeck[4]->cardEffect(_CardType4, _CardPower4, _CardType4_4, _CardPower4_4,
-			CardType4, CardPower4, _aiDeck, playerDeck, bool_P, 4);
+			CardType4, CardPower4, _aiDeck, playerDeck, bool_A, bool_P, 4);
 
 		Play4->Enabled = false;
 	}
@@ -203,28 +207,61 @@ void CRLForm::MainForm::playCard4()
 
 void CRLForm::MainForm::checkGameStatus(array<bool> ^playerHand, array<bool> ^aiHand)
 {
-	int i, playerCount, aiCount;
+	int i;
+	int playerCount, aiCounter;
+
+	for (i = 0; i < ARRAY_SIZE; i++)
+	{
+		if (aiHand[i] == false)
+		{
+			aiCounter++;
+		}
+		else if (aiHand[i] == true)
+		{
+			aiCounter--;
+		}
+	}
 
 	for (i = 0; i < ARRAY_SIZE; i++)
 	{
 		if (playerHand[i] == false)
+		{
 			playerCount++;
-
-		if (aiHand[i] == false)
-			aiCount++;
+		}
+		else if (playerHand[i] == true)
+		{
+			playerCount--;
+		}
 	}
 
-	if (playerCount == ARRAY_SIZE)
+	if (playerCount == 5)
 	{
 		for (i = 0; i < ARRAY_SIZE; i++)
 		{
 			if (aiHand[i] == true)
-				playCard(i);
+				playCard(i);			
 		}
+
+		aiHasNoCard = true;
+		playerHasNoCard = true;
 	}
 
-	if (playerCount == ARRAY_SIZE && aiCount == ARRAY_SIZE)
+	if (playerHasNoCard == true)
 	{
-		
+		if (aiHasNoCard == true)
+		{
+			if (player.getTotalPower() > _aiPlayer.getTotalPower())
+			{
+				this->WinnerBox->Text = "YOU WON!";
+			}
+			else if (player.getTotalPower() < _aiPlayer.getTotalPower())
+			{
+				this->WinnerBox->Text = "YOU LOST!";
+			}
+			else if (player.getTotalPower() == _aiPlayer.getTotalPower())
+			{
+				this->WinnerBox->Text = "DRAW!";
+			}
+		}
 	}
 }

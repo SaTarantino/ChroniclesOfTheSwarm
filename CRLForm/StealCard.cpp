@@ -12,8 +12,8 @@ void StealCard::setDetail(int power)
 }
 
 void StealCard::cardEffect(TextBox ^myType, TextBox ^myPower, TextBox ^tBoard, TextBox ^pBoard,
-	TextBox ^enemyType, TextBox ^enemyPower, array<BaseCard^>^myDeck, array<BaseCard^>^enemyDeck,
-	array<bool>^ enemyHand, int i)
+	TextBox ^enemyType, TextBox ^enemyPower, array<BaseCard^> ^myDeck, array<BaseCard^> ^enemyDeck,
+	array<bool> ^myHand, array<bool> ^enemyHand, int i)
 {
 	if (enemyHand[i] == true && enemyDeck[i]->returnCardType() != 2)
 	{
@@ -24,6 +24,7 @@ void StealCard::cardEffect(TextBox ^myType, TextBox ^myPower, TextBox ^tBoard, T
 		pBoard->Text = "$.$";
 		enemyType->Text = "STOLEN";
 		enemyPower->Text = "STOLEN";
+		myHand[i] = true;
 		enemyHand[i] = false;
 	}
 	else
@@ -36,6 +37,7 @@ void StealCard::cardEffect(TextBox ^myType, TextBox ^myPower, TextBox ^tBoard, T
 		pBoard->Text = "<.<";
 		enemyType->Text = "STOLEN";
 		enemyPower->Text = "STOLEN";
+		myHand[i] = true;
 		enemyHand[i] = false;
 	}
 }

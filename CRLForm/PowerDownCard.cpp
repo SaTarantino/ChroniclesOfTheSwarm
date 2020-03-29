@@ -1,6 +1,5 @@
 #include <cstdlib>
 #include <random>
-#include <ctime>
 #include "PowerDownCard.h"
 
 PowerDownCard::PowerDownCard() : BaseCard()
@@ -18,8 +17,8 @@ void PowerDownCard::setCardPower()
 }
 
 void PowerDownCard::cardEffect(TextBox ^, TextBox ^, TextBox ^, TextBox ^,
-	TextBox ^, TextBox ^, array<BaseCard^>^, array<BaseCard^>^,
-	array<bool>^, int)
+	TextBox ^, TextBox ^, array<BaseCard^> ^, array<BaseCard^> ^,
+	array<bool> ^, array<bool> ^, int)
 {
 }
 
