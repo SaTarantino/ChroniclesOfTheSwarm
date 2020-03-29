@@ -23,22 +23,12 @@ void PowerUpCard::cardEffect(TextBox ^, TextBox ^, TextBox ^, TextBox ^,
 {
 }
 
-int PowerUpCard::getCardType(int)
+int PowerUpCard::getCardType()
 {
 	return cardType;
 }
 
-int PowerUpCard::getCardPower(int)
-{
-	return cardPower;
-}
-
-int PowerUpCard::returnCardType()
-{
-	return cardType;
-}
-
-int PowerUpCard::returnCardPower()
+int PowerUpCard::getCardPower()
 {
 	return cardPower;
 }

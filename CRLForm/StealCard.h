@@ -15,11 +15,8 @@ public:
 		TextBox ^, TextBox ^, array<BaseCard^> ^, array<BaseCard^> ^,
 		array<bool> ^, array<bool> ^, int) override;
 
-	virtual int getCardType(int) override;
-	virtual int getCardPower(int) override;
-
-	virtual int returnCardType() override;
-	virtual int returnCardPower() override;
+	virtual int getCardType() override;
+	virtual int getCardPower() override;
 
 private:
 	int cardType = 2;

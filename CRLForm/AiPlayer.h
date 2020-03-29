@@ -1,8 +1,9 @@
 #pragma once
-#include "BaseCard.h"
 
 #define ARRAY_SIZE 5
-
+///
+/// Class for the AI Player.
+///
 ref class AiPlayer
 {
 public:
@@ -11,7 +12,6 @@ public:
 	void setTotalPower(int power);
 	int getTotalPower();
 	int cardToPlay(array<bool> ^hand);
-
 	int generateNumber();
 
 private:

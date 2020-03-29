@@ -13,7 +13,7 @@ void PowerDownCard::setDetail(int power)
 
 void PowerDownCard::setCardPower()
 {
-	cardPower = rand() % 9 + 1;
+	cardPower = rand() % 9 + 6;
 }
 
 void PowerDownCard::cardEffect(TextBox ^, TextBox ^, TextBox ^, TextBox ^,
@@ -22,22 +22,12 @@ void PowerDownCard::cardEffect(TextBox ^, TextBox ^, TextBox ^, TextBox ^,
 {
 }
 
-int PowerDownCard::getCardType(int)
+int PowerDownCard::getCardType()
 {
 	return cardType;
 }
 
-int PowerDownCard::getCardPower(int)
-{
-	return cardPower;
-}
-
-int PowerDownCard::returnCardType()
-{
-	return cardType;
-}
-
-int PowerDownCard::returnCardPower()
+int PowerDownCard::getCardPower()
 {
 	return cardPower;
 }

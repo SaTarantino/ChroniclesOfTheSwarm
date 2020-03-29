@@ -12,7 +12,10 @@ using namespace System;
 MatchClass::MatchClass()
 {
 }
-
+///
+/// Function used for generate the Deck.
+/// RIGHT NOW IT ONLY GENERATE THE HAND.
+///
 array<BaseCard^> ^MatchClass::generateDeck()
 {
 	int i, m;
@@ -36,29 +39,12 @@ array<BaseCard^> ^MatchClass::generateDeck()
 	}
 	return deck;
 }
-
+///
+/// This function is only used for set the elements in an array of boolean as true.
 void MatchClass::setHandKnolegde(array<bool> ^deck)
 {
 	for (int i = 0; i < ARRAY_SIZE; i++)
 	{
 		deck[i] = true;
-	}
-}
-
-void MatchClass::checkGameStatus(array<bool> ^playerHand, array<bool> ^aiHand)
-{
-	int i, playerCount, aiCount;
-
-	for (i = 0; i < ARRAY_SIZE; i++)
-	{
-		if (playerHand[i] == false)
-			playerCount++;
-
-		if (aiHand[i] == false)
-			aiCount++;
-	}
-
-	if (playerCount == ARRAY_SIZE)
-	{
 	}
 }

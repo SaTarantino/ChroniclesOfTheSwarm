@@ -1,5 +1,8 @@
 #pragma once
 
+///
+/// Class for the User Player
+///
 ref class Player
 {
 public:
