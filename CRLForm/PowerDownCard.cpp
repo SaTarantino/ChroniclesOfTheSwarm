@@ -13,7 +13,7 @@ void PowerDownCard::setDetail(int power)
 
 void PowerDownCard::setCardPower()
 {
-	cardPower = rand() % 9 + 6;
+	cardPower = rand() % 9 + 11;
 }
 
 void PowerDownCard::cardEffect(TextBox ^, TextBox ^, TextBox ^, TextBox ^,
@@ -30,4 +30,12 @@ int PowerDownCard::getCardType()
 int PowerDownCard::getCardPower()
 {
 	return cardPower;
+}
+
+String ^ PowerDownCard::getInfo()
+{
+	String ^a = "Power Down Card: ";
+	String ^b = Convert::ToString(getCardPower());
+	String ^string;
+	return string = (a + b);
 }

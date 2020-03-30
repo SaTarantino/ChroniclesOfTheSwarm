@@ -6,22 +6,23 @@
 #include "PowerDownCard.h"
 #include "StealCard.h"
 
-using namespace System;
-#define ARRAY_SIZE 5
+#define DECK_SIZE 20
 
 MatchClass::MatchClass()
 {
 }
+
 ///
 /// Function used for generate the Deck.
-/// RIGHT NOW IT ONLY GENERATE THE HAND.
 ///
 array<BaseCard^> ^MatchClass::generateDeck()
 {
 	int i, m;
-	array<BaseCard^> ^deck = gcnew array<BaseCard^>(ARRAY_SIZE);
+	array<BaseCard^> ^deck = gcnew array<BaseCard^>(DECK_SIZE);
+
 	srand(time(NULL));
-	for (i = 0; i < ARRAY_SIZE; i++)
+
+	for (i = 0; i < DECK_SIZE; i++)
 	{
 		m = rand() % 3;
 		if (m == 0)
@@ -39,11 +40,13 @@ array<BaseCard^> ^MatchClass::generateDeck()
 	}
 	return deck;
 }
+
 ///
 /// This function is only used for set the elements in an array of boolean as true.
+///
 void MatchClass::setHandKnolegde(array<bool> ^deck)
 {
-	for (int i = 0; i < ARRAY_SIZE; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		deck[i] = true;
 	}

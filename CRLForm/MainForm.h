@@ -1,5 +1,6 @@
 #pragma once
 #include <Windows.h>
+#include <execution>
 #include "Controller.h"
 #include "Player.h"
 #include "AiPlayer.h"
@@ -101,25 +102,37 @@ namespace CRLForm {
 	///
 	private: System::Windows::Forms::TextBox^  _CardType0_0;
 	private: System::Windows::Forms::TextBox^  _CardPower0_0;
+
 	private: System::Windows::Forms::TextBox^  _CardType1_1;
 	private: System::Windows::Forms::TextBox^  _CardPower1_1;
+
 	private: System::Windows::Forms::TextBox^  _CardType2_2;
 	private: System::Windows::Forms::TextBox^  _CardPower2_2;
+
 	private: System::Windows::Forms::TextBox^  _CardType3_3;
 	private: System::Windows::Forms::TextBox^  _CardPower3_3;
+
 	private: System::Windows::Forms::TextBox^  _CardType4_4;
 	private: System::Windows::Forms::TextBox^  _CardPower4_4;
+	/// Player and AI Total Power
+	private: System::Windows::Forms::TextBox^  TotalPower_P;
+	private: System::Windows::Forms::TextBox^  _TotalPower_A;
 	/// Roll Button
 	private: System::Windows::Forms::Button^  Roll;
 	/// Play Button
 	private: System::Windows::Forms::Button^  Start;
 	/// New Game Button
 	private: System::Windows::Forms::Button^  NewGame;
-	/// Player and AI Total Power
-	private: System::Windows::Forms::TextBox^  TotalPower_P;
-	private: System::Windows::Forms::TextBox^  _TotalPower_A;
 	/// The Winner Box for the end of the game.
 	private: System::Windows::Forms::TextBox^  WinnerBox;
+
+
+private: System::Windows::Forms::Button^  AddButton;
+private: System::Windows::Forms::ListBox^  listBox_P;
+private: System::Windows::Forms::ListBox^  listBox_A;
+
+
+
 	private: System::ComponentModel::IContainer^  components;
 
 #pragma region Windows Form Designer generated code
@@ -177,6 +190,9 @@ namespace CRLForm {
 			this->_TotalPower_A = (gcnew System::Windows::Forms::TextBox());
 			this->NewGame = (gcnew System::Windows::Forms::Button());
 			this->WinnerBox = (gcnew System::Windows::Forms::TextBox());
+			this->AddButton = (gcnew System::Windows::Forms::Button());
+			this->listBox_P = (gcnew System::Windows::Forms::ListBox());
+			this->listBox_A = (gcnew System::Windows::Forms::ListBox());
 			this->SuspendLayout();
 			// 
 			// CardType0
@@ -391,7 +407,7 @@ namespace CRLForm {
 			// 
 			// TotalPower_P
 			// 
-			this->TotalPower_P->Location = System::Drawing::Point(776, 277);
+			this->TotalPower_P->Location = System::Drawing::Point(830, 276);
 			this->TotalPower_P->Name = L"TotalPower_P";
 			this->TotalPower_P->ReadOnly = true;
 			this->TotalPower_P->Size = System::Drawing::Size(100, 20);
@@ -399,21 +415,21 @@ namespace CRLForm {
 			// 
 			// Roll
 			// 
-			this->Roll->Location = System::Drawing::Point(99, 2);
+			this->Roll->Location = System::Drawing::Point(109, 2);
 			this->Roll->Name = L"Roll";
-			this->Roll->Size = System::Drawing::Size(51, 23);
+			this->Roll->Size = System::Drawing::Size(91, 23);
 			this->Roll->TabIndex = 26;
-			this->Roll->Text = L"Roll";
+			this->Roll->Text = L"Generate Deck";
 			this->Roll->UseVisualStyleBackColor = true;
 			this->Roll->Click += gcnew System::EventHandler(this, &MainForm::Roll_Click);
 			// 
 			// Start
 			// 
-			this->Start->Location = System::Drawing::Point(165, 2);
+			this->Start->Location = System::Drawing::Point(206, 2);
 			this->Start->Name = L"Start";
-			this->Start->Size = System::Drawing::Size(51, 23);
+			this->Start->Size = System::Drawing::Size(91, 23);
 			this->Start->TabIndex = 0;
-			this->Start->Text = L"Start";
+			this->Start->Text = L"Start Game";
 			this->Start->UseVisualStyleBackColor = true;
 			this->Start->Click += gcnew System::EventHandler(this, &MainForm::Start_Click);
 			// 
@@ -579,7 +595,7 @@ namespace CRLForm {
 			// 
 			// _TotalPower_A
 			// 
-			this->_TotalPower_A->Location = System::Drawing::Point(776, 240);
+			this->_TotalPower_A->Location = System::Drawing::Point(830, 241);
 			this->_TotalPower_A->Name = L"_TotalPower_A";
 			this->_TotalPower_A->ReadOnly = true;
 			this->_TotalPower_A->Size = System::Drawing::Size(100, 20);
@@ -589,9 +605,9 @@ namespace CRLForm {
 			// 
 			this->NewGame->Location = System::Drawing::Point(12, 2);
 			this->NewGame->Name = L"NewGame";
-			this->NewGame->Size = System::Drawing::Size(75, 23);
+			this->NewGame->Size = System::Drawing::Size(91, 23);
 			this->NewGame->TabIndex = 49;
-			this->NewGame->Text = L"New Game";
+			this->NewGame->Text = L"Restart";
 			this->NewGame->UseVisualStyleBackColor = true;
 			this->NewGame->Click += gcnew System::EventHandler(this, &MainForm::NewGame_Click);
 			// 
@@ -600,15 +616,43 @@ namespace CRLForm {
 			this->WinnerBox->Location = System::Drawing::Point(351, 259);
 			this->WinnerBox->Name = L"WinnerBox";
 			this->WinnerBox->ReadOnly = true;
-			this->WinnerBox->Hide();
 			this->WinnerBox->Size = System::Drawing::Size(100, 20);
 			this->WinnerBox->TabIndex = 50;
+			// 
+			// AddButton
+			// 
+			this->AddButton->Location = System::Drawing::Point(842, 485);
+			this->AddButton->Name = L"AddButton";
+			this->AddButton->Size = System::Drawing::Size(77, 24);
+			this->AddButton->TabIndex = 52;
+			this->AddButton->Text = L"Add";
+			this->AddButton->UseVisualStyleBackColor = true;
+			this->AddButton->Click += gcnew System::EventHandler(this, &MainForm::AddButton_Click);
+			// 
+			// listBox_P
+			// 
+			this->listBox_P->FormattingEnabled = true;
+			this->listBox_P->Location = System::Drawing::Point(811, 318);
+			this->listBox_P->Name = L"listBox_P";
+			this->listBox_P->Size = System::Drawing::Size(141, 160);
+			this->listBox_P->TabIndex = 53;
+			// 
+			// listBox_A
+			// 
+			this->listBox_A->FormattingEnabled = true;
+			this->listBox_A->Location = System::Drawing::Point(811, 59);
+			this->listBox_A->Name = L"listBox_A";
+			this->listBox_A->Size = System::Drawing::Size(141, 160);
+			this->listBox_A->TabIndex = 54;
 			// 
 			// MainForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(888, 534);
+			this->ClientSize = System::Drawing::Size(985, 534);
+			this->Controls->Add(this->listBox_A);
+			this->Controls->Add(this->listBox_P);
+			this->Controls->Add(this->AddButton);
 			this->Controls->Add(this->WinnerBox);
 			this->Controls->Add(this->NewGame);
 			this->Controls->Add(this->_TotalPower_A);
@@ -673,63 +717,135 @@ namespace CRLForm {
 			MatchClass matchClass;
 			Player player;
 			AiPlayer _aiPlayer;
+
 			array<BaseCard^> ^playerDeck;
 			array<BaseCard^> ^_aiDeck;
+			array<BaseCard^> ^playerHand = gcnew array<BaseCard^>(ARRAY_SIZE);
+			array<BaseCard^> ^_aiHand = gcnew array<BaseCard^>(ARRAY_SIZE);
+
 			array<bool> ^bool_P = gcnew array<bool>(ARRAY_SIZE);
 			array<bool> ^bool_A = gcnew array<bool>(ARRAY_SIZE);
-			array<int> ^intTry = gcnew array<int>(ARRAY_SIZE);
-			int sleep = 4000;
+
+			array<int> ^in = gcnew array<int>(ARRAY_SIZE);
+
+			array<TextBox^> ^typeTextBox_P = gcnew array<TextBox^>(ARRAY_SIZE);
+			array<TextBox^> ^powerTextBox_P = gcnew array<TextBox^>(ARRAY_SIZE);
+			array<TextBox^> ^typeTextBox_A = gcnew array<TextBox^>(ARRAY_SIZE);
+			array<TextBox^> ^powerTextBox_A = gcnew array<TextBox^>(ARRAY_SIZE);
+
+		int sleep = 4000;
+		int counter;
 
 #pragma endregion
 	private: System::Void Roll_Click(System::Object^  sender, System::EventArgs^  e) {
-
+		
+		/// Set Player Deck.
 		playerDeck = matchClass.generateDeck();
 		
-		Start->Enabled = true;
-		//
-		// Return Player's Card Type
-		//
+		for (int i = 0; i < 20; i++)
+			listBox_P->Items->Add(playerDeck[i]->getInfo());
 
-		this->CardType0->Text = Convert::ToString(playerDeck[0]->getCardType());
-		this->CardType1->Text = Convert::ToString(playerDeck[1]->getCardType());
-		this->CardType2->Text = Convert::ToString(playerDeck[2]->getCardType());
-		this->CardType3->Text = Convert::ToString(playerDeck[3]->getCardType());
-		this->CardType4->Text = Convert::ToString(playerDeck[4]->getCardType());
+		Roll->Enabled = false;
+	}
 
-		//
-		// Return Player's Card Power
-		//
-		this->CardPower0->Text = Convert::ToString(playerDeck[0]->getCardPower());
-		this->CardPower1->Text = Convert::ToString(playerDeck[1]->getCardPower());
-		this->CardPower2->Text = Convert::ToString(playerDeck[2]->getCardPower());
-		this->CardPower3->Text = Convert::ToString(playerDeck[3]->getCardPower());
-		this->CardPower4->Text = Convert::ToString(playerDeck[4]->getCardPower());
+	private: System::Void AddButton_Click(System::Object^  sender, System::EventArgs^  e) {
+
+		///
+		/// Some logic for setting the Player's Hand.
+		///
+
+		/// Set m equal to the Index of the selecter item in the list.
+		int m = listBox_P->SelectedIndex;
+
+		/// If nothing is selecter the index will be -1, if so return an Message.
+		if (m == -1)							
+		{
+			MessageBox::Show("Select a Card.");
+			return;
+		}
+
+		/// If the int m is in the array "in", the selected card has alredy been picked.
+		/// If so return a Message.
+		for each (int i in in)
+		{
+			if (i == m)
+			{
+				MessageBox::Show("Card already selecte.\n" + "Select a new card");
+				return;
+			}
+		}
+
+		/// Add the card in the position m of the deck array to the hand array at the position "counter".
+		playerHand[counter] = playerDeck[m];
+		
+		/// Show the selected card.
+		this->typeTextBox_P[counter]->Text = Convert::ToString(playerHand[counter]->getCardType());
+		this->powerTextBox_P[counter]->Text = Convert::ToString(playerHand[counter]->getCardPower());
+
+		/// Add the number m in the array "in". This will be used in the for each loop above.
+		in[counter] = m;
+
+		counter++;
+
+		if (counter >= 5)
+		{
+			AddButton->Enabled = false;
+			Start->Enabled = true;
+		}
 	}
 
 	private: System::Void Start_Click(System::Object^  sender, System::EventArgs^  e) {
 
-		// Set AI deck
+		/// Set AI deck.
 		_aiDeck = matchClass.generateDeck();
-		
+
+		for (int i = 0; i < 20; i++)
+			listBox_A->Items->Add(_aiDeck[i]->getInfo());
+
+		_aiHand = _aiPlayer.drawHand(_aiDeck);
+
+		for (int i = 0; i < ARRAY_SIZE; i++)
+		{
+			//_aiPlayer.drawHand(_aiDeck, _aiHand, i);
+			this->typeTextBox_A[i]->Text = Convert::ToString(_aiHand[i]->getCardType());
+			this->powerTextBox_A[i]->Text = Convert::ToString(_aiHand[i]->getCardPower());
+		}
+
 		matchClass.setHandKnolegde(bool_P);
 		matchClass.setHandKnolegde(bool_A);
 
-		//
-		// Return AI's Card Type
-		//
-		this->_CardType0->Text = Convert::ToString(_aiDeck[0]->getCardType());
-		this->_CardType1->Text = Convert::ToString(_aiDeck[1]->getCardType());
-		this->_CardType2->Text = Convert::ToString(_aiDeck[2]->getCardType());
-		this->_CardType3->Text = Convert::ToString(_aiDeck[3]->getCardType());
-		this->_CardType4->Text = Convert::ToString(_aiDeck[4]->getCardType());
-		//
-		// Return AI's Card Power
-		//
-		this->_CardPower0->Text = Convert::ToString(_aiDeck[0]->getCardPower());
-		this->_CardPower1->Text = Convert::ToString(_aiDeck[1]->getCardPower());
-		this->_CardPower2->Text = Convert::ToString(_aiDeck[2]->getCardPower());
-		this->_CardPower3->Text = Convert::ToString(_aiDeck[3]->getCardPower());
-		this->_CardPower4->Text = Convert::ToString(_aiDeck[4]->getCardPower());
+		///
+		/// Return Player's Card Type
+		///
+		//this->CardType0->Text = Convert::ToString(playerHand[0]->getCardType());
+		//this->CardType1->Text = Convert::ToString(playerHand[1]->getCardType());
+		//this->CardType2->Text = Convert::ToString(playerHand[2]->getCardType());
+		//this->CardType3->Text = Convert::ToString(playerHand[3]->getCardType());
+		//this->CardType4->Text = Convert::ToString(playerHand[4]->getCardType());
+		/////
+		///// Return Player's Card Power
+		/////
+		//this->CardPower0->Text = Convert::ToString(playerHand[0]->getCardPower());
+		//this->CardPower1->Text = Convert::ToString(playerHand[1]->getCardPower());
+		//this->CardPower2->Text = Convert::ToString(playerHand[2]->getCardPower());
+		//this->CardPower3->Text = Convert::ToString(playerHand[3]->getCardPower());
+		//this->CardPower4->Text = Convert::ToString(playerHand[4]->getCardPower());
+		///
+		/// Return AI's Card Type
+		///
+		//this->_CardType0->Text = Convert::ToString(_aiHand[0]->getCardType());
+		//this->_CardType1->Text = Convert::ToString(_aiHand[1]->getCardType());
+		//this->_CardType2->Text = Convert::ToString(_aiHand[2]->getCardType());
+		//this->_CardType3->Text = Convert::ToString(_aiHand[3]->getCardType());
+		//this->_CardType4->Text = Convert::ToString(_aiHand[4]->getCardType());
+		///
+		/// Return AI's Card Power
+		///
+		//this->_CardPower0->Text = Convert::ToString(_aiHand[0]->getCardPower());
+		//this->_CardPower1->Text = Convert::ToString(_aiHand[1]->getCardPower());
+		//this->_CardPower2->Text = Convert::ToString(_aiHand[2]->getCardPower());
+		//this->_CardPower3->Text = Convert::ToString(_aiHand[3]->getCardPower());
+		//this->_CardPower4->Text = Convert::ToString(_aiHand[4]->getCardPower());
 
 		Play0->Enabled = true;
 		Play1->Enabled = true;
@@ -746,13 +862,13 @@ namespace CRLForm {
 
 	private: System::Void Play0_Click(System::Object^  sender, System::EventArgs^  e) {
 		
-		// Set the board text box with the value of the card
+		/// Set the board text box with the value of the card
 		this->CardType0_0->Text = CardType0->Text;
 		this->CardPower0_0->Text = CardPower0->Text;
 		
-		if (playerDeck[0]->getCardType() == 0)
+		if (playerHand[0]->getCardType() == 0)
 		{
-			player.setTotalPower(playerDeck[0]->getCardPower());
+			player.setTotalPower(playerHand[0]->getCardPower());
 			this->TotalPower_P->Text = Convert::ToString(player.getTotalPower());
 
 			Play0->Enabled = false;
@@ -760,9 +876,9 @@ namespace CRLForm {
 			CardPower0->Enabled = false;
 			bool_P[0] = false;
 		}
-		else if (playerDeck[0]->getCardType() == 1)
+		else if (playerHand[0]->getCardType() == 1)
 		{
-			_aiPlayer.setTotalPower(-playerDeck[0]->getCardPower());
+			_aiPlayer.setTotalPower(-playerHand[0]->getCardPower());
 			this->_TotalPower_A->Text = Convert::ToString(_aiPlayer.getTotalPower());
 
 			Play0->Enabled = false;
@@ -770,10 +886,10 @@ namespace CRLForm {
 			CardPower0->Enabled = false;
 			bool_P[0] = false;
 		}
-		else if (playerDeck[0]->getCardType() == 2)
+		else if (playerHand[0]->getCardType() == 2)
 		{
-			playerDeck[0]->cardEffect(CardType0, CardPower0, CardType0_0, CardPower0_0,
-				_CardType0, _CardPower0, playerDeck, _aiDeck, bool_P, bool_A, 0);
+			playerHand[0]->cardEffect(CardType0, CardPower0, CardType0_0, CardPower0_0,
+				_CardType0, _CardPower0, playerHand, _aiHand, bool_P, bool_A, 0);
 		}
 		playCard(_aiPlayer.cardToPlay(bool_A));
 		checkGameStatus(bool_P, bool_A);
@@ -781,13 +897,13 @@ namespace CRLForm {
 
 	private: System::Void Play1_Click(System::Object^  sender, System::EventArgs^  e) {
 
-		// Set the board text box with the value of the card
+		/// Set the board text box with the value of the card
 		this->CardType1_1->Text = CardType1->Text;
 		this->CardPower1_1->Text = CardPower1->Text;
 
-		if (playerDeck[1]->getCardType() == 0)
+		if (playerHand[1]->getCardType() == 0)
 		{
-			player.setTotalPower(playerDeck[1]->getCardPower());
+			player.setTotalPower(playerHand[1]->getCardPower());
 			this->TotalPower_P->Text = Convert::ToString(player.getTotalPower());
 
 			Play1->Enabled = false;
@@ -795,9 +911,9 @@ namespace CRLForm {
 			CardPower1->Enabled = false;
 			bool_P[1] = false;
 		}
-		else if (playerDeck[1]->getCardType() == 1)
+		else if (playerHand[1]->getCardType() == 1)
 		{
-			_aiPlayer.setTotalPower(-playerDeck[1]->getCardPower());
+			_aiPlayer.setTotalPower(-playerHand[1]->getCardPower());
 			this->_TotalPower_A->Text = Convert::ToString(_aiPlayer.getTotalPower());
 
 			Play1->Enabled = false;
@@ -805,10 +921,10 @@ namespace CRLForm {
 			CardPower1->Enabled = false;
 			bool_P[1] = false;
 		}
-		else if (playerDeck[1]->getCardType() == 2)
+		else if (playerHand[1]->getCardType() == 2)
 		{
-			playerDeck[1]->cardEffect(CardType1, CardPower1, CardType1_1, CardPower1_1,
-				_CardType1, _CardPower1, playerDeck, _aiDeck, bool_P, bool_A, 1);
+			playerHand[1]->cardEffect(CardType1, CardPower1, CardType1_1, CardPower1_1,
+				_CardType1, _CardPower1, playerHand, _aiHand, bool_P, bool_A, 1);
 		}
 		playCard(_aiPlayer.cardToPlay(bool_A));
 		checkGameStatus(bool_P, bool_A);
@@ -816,13 +932,13 @@ namespace CRLForm {
 
 	private: System::Void Play2_Click(System::Object^  sender, System::EventArgs^  e) {
 
-		// Set the board text box with the value of the card
+		/// Set the board text box with the value of the card
 		this->CardType2_2->Text = CardType2->Text;
 		this->CardPower2_2->Text = CardPower2->Text;
 
-		if (playerDeck[2]->getCardType() == 0)
+		if (playerHand[2]->getCardType() == 0)
 		{
-			player.setTotalPower(playerDeck[2]->getCardPower());
+			player.setTotalPower(playerHand[2]->getCardPower());
 			this->TotalPower_P->Text = Convert::ToString(player.getTotalPower());
 
 			Play2->Enabled = false;
@@ -830,9 +946,9 @@ namespace CRLForm {
 			CardPower2->Enabled = false;
 			bool_P[2] = false;
 		}
-		else if (playerDeck[2]->getCardType() == 1)
+		else if (playerHand[2]->getCardType() == 1)
 		{
-			_aiPlayer.setTotalPower(-playerDeck[2]->getCardPower());
+			_aiPlayer.setTotalPower(-playerHand[2]->getCardPower());
 			this->_TotalPower_A->Text = Convert::ToString(_aiPlayer.getTotalPower());
 
 			Play2->Enabled = false;
@@ -840,10 +956,10 @@ namespace CRLForm {
 			CardPower2->Enabled = false;
 			bool_P[2] = false;
 		}
-		else if (playerDeck[2]->getCardType() == 2)
+		else if (playerHand[2]->getCardType() == 2)
 		{
-			playerDeck[2]->cardEffect(CardType2, CardPower2, CardType2_2, CardPower2_2,
-				_CardType2, _CardPower2, playerDeck, _aiDeck, bool_P, bool_A, 2);
+			playerHand[2]->cardEffect(CardType2, CardPower2, CardType2_2, CardPower2_2,
+				_CardType2, _CardPower2, playerHand, _aiHand, bool_P, bool_A, 2);
 		}
 		playCard(_aiPlayer.cardToPlay(bool_A));
 		checkGameStatus(bool_P, bool_A);
@@ -851,13 +967,13 @@ namespace CRLForm {
 
 	private: System::Void Play3_Click(System::Object^  sender, System::EventArgs^  e) {
 
-		// Set the board text box with the value of the card
+		/// Set the board text box with the value of the card
 		this->CardType3_3->Text = CardType3->Text;
 		this->CardPower3_3->Text = CardPower3->Text;
 
-		if (playerDeck[3]->getCardType() == 0)
+		if (playerHand[3]->getCardType() == 0)
 		{
-			player.setTotalPower(playerDeck[3]->getCardPower());
+			player.setTotalPower(playerHand[3]->getCardPower());
 			this->TotalPower_P->Text = Convert::ToString(player.getTotalPower());
 
 			Play3->Enabled = false;
@@ -865,9 +981,9 @@ namespace CRLForm {
 			CardPower3->Enabled = false;
 			bool_P[3] = false;
 		}
-		else if (playerDeck[3]->getCardType() == 1)
+		else if (playerHand[3]->getCardType() == 1)
 		{
-			_aiPlayer.setTotalPower(-playerDeck[3]->getCardPower());
+			_aiPlayer.setTotalPower(-playerHand[3]->getCardPower());
 			this->_TotalPower_A->Text = Convert::ToString(_aiPlayer.getTotalPower());
 
 			Play3->Enabled = false;
@@ -875,10 +991,10 @@ namespace CRLForm {
 			CardPower3->Enabled = false;
 			bool_P[3] = false;
 		}
-		else if (playerDeck[3]->getCardType() == 2)
+		else if (playerHand[3]->getCardType() == 2)
 		{
-			playerDeck[3]->cardEffect(CardType3, CardPower3, CardType3_3, CardPower3_3,
-				_CardType3, _CardPower3, playerDeck, _aiDeck, bool_P, bool_A, 3);
+			playerHand[3]->cardEffect(CardType3, CardPower3, CardType3_3, CardPower3_3,
+				_CardType3, _CardPower3, playerHand, _aiHand, bool_P, bool_A, 3);
 		}
 		playCard(_aiPlayer.cardToPlay(bool_A));
 		checkGameStatus(bool_P, bool_A);
@@ -886,13 +1002,13 @@ namespace CRLForm {
 
 	private: System::Void Play4_Click(System::Object^  sender, System::EventArgs^  e) {
 
-		// Set the board text box with the value of the card
+		/// Set the board text box with the value of the card
 		this->CardType4_4->Text = CardType4->Text;
 		this->CardPower4_4->Text = CardPower4->Text;
 
-		if (playerDeck[4]->getCardType() == 0)
+		if (playerHand[4]->getCardType() == 0)
 		{
-			player.setTotalPower(playerDeck[4]->getCardPower());
+			player.setTotalPower(playerHand[4]->getCardPower());
 			this->TotalPower_P->Text = Convert::ToString(player.getTotalPower());
 
 			Play4->Enabled = false;
@@ -900,9 +1016,9 @@ namespace CRLForm {
 			CardPower4->Enabled = false;
 			bool_P[4] = false;
 		}
-		else if (playerDeck[4]->getCardType() == 1)
+		else if (playerHand[4]->getCardType() == 1)
 		{
-			_aiPlayer.setTotalPower(-playerDeck[4]->getCardPower());
+			_aiPlayer.setTotalPower(-playerHand[4]->getCardPower());
 			this->_TotalPower_A->Text = Convert::ToString(_aiPlayer.getTotalPower());
 
 			Play4->Enabled = false;
@@ -910,10 +1026,10 @@ namespace CRLForm {
 			CardPower4->Enabled = false;
 			bool_P[4] = false;
 		}
-		else if (playerDeck[4]->getCardType() == 2)
+		else if (playerHand[4]->getCardType() == 2)
 		{
-			playerDeck[4]->cardEffect(CardType4, CardPower4, CardType4_4, CardPower4_4,
-				_CardType4, _CardPower4, playerDeck, _aiDeck, bool_P, bool_A, 4);
+			playerHand[4]->cardEffect(CardType4, CardPower4, CardType4_4, CardPower4_4,
+				_CardType4, _CardPower4, playerHand, _aiHand, bool_P, bool_A, 4);
 		}
 		playCard(_aiPlayer.cardToPlay(bool_A));
 		checkGameStatus(bool_P, bool_A);
@@ -932,6 +1048,33 @@ namespace CRLForm {
 		Play3->Enabled = false;
 		Play4->Enabled = false;
 		Start->Enabled = false;
+
+		typeTextBox_P[0] = CardType0;
+		typeTextBox_P[1] = CardType1;
+		typeTextBox_P[2] = CardType2;
+		typeTextBox_P[3] = CardType3;
+		typeTextBox_P[4] = CardType4;
+
+		powerTextBox_P[0] = CardPower0;
+		powerTextBox_P[1] = CardPower1;
+		powerTextBox_P[2] = CardPower2;
+		powerTextBox_P[3] = CardPower3;
+		powerTextBox_P[4] = CardPower4;
+
+		typeTextBox_A[0] = _CardType0;
+		typeTextBox_A[1] = _CardType1;
+		typeTextBox_A[2] = _CardType2;
+		typeTextBox_A[3] = _CardType3;
+		typeTextBox_A[4] = _CardType4;
+
+		powerTextBox_A[0] = _CardPower0;
+		powerTextBox_A[1] = _CardPower1;
+		powerTextBox_A[2] = _CardPower2;
+		powerTextBox_A[3] = _CardPower3;
+		powerTextBox_A[4] = _CardPower4;
+
+		for (int i = 0; i < ARRAY_SIZE; i++)
+			in[i] = -1;
 	}
 };
 }

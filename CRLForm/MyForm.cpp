@@ -15,6 +15,7 @@ void Main()
 	CRLForm::MainForm form;
 	Application::Run(%form);
 }
+
 ///
 /// The playCard function use and integer (cardSpot)
 /// taken from the cardToPlay function in the AiPlayer class.
@@ -30,35 +31,36 @@ void CRLForm::MainForm::playCard(int cardSpot)
 	///
 	if (cardSpot == 0)
 	{
-		Sleep(sleep);
+		//Sleep(sleep);
 		sleep - 800;
 		playCard0();
 	}
 	if (cardSpot == 1)
 	{
-		Sleep(sleep);
+		//Sleep(sleep);
 		sleep - 800;
 		playCard1();
 	}
 	if (cardSpot == 2)
 	{
-		Sleep(sleep);
+		//Sleep(sleep);
 		sleep - 800;
 		playCard2();
 	}
 	if (cardSpot == 3)
 	{
-		Sleep(sleep);
+		//Sleep(sleep);
 		sleep - 800;
 		playCard3();
 	}
 	if (cardSpot == 4)
 	{
-		Sleep(sleep);
+		//Sleep(sleep);
 		sleep - 800;
 		playCard4();
 	}
-	if (cardSpot == 6)			// If cardSpot == 6 means that the AI has no more card to play.
+	/// If cardSpot == 6 means that the AI has no more card to play.
+	if (cardSpot == 6)
 	{
 		aiHasNoCard = true;
 	}
@@ -69,24 +71,24 @@ void CRLForm::MainForm::playCard0()
 	this->_CardType0_0->Text = _CardType0->Text;
 	this->_CardPower0_0->Text = _CardPower0->Text;
 
-	if (_aiDeck[0]->getCardType() == 0)
+	if (_aiHand[0]->getCardType() == 0)
 	{
-		_aiPlayer.setTotalPower(_aiDeck[0]->getCardPower());
+		_aiPlayer.setTotalPower(_aiHand[0]->getCardPower());
 		this->_TotalPower_A->Text = Convert::ToString(_aiPlayer.getTotalPower());
 
 		bool_A[0] = false;
 	}
-	else if (_aiDeck[0]->getCardType() == 1)
+	else if (_aiHand[0]->getCardType() == 1)
 	{
-		player.setTotalPower(-_aiDeck[0]->getCardPower());
+		player.setTotalPower(-_aiHand[0]->getCardPower());
 		this->TotalPower_P->Text = Convert::ToString(player.getTotalPower());
 
 		bool_A[0] = false;
 	}
-	else if (_aiDeck[0]->getCardType() == 2)
+	else if (_aiHand[0]->getCardType() == 2)
 	{
-		_aiDeck[0]->cardEffect(_CardType0, _CardPower0, _CardType0_0, _CardPower0_0,
-			CardType0, CardPower0, _aiDeck, playerDeck, bool_A, bool_P, 0);
+		_aiHand[0]->cardEffect(_CardType0, _CardPower0, _CardType0_0, _CardPower0_0,
+			CardType0, CardPower0, _aiHand, playerHand, bool_A, bool_P, 0);
 
 		Play0->Enabled = false;
 	}
@@ -99,24 +101,24 @@ void CRLForm::MainForm::playCard1()
 	this->_CardType1_1->Text = _CardType1->Text;
 	this->_CardPower1_1->Text = _CardPower1->Text;
 	
-	if (_aiDeck[1]->getCardType() == 0)
+	if (_aiHand[1]->getCardType() == 0)
 	{
-		_aiPlayer.setTotalPower(_aiDeck[1]->getCardPower());
+		_aiPlayer.setTotalPower(_aiHand[1]->getCardPower());
 		this->_TotalPower_A->Text = Convert::ToString(_aiPlayer.getTotalPower());
 
 		bool_A[1] = false;
 	}
-	else if (_aiDeck[1]->getCardType() == 1)
+	else if (_aiHand[1]->getCardType() == 1)
 	{
-		player.setTotalPower(-_aiDeck[1]->getCardPower());
+		player.setTotalPower(-_aiHand[1]->getCardPower());
 		this->TotalPower_P->Text = Convert::ToString(player.getTotalPower());
 
 		bool_A[1] = false;
 	}
-	else if (_aiDeck[1]->getCardType() == 2)
+	else if (_aiHand[1]->getCardType() == 2)
 	{
-		_aiDeck[1]->cardEffect(_CardType1, _CardPower1, _CardType1_1, _CardPower1_1,
-			CardType1, CardPower1, _aiDeck, playerDeck, bool_A, bool_P, 1);
+		_aiHand[1]->cardEffect(_CardType1, _CardPower1, _CardType1_1, _CardPower1_1,
+			CardType1, CardPower1, _aiHand, playerHand, bool_A, bool_P, 1);
 
 		Play1->Enabled = false;
 	}
@@ -129,24 +131,24 @@ void CRLForm::MainForm::playCard2()
 	this->_CardType2_2->Text = _CardType2->Text;
 	this->_CardPower2_2->Text = _CardPower2->Text;
 
-	if (_aiDeck[2]->getCardType() == 0)
+	if (_aiHand[2]->getCardType() == 0)
 	{
-		_aiPlayer.setTotalPower(_aiDeck[2]->getCardPower());
+		_aiPlayer.setTotalPower(_aiHand[2]->getCardPower());
 		this->_TotalPower_A->Text = Convert::ToString(_aiPlayer.getTotalPower());
 
 		bool_A[2] = false;
 	}
-	else if (_aiDeck[2]->getCardType() == 1)
+	else if (_aiHand[2]->getCardType() == 1)
 	{
-		player.setTotalPower(-_aiDeck[2]->getCardPower());
+		player.setTotalPower(-_aiHand[2]->getCardPower());
 		this->TotalPower_P->Text = Convert::ToString(player.getTotalPower());
 
 		bool_A[2] = false;
 	}
-	else if (_aiDeck[2]->getCardType() == 2)
+	else if (_aiHand[2]->getCardType() == 2)
 	{
-		_aiDeck[2]->cardEffect(_CardType2, _CardPower2, _CardType2_2, _CardPower2_2,
-			CardType2, CardPower2, _aiDeck, playerDeck, bool_A, bool_P, 2);
+		_aiHand[2]->cardEffect(_CardType2, _CardPower2, _CardType2_2, _CardPower2_2,
+			CardType2, CardPower2, _aiHand, playerHand, bool_A, bool_P, 2);
 
 		Play2->Enabled = false;
 	}
@@ -159,24 +161,24 @@ void CRLForm::MainForm::playCard3()
 	this->_CardType3_3->Text = _CardType3->Text;
 	this->_CardPower3_3->Text = _CardPower3->Text;
 
-	if (_aiDeck[3]->getCardType() == 0)
+	if (_aiHand[3]->getCardType() == 0)
 	{
-		_aiPlayer.setTotalPower(_aiDeck[3]->getCardPower());
+		_aiPlayer.setTotalPower(_aiHand[3]->getCardPower());
 		this->_TotalPower_A->Text = Convert::ToString(_aiPlayer.getTotalPower());
 
 		bool_A[3] = false;
 	}
-	else if (_aiDeck[3]->getCardType() == 1)
+	else if (_aiHand[3]->getCardType() == 1)
 	{
-		player.setTotalPower(-_aiDeck[3]->getCardPower());
+		player.setTotalPower(-_aiHand[3]->getCardPower());
 		this->TotalPower_P->Text = Convert::ToString(player.getTotalPower());
 
 		bool_A[3] = false;
 	}
-	else if (_aiDeck[3]->getCardType() == 2)
+	else if (_aiHand[3]->getCardType() == 2)
 	{
-		_aiDeck[3]->cardEffect(_CardType3, _CardPower3, _CardType3_3, _CardPower3_3,
-			CardType3, CardPower3, _aiDeck, playerDeck, bool_A, bool_P, 3);
+		_aiHand[3]->cardEffect(_CardType3, _CardPower3, _CardType3_3, _CardPower3_3,
+			CardType3, CardPower3, _aiHand, playerHand, bool_A, bool_P, 3);
 
 		Play3->Enabled = false;
 	}
@@ -189,24 +191,24 @@ void CRLForm::MainForm::playCard4()
 	this->_CardType4_4->Text = _CardType4->Text;
 	this->_CardPower4_4->Text = _CardPower4->Text;
 
-	if (_aiDeck[4]->getCardType() == 0)
+	if (_aiHand[4]->getCardType() == 0)
 	{
-		_aiPlayer.setTotalPower(_aiDeck[4]->getCardPower());
+		_aiPlayer.setTotalPower(_aiHand[4]->getCardPower());
 		this->_TotalPower_A->Text = Convert::ToString(_aiPlayer.getTotalPower());
 
 		bool_A[4] = false;
 	}
-	else if (_aiDeck[4]->getCardType() == 1)
+	else if (_aiHand[4]->getCardType() == 1)
 	{
-		player.setTotalPower(-_aiDeck[4]->getCardPower());
+		player.setTotalPower(-_aiHand[4]->getCardPower());
 		this->TotalPower_P->Text = Convert::ToString(player.getTotalPower());
 
 		bool_A[4] = false;
 	}
-	else if (_aiDeck[4]->getCardType() == 2)
+	else if (_aiHand[4]->getCardType() == 2)
 	{
-		_aiDeck[4]->cardEffect(_CardType4, _CardPower4, _CardType4_4, _CardPower4_4,
-			CardType4, CardPower4, _aiDeck, playerDeck, bool_A, bool_P, 4);
+		_aiHand[4]->cardEffect(_CardType4, _CardPower4, _CardType4_4, _CardPower4_4,
+			CardType4, CardPower4, _aiHand, playerHand, bool_A, bool_P, 4);
 
 		Play4->Enabled = false;
 	}
@@ -265,14 +267,13 @@ void CRLForm::MainForm::checkGameStatus(array<bool> ^playerHand, array<bool> ^ai
 			{
 				sleep = 0;
 				playCard(i);	
-			}
-						
+			}		
 		}
 		aiHasNoCard = true;
 		playerHasNoCard = true;
 	}
 
-	// The statemente that check when it's time to finish the game.
+	/// The statemente that check when it's time to finish the game.
 	if (playerHasNoCard == true)
 	{
 		if (aiHasNoCard == true)

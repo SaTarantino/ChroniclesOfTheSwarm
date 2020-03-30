@@ -32,3 +32,11 @@ int PowerUpCard::getCardPower()
 {
 	return cardPower;
 }
+
+String ^PowerUpCard::getInfo()
+{
+	String ^a = "Power Up Card: ";
+	String ^b = Convert::ToString(getCardPower());
+	String ^string;
+	return string = (a + b);
+}

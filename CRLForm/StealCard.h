@@ -1,6 +1,7 @@
 #pragma once
 #include "BaseCard.h"
 
+using namespace System;
 using namespace System::Windows::Forms;
 
 ref class StealCard : public BaseCard
@@ -17,6 +18,8 @@ public:
 
 	virtual int getCardType() override;
 	virtual int getCardPower() override;
+
+	virtual String ^ getInfo() override;
 
 private:
 	int cardType = 2;

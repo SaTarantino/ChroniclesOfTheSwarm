@@ -17,6 +17,8 @@ public:
 
 	virtual int getCardType() override;
 	virtual int getCardPower() override;
+
+	virtual String ^ getInfo() override;
 	
 private:
 	int cardType = 0;
