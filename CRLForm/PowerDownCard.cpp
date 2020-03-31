@@ -32,7 +32,13 @@ int PowerDownCard::getCardPower()
 	return cardPower;
 }
 
-String ^ PowerDownCard::getInfo()
+String ^PowerDownCard::getTypeString()
+{
+	String ^string = "Power Down";
+	return string;
+}
+
+String ^PowerDownCard::getInfo()
 {
 	String ^a = "Power Down Card: ";
 	String ^b = Convert::ToString(getCardPower());

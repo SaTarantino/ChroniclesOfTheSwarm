@@ -26,5 +26,6 @@ public:
 	virtual int getCardType() = 0;
 	virtual int getCardPower() = 0;
 
+	virtual String ^getTypeString() = 0;
 	virtual String ^getInfo() = 0;
 };

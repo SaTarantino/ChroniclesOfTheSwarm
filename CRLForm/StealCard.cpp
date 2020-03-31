@@ -28,7 +28,7 @@ void StealCard::cardEffect(TextBox ^myType, TextBox ^myPower, TextBox ^tBoard, T
 	if (enemyHand[i] == true && enemyDeck[i]->getCardType() != 2)
 	{
 		myDeck[i] = enemyDeck[i];
-		myType->Text = System::Convert::ToString(myDeck[i]->getCardType());
+		myType->Text = (myDeck[i]->getTypeString());
 		myPower->Text = System::Convert::ToString(myDeck[i]->getCardPower());
 		tBoard->Text = "$.$";
 		pBoard->Text = "$.$";
@@ -45,7 +45,7 @@ void StealCard::cardEffect(TextBox ^myType, TextBox ^myPower, TextBox ^tBoard, T
 	{
 		myDeck[i] = gcnew PowerUpCard();
 		myDeck[i]->setDetail(2);
-		myType->Text = System::Convert::ToString(myDeck[i]->getCardType());
+		myType->Text = (myDeck[i]->getTypeString());
 		myPower->Text = System::Convert::ToString(myDeck[i]->getCardPower());
 		tBoard->Text = "<.<";
 		pBoard->Text = "<.<";
@@ -71,7 +71,13 @@ int StealCard::getCardPower()
 	return cardPower;
 }
 
-String ^ StealCard::getInfo()
+String ^StealCard::getTypeString()
+{
+	String ^string = "Steal";
+	return string;
+}
+
+String ^StealCard::getInfo()
 {
 	String ^string;
 	return string = "Streal Card: 0";

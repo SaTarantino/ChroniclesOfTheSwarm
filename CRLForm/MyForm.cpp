@@ -93,6 +93,7 @@ void CRLForm::MainForm::playCard0()
 		Play0->Enabled = false;
 	}
 
+	logController(1, 0);
 	checkGameStatus(bool_P, bool_A);
 }
 
@@ -123,6 +124,7 @@ void CRLForm::MainForm::playCard1()
 		Play1->Enabled = false;
 	}
 
+	logController(1, 1);
 	checkGameStatus(bool_P, bool_A);
 }
 
@@ -153,6 +155,7 @@ void CRLForm::MainForm::playCard2()
 		Play2->Enabled = false;
 	}
 
+	logController(1, 2);
 	checkGameStatus(bool_P, bool_A);
 }
 
@@ -183,6 +186,7 @@ void CRLForm::MainForm::playCard3()
 		Play3->Enabled = false;
 	}
 
+	logController(1, 3);
 	checkGameStatus(bool_P, bool_A);
 }
 
@@ -213,8 +217,10 @@ void CRLForm::MainForm::playCard4()
 		Play4->Enabled = false;
 	}
 
+	logController(1, 4);
 	checkGameStatus(bool_P, bool_A);
 }
+
 ///
 /// This functio is used to check the status of the player arrays of booleans
 /// used to keep track of the player hand in order to finish the game
@@ -228,19 +234,6 @@ void CRLForm::MainForm::checkGameStatus(array<bool> ^playerHand, array<bool> ^ai
 {
 	int i;
 	int playerCount;
-	//int aiCounter;
-	
-	/*for (i = 0; i < ARRAY_SIZE; i++)
-	{
-		if (aiHand[i] == false)
-		{
-			aiCounter++;
-		}
-		else if (aiHand[i] == true)
-		{
-			aiCounter--;
-		}
-	}*/
 
 	for (i = 0; i < ARRAY_SIZE; i++)
 	{
@@ -253,11 +246,6 @@ void CRLForm::MainForm::checkGameStatus(array<bool> ^playerHand, array<bool> ^ai
 			playerCount--;
 		}
 	}
-
-	//if (aiCounter == 5)
-	//{
-	//	aiHasNoCard = true;
-	//}
 
 	if (playerCount == 5)
 	{
@@ -282,17 +270,59 @@ void CRLForm::MainForm::checkGameStatus(array<bool> ^playerHand, array<bool> ^ai
 			{
 				this->WinnerBox->Show();
 				this->WinnerBox->Text = "YOU WON!";
+				sw->WriteLine("Player {0} - AI {1}", player.getTotalPower(), _aiPlayer.getTotalPower());
+				sw->WriteLine("Player Win!");
 			}
 			else if (player.getTotalPower() < _aiPlayer.getTotalPower())
 			{
 				this->WinnerBox->Show();
 				this->WinnerBox->Text = "YOU LOST!";
+				sw->WriteLine("AI {0} - Player {1}", _aiPlayer.getTotalPower(), player.getTotalPower());
+				sw->WriteLine("AI Win!");
 			}
 			else if (player.getTotalPower() == _aiPlayer.getTotalPower())
 			{
 				this->WinnerBox->Show();
 				this->WinnerBox->Text = "DRAW!";
+				sw->WriteLine("Player {0} - AI {0}", player.getTotalPower(), _aiPlayer.getTotalPower());
+				sw->WriteLine("Draw!");
 			}
 		}
 	}
+}
+
+void CRLForm::MainForm::logController(int playerID, int card)
+{
+	if (playerID == 0)
+	{
+		/// Player play
+		sw->WriteLine("Player play: {0}", playerHand[card]->getInfo());
+		sw->WriteLine("Cards yet to be played: ");
+		for (int i = 0; i < ARRAY_SIZE; i++)
+		{
+			if (bool_P[i] == true)
+			{
+				sw->WriteLine(playerHand[i]->getInfo());
+			}
+		}
+		sw->WriteLine(" ");
+		sw->WriteLine("Player Total Power: {0}\n", player.getTotalPower());
+	}
+
+	if (playerID == 1)
+	{
+		/// AI play
+		sw->WriteLine("AI play: {0}", _aiHand[card]->getInfo());
+		sw->WriteLine("Cards yet to be played: ");
+		for (int i = 0; i < ARRAY_SIZE; i++)
+		{
+			if (bool_A[i] == true)
+			{
+				sw->WriteLine(_aiHand[i]->getInfo());
+			}
+		}
+		sw->WriteLine(" ");
+		sw->WriteLine("AI Total Power: {0}\n\n", _aiPlayer.getTotalPower());
+	}
+	sw->WriteLine(" ");
 }

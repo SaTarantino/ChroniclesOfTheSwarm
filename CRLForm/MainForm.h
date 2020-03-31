@@ -1,6 +1,10 @@
 #pragma once
 #include <Windows.h>
 #include <execution>
+#include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <string>
 #include "Controller.h"
 #include "Player.h"
 #include "AiPlayer.h"
@@ -15,6 +19,7 @@ namespace CRLForm {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::IO;
 
 	public ref class MainForm : public System::Windows::Forms::Form
 	{
@@ -24,6 +29,7 @@ namespace CRLForm {
 		void playCard2();
 		void playCard3();
 		void playCard4();
+		void logController(int playerID, int card);
 		void checkGameStatus(array<bool> ^, array<bool> ^);
 
 	public:
@@ -706,6 +712,7 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 			this->Controls->Add(this->Start);
 			this->Name = L"MainForm";
 			this->Text = L"Chronicles Of The Swarm";
+			this->FormClosed += gcnew System::Windows::Forms::FormClosedEventHandler(this, &MainForm::MainForm_FormClosed);
 			this->Load += gcnew System::EventHandler(this, &MainForm::MainForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -717,6 +724,9 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 			MatchClass matchClass;
 			Player player;
 			AiPlayer _aiPlayer;
+
+			String ^txtFile = "gameLog.txt";
+			StreamWriter ^sw = gcnew StreamWriter(txtFile);
 
 			array<BaseCard^> ^playerDeck;
 			array<BaseCard^> ^_aiDeck;
@@ -746,6 +756,7 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 			listBox_P->Items->Add(playerDeck[i]->getInfo());
 
 		Roll->Enabled = false;
+
 	}
 
 	private: System::Void AddButton_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -779,9 +790,10 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 		playerHand[counter] = playerDeck[m];
 		
 		/// Show the selected card.
-		this->typeTextBox_P[counter]->Text = Convert::ToString(playerHand[counter]->getCardType());
+		this->typeTextBox_P[counter]->Text = (playerHand[counter]->getTypeString());
 		this->powerTextBox_P[counter]->Text = Convert::ToString(playerHand[counter]->getCardPower());
-
+		
+		sw->WriteLine(playerHand[counter]->getInfo());
 		/// Add the number m in the array "in". This will be used in the for each loop above.
 		in[counter] = m;
 
@@ -796,56 +808,30 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 
 	private: System::Void Start_Click(System::Object^  sender, System::EventArgs^  e) {
 
+		sw->WriteLine(" ");
+		sw->WriteLine("AI hand:");
+
 		/// Set AI deck.
 		_aiDeck = matchClass.generateDeck();
 
 		for (int i = 0; i < 20; i++)
 			listBox_A->Items->Add(_aiDeck[i]->getInfo());
 
+		/// Set AI hand
 		_aiHand = _aiPlayer.drawHand(_aiDeck);
-
+		
+		/// Show AI hand
 		for (int i = 0; i < ARRAY_SIZE; i++)
 		{
-			//_aiPlayer.drawHand(_aiDeck, _aiHand, i);
-			this->typeTextBox_A[i]->Text = Convert::ToString(_aiHand[i]->getCardType());
+			this->typeTextBox_A[i]->Text = (_aiHand[i]->getTypeString());
 			this->powerTextBox_A[i]->Text = Convert::ToString(_aiHand[i]->getCardPower());
+			sw->WriteLine(_aiHand[i]->getInfo());
 		}
 
+		sw->WriteLine(" ");
+		
 		matchClass.setHandKnolegde(bool_P);
 		matchClass.setHandKnolegde(bool_A);
-
-		///
-		/// Return Player's Card Type
-		///
-		//this->CardType0->Text = Convert::ToString(playerHand[0]->getCardType());
-		//this->CardType1->Text = Convert::ToString(playerHand[1]->getCardType());
-		//this->CardType2->Text = Convert::ToString(playerHand[2]->getCardType());
-		//this->CardType3->Text = Convert::ToString(playerHand[3]->getCardType());
-		//this->CardType4->Text = Convert::ToString(playerHand[4]->getCardType());
-		/////
-		///// Return Player's Card Power
-		/////
-		//this->CardPower0->Text = Convert::ToString(playerHand[0]->getCardPower());
-		//this->CardPower1->Text = Convert::ToString(playerHand[1]->getCardPower());
-		//this->CardPower2->Text = Convert::ToString(playerHand[2]->getCardPower());
-		//this->CardPower3->Text = Convert::ToString(playerHand[3]->getCardPower());
-		//this->CardPower4->Text = Convert::ToString(playerHand[4]->getCardPower());
-		///
-		/// Return AI's Card Type
-		///
-		//this->_CardType0->Text = Convert::ToString(_aiHand[0]->getCardType());
-		//this->_CardType1->Text = Convert::ToString(_aiHand[1]->getCardType());
-		//this->_CardType2->Text = Convert::ToString(_aiHand[2]->getCardType());
-		//this->_CardType3->Text = Convert::ToString(_aiHand[3]->getCardType());
-		//this->_CardType4->Text = Convert::ToString(_aiHand[4]->getCardType());
-		///
-		/// Return AI's Card Power
-		///
-		//this->_CardPower0->Text = Convert::ToString(_aiHand[0]->getCardPower());
-		//this->_CardPower1->Text = Convert::ToString(_aiHand[1]->getCardPower());
-		//this->_CardPower2->Text = Convert::ToString(_aiHand[2]->getCardPower());
-		//this->_CardPower3->Text = Convert::ToString(_aiHand[3]->getCardPower());
-		//this->_CardPower4->Text = Convert::ToString(_aiHand[4]->getCardPower());
 
 		Play0->Enabled = true;
 		Play1->Enabled = true;
@@ -861,7 +847,7 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 	}
 
 	private: System::Void Play0_Click(System::Object^  sender, System::EventArgs^  e) {
-		
+
 		/// Set the board text box with the value of the card
 		this->CardType0_0->Text = CardType0->Text;
 		this->CardPower0_0->Text = CardPower0->Text;
@@ -891,11 +877,13 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 			playerHand[0]->cardEffect(CardType0, CardPower0, CardType0_0, CardPower0_0,
 				_CardType0, _CardPower0, playerHand, _aiHand, bool_P, bool_A, 0);
 		}
+		logController(0, 0);
 		playCard(_aiPlayer.cardToPlay(bool_A));
 		checkGameStatus(bool_P, bool_A);
 	}
 
 	private: System::Void Play1_Click(System::Object^  sender, System::EventArgs^  e) {
+
 
 		/// Set the board text box with the value of the card
 		this->CardType1_1->Text = CardType1->Text;
@@ -926,11 +914,13 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 			playerHand[1]->cardEffect(CardType1, CardPower1, CardType1_1, CardPower1_1,
 				_CardType1, _CardPower1, playerHand, _aiHand, bool_P, bool_A, 1);
 		}
+		logController(0, 1);
 		playCard(_aiPlayer.cardToPlay(bool_A));
 		checkGameStatus(bool_P, bool_A);
 	}
 
 	private: System::Void Play2_Click(System::Object^  sender, System::EventArgs^  e) {
+
 
 		/// Set the board text box with the value of the card
 		this->CardType2_2->Text = CardType2->Text;
@@ -961,11 +951,13 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 			playerHand[2]->cardEffect(CardType2, CardPower2, CardType2_2, CardPower2_2,
 				_CardType2, _CardPower2, playerHand, _aiHand, bool_P, bool_A, 2);
 		}
+		logController(0, 2);
 		playCard(_aiPlayer.cardToPlay(bool_A));
 		checkGameStatus(bool_P, bool_A);
 	}
 
 	private: System::Void Play3_Click(System::Object^  sender, System::EventArgs^  e) {
+
 
 		/// Set the board text box with the value of the card
 		this->CardType3_3->Text = CardType3->Text;
@@ -996,6 +988,7 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 			playerHand[3]->cardEffect(CardType3, CardPower3, CardType3_3, CardPower3_3,
 				_CardType3, _CardPower3, playerHand, _aiHand, bool_P, bool_A, 3);
 		}
+		logController(0, 3);
 		playCard(_aiPlayer.cardToPlay(bool_A));
 		checkGameStatus(bool_P, bool_A);
 	}
@@ -1031,6 +1024,7 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 			playerHand[4]->cardEffect(CardType4, CardPower4, CardType4_4, CardPower4_4,
 				_CardType4, _CardPower4, playerHand, _aiHand, bool_P, bool_A, 4);
 		}
+		logController(0, 4);
 		playCard(_aiPlayer.cardToPlay(bool_A));
 		checkGameStatus(bool_P, bool_A);
 	}
@@ -1042,6 +1036,9 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 
 	private: System::Void MainForm_Load(System::Object^  sender, System::EventArgs^  e) {
 	
+		sw->WriteLine(DateTime::Now);
+		sw->WriteLine("Player hand: ");
+
 		Play0->Enabled = false;
 		Play1->Enabled = false;
 		Play2->Enabled = false;
@@ -1075,6 +1072,10 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 
 		for (int i = 0; i < ARRAY_SIZE; i++)
 			in[i] = -1;
+	}
+	private: System::Void MainForm_FormClosed(System::Object^  sender, System::Windows::Forms::FormClosedEventArgs^  e) {
+
+		sw->Close();
 	}
 };
 }
