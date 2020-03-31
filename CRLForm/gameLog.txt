@@ -1,112 +1,88 @@
-31/03/2020 02:53:50
+31/03/2020 20:07:22
 Player hand: 
-Streal Card: 0
-Power Down Card: 15
-Power Up Card: 18
-Streal Card: 0
+Power Down Card: 12
+Power Down Card: 17
+Power Down Card: 12
 Power Up Card: 13
+Streal Card: 0
  
 AI hand:
-Streal Card: 0
-Power Up Card: 12
-Power Down Card: 11
-Streal Card: 0
-Streal Card: 0
- 
-Player play: Power Down Card: 15
-Cards yet to be played: 
-Streal Card: 0
 Power Up Card: 18
-Streal Card: 0
 Power Up Card: 13
+Power Up Card: 19
+Streal Card: 0
+Power Down Card: 14
+ 
+Player play: Power Down Card: 17
+Cards yet to be played: 
+Power Down Card: 12
+Power Down Card: 12
+Power Up Card: 13
+Streal Card: 0
  
 Player Total Power: 0
 
  
-AI play: Power Up Card: 12
+AI play: Steal Card: 0
 Cards yet to be played: 
-Streal Card: 0
-Power Down Card: 11
-Streal Card: 0
-Streal Card: 0
- 
-AI Total Power: -3
-
-
- 
-Player play: Power Up Card: 18
-Cards yet to be played: 
-Streal Card: 0
-Streal Card: 0
+Power Up Card: 18
 Power Up Card: 13
+Power Up Card: 19
+Power Up Card: 13
+Power Down Card: 14
  
-Player Total Power: 18
+AI Total Power: -17
+
+
+ 
+Player play: Power Down Card: 12
+Cards yet to be played: 
+Power Down Card: 12
+Streal Card: 0
+ 
+Player Total Power: 0
 
  
 AI play: Power Up Card: 13
 Cards yet to be played: 
-Streal Card: 0
-Power Down Card: 11
-Streal Card: 0
+Power Up Card: 18
+Power Up Card: 13
+Power Up Card: 19
+Power Down Card: 14
+ 
+AI Total Power: -16
+
+
+ 
+Player play: Steal Card: 0
+Cards yet to be played: 
+Power Down Card: 12
+Power Down Card: 14
+ 
+Player Total Power: 0
+
+ 
+AI play: Power Up Card: 19
+Cards yet to be played: 
+Power Up Card: 18
 Power Up Card: 13
  
-AI Total Power: -3
+AI Total Power: 3
 
 
  
-Player play: Power Up Card: 2
+Player play: Power Down Card: 14
 Cards yet to be played: 
-Streal Card: 0
-Power Up Card: 2
+Power Down Card: 12
  
-Player Total Power: 18
+Player Total Power: 0
 
  
-AI play: Power Up Card: 13
+AI play: Power Up Card: 18
 Cards yet to be played: 
-Streal Card: 0
-Power Down Card: 11
+Power Up Card: 13
  
-AI Total Power: 10
+AI Total Power: 7
 
 
  
-Player play: Power Up Card: 2
-Cards yet to be played: 
-Streal Card: 0
- 
-Player Total Power: 20
-
- 
-AI play: Power Up Card: 2
-Cards yet to be played: 
-Power Up Card: 2
-Power Down Card: 11
- 
-AI Total Power: 10
-
-
- 
-AI play: Power Up Card: 2
-Cards yet to be played: 
-Power Down Card: 11
- 
-AI Total Power: 12
-
-
- 
-AI play: Power Down Card: 11
-Cards yet to be played: 
- 
-AI Total Power: 12
-
-
- 
-AI 12 - Player 9
-AI Win!
-AI 12 - Player 9
-AI Win!
-AI 12 - Player 9
-AI Win!
-AI 12 - Player 9
-AI Win!

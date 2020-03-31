@@ -91,9 +91,10 @@ void CRLForm::MainForm::playCard0()
 			CardType0, CardPower0, _aiHand, playerHand, bool_A, bool_P, 0);
 
 		Play0->Enabled = false;
+		stealCardPlayed = true;
 	}
-
-	logController(1, 0);
+	logController(1, 0, stealCardPlayed);
+	stealCardPlayed = false;
 	checkGameStatus(bool_P, bool_A);
 }
 
@@ -122,9 +123,10 @@ void CRLForm::MainForm::playCard1()
 			CardType1, CardPower1, _aiHand, playerHand, bool_A, bool_P, 1);
 
 		Play1->Enabled = false;
+		stealCardPlayed = true;
 	}
-
-	logController(1, 1);
+	logController(1, 1, stealCardPlayed);
+	stealCardPlayed = false;
 	checkGameStatus(bool_P, bool_A);
 }
 
@@ -153,9 +155,10 @@ void CRLForm::MainForm::playCard2()
 			CardType2, CardPower2, _aiHand, playerHand, bool_A, bool_P, 2);
 
 		Play2->Enabled = false;
+		stealCardPlayed = true;
 	}
-
-	logController(1, 2);
+	logController(1, 2, stealCardPlayed);
+	stealCardPlayed = false;
 	checkGameStatus(bool_P, bool_A);
 }
 
@@ -184,9 +187,10 @@ void CRLForm::MainForm::playCard3()
 			CardType3, CardPower3, _aiHand, playerHand, bool_A, bool_P, 3);
 
 		Play3->Enabled = false;
+		stealCardPlayed = true;
 	}
-
-	logController(1, 3);
+	logController(1, 3, stealCardPlayed);
+	stealCardPlayed = false;
 	checkGameStatus(bool_P, bool_A);
 }
 
@@ -215,9 +219,10 @@ void CRLForm::MainForm::playCard4()
 			CardType4, CardPower4, _aiHand, playerHand, bool_A, bool_P, 4);
 
 		Play4->Enabled = false;
+		stealCardPlayed = true;
 	}
-
-	logController(1, 4);
+	logController(1, 4, stealCardPlayed);
+	stealCardPlayed = false;
 	checkGameStatus(bool_P, bool_A);
 }
 
@@ -291,12 +296,26 @@ void CRLForm::MainForm::checkGameStatus(array<bool> ^playerHand, array<bool> ^ai
 	}
 }
 
-void CRLForm::MainForm::logController(int playerID, int card)
+///
+/// This function handle what to write in the log when a card is played.
+///	I had to add the "stealCardPlayed" for let it know when a card Steal Card has been played.
+/// The Steal Card function replace the Steal Card played with a new card or the corresponding enemy card,
+/// if I don't use this extra spet the card printed in the log will be this new card instead of the Steal Card.
+///
+void CRLForm::MainForm::logController(int playerID, int card, bool stealCardPlayed)
 {
+	/// Player play
 	if (playerID == 0)
 	{
-		/// Player play
-		sw->WriteLine("Player play: {0}", playerHand[card]->getInfo());
+		if (stealCardPlayed == false)
+		{
+			sw->WriteLine("Player play: {0}", playerHand[card]->getInfo());
+		}
+		else if (stealCardPlayed == true)
+		{
+			sw->WriteLine("Player play: Steal Card: 0");
+		}
+
 		sw->WriteLine("Cards yet to be played: ");
 		for (int i = 0; i < ARRAY_SIZE; i++)
 		{
@@ -309,10 +328,18 @@ void CRLForm::MainForm::logController(int playerID, int card)
 		sw->WriteLine("Player Total Power: {0}\n", player.getTotalPower());
 	}
 
+	/// AI play
 	if (playerID == 1)
 	{
-		/// AI play
-		sw->WriteLine("AI play: {0}", _aiHand[card]->getInfo());
+		if (stealCardPlayed == false)
+		{
+			sw->WriteLine("AI play: {0}", _aiHand[card]->getInfo());
+		}
+		else if (stealCardPlayed == true)
+		{
+			sw->WriteLine("AI play: Steal Card: 0");
+		}
+
 		sw->WriteLine("Cards yet to be played: ");
 		for (int i = 0; i < ARRAY_SIZE; i++)
 		{

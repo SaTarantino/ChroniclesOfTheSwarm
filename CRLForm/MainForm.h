@@ -29,7 +29,7 @@ namespace CRLForm {
 		void playCard2();
 		void playCard3();
 		void playCard4();
-		void logController(int playerID, int card);
+		void logController(int playerID, int card, bool stealCardPlayed);
 		void checkGameStatus(array<bool> ^, array<bool> ^);
 
 	public:
@@ -745,6 +745,7 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 
 		int sleep = 4000;
 		int counter;
+		bool stealCardPlayed = false;
 
 #pragma endregion
 	private: System::Void Roll_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -876,8 +877,11 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 		{
 			playerHand[0]->cardEffect(CardType0, CardPower0, CardType0_0, CardPower0_0,
 				_CardType0, _CardPower0, playerHand, _aiHand, bool_P, bool_A, 0);
+
+			stealCardPlayed = true;
 		}
-		logController(0, 0);
+		logController(0, 0, stealCardPlayed);
+		stealCardPlayed = false;
 		playCard(_aiPlayer.cardToPlay(bool_A));
 		checkGameStatus(bool_P, bool_A);
 	}
@@ -913,8 +917,11 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 		{
 			playerHand[1]->cardEffect(CardType1, CardPower1, CardType1_1, CardPower1_1,
 				_CardType1, _CardPower1, playerHand, _aiHand, bool_P, bool_A, 1);
+
+			stealCardPlayed = true;
 		}
-		logController(0, 1);
+		logController(0, 1, stealCardPlayed);
+		stealCardPlayed = false;
 		playCard(_aiPlayer.cardToPlay(bool_A));
 		checkGameStatus(bool_P, bool_A);
 	}
@@ -950,8 +957,11 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 		{
 			playerHand[2]->cardEffect(CardType2, CardPower2, CardType2_2, CardPower2_2,
 				_CardType2, _CardPower2, playerHand, _aiHand, bool_P, bool_A, 2);
+
+			stealCardPlayed = true;
 		}
-		logController(0, 2);
+		logController(0, 2, stealCardPlayed);
+		stealCardPlayed = false;
 		playCard(_aiPlayer.cardToPlay(bool_A));
 		checkGameStatus(bool_P, bool_A);
 	}
@@ -987,8 +997,11 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 		{
 			playerHand[3]->cardEffect(CardType3, CardPower3, CardType3_3, CardPower3_3,
 				_CardType3, _CardPower3, playerHand, _aiHand, bool_P, bool_A, 3);
+
+			stealCardPlayed = true;
 		}
-		logController(0, 3);
+		logController(0, 3, stealCardPlayed);
+		stealCardPlayed = false;
 		playCard(_aiPlayer.cardToPlay(bool_A));
 		checkGameStatus(bool_P, bool_A);
 	}
@@ -1023,8 +1036,11 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 		{
 			playerHand[4]->cardEffect(CardType4, CardPower4, CardType4_4, CardPower4_4,
 				_CardType4, _CardPower4, playerHand, _aiHand, bool_P, bool_A, 4);
+
+			stealCardPlayed = true;
 		}
-		logController(0, 4);
+		logController(0, 4, stealCardPlayed);
+		stealCardPlayed = false;
 		playCard(_aiPlayer.cardToPlay(bool_A));
 		checkGameStatus(bool_P, bool_A);
 	}
