@@ -131,13 +131,13 @@ namespace CRLForm {
 	private: System::Windows::Forms::Button^  NewGame;
 	/// The Winner Box for the end of the game.
 	private: System::Windows::Forms::TextBox^  WinnerBox;
+	/// Add Card button
+	private: System::Windows::Forms::Button^  AddButton;
+	/// Check Out button
+	private: System::Windows::Forms::Button^  CheckOutButton;
 
-
-private: System::Windows::Forms::Button^  AddButton;
-private: System::Windows::Forms::ListBox^  listBox_P;
-private: System::Windows::Forms::ListBox^  listBox_A;
-
-
+	private: System::Windows::Forms::ListBox^  listBox_P;
+	private: System::Windows::Forms::ListBox^  listBox_A;
 
 	private: System::ComponentModel::IContainer^  components;
 
@@ -199,6 +199,7 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 			this->AddButton = (gcnew System::Windows::Forms::Button());
 			this->listBox_P = (gcnew System::Windows::Forms::ListBox());
 			this->listBox_A = (gcnew System::Windows::Forms::ListBox());
+			this->CheckOutButton = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// CardType0
@@ -444,6 +445,7 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 			this->_CardType0->Location = System::Drawing::Point(22, 59);
 			this->_CardType0->Name = L"_CardType0";
 			this->_CardType0->ReadOnly = true;
+			this->_CardType0->UseSystemPasswordChar = true;
 			this->_CardType0->Size = System::Drawing::Size(100, 20);
 			this->_CardType0->TabIndex = 28;
 			// 
@@ -452,6 +454,7 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 			this->_CardPower0->Location = System::Drawing::Point(22, 96);
 			this->_CardPower0->Name = L"_CardPower0";
 			this->_CardPower0->ReadOnly = true;
+			this->_CardPower0->UseSystemPasswordChar = true;
 			this->_CardPower0->Size = System::Drawing::Size(100, 20);
 			this->_CardPower0->TabIndex = 29;
 			// 
@@ -460,6 +463,7 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 			this->_CardType1->Location = System::Drawing::Point(188, 59);
 			this->_CardType1->Name = L"_CardType1";
 			this->_CardType1->ReadOnly = true;
+			this->_CardType1->UseSystemPasswordChar = true;
 			this->_CardType1->Size = System::Drawing::Size(100, 20);
 			this->_CardType1->TabIndex = 30;
 			// 
@@ -468,6 +472,7 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 			this->_CardPower1->Location = System::Drawing::Point(188, 96);
 			this->_CardPower1->Name = L"_CardPower1";
 			this->_CardPower1->ReadOnly = true;
+			this->_CardPower1->UseSystemPasswordChar = true;
 			this->_CardPower1->Size = System::Drawing::Size(100, 20);
 			this->_CardPower1->TabIndex = 31;
 			// 
@@ -476,6 +481,7 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 			this->_CardType2->Location = System::Drawing::Point(351, 59);
 			this->_CardType2->Name = L"_CardType2";
 			this->_CardType2->ReadOnly = true;
+			this->_CardType2->UseSystemPasswordChar = true;
 			this->_CardType2->Size = System::Drawing::Size(100, 20);
 			this->_CardType2->TabIndex = 32;
 			// 
@@ -484,6 +490,7 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 			this->_CardPower2->Location = System::Drawing::Point(351, 96);
 			this->_CardPower2->Name = L"_CardPower2";
 			this->_CardPower2->ReadOnly = true;
+			this->_CardPower2->UseSystemPasswordChar = true;
 			this->_CardPower2->Size = System::Drawing::Size(100, 20);
 			this->_CardPower2->TabIndex = 33;
 			// 
@@ -492,6 +499,7 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 			this->_CardType3->Location = System::Drawing::Point(509, 59);
 			this->_CardType3->Name = L"_CardType3";
 			this->_CardType3->ReadOnly = true;
+			this->_CardType3->UseSystemPasswordChar = true;
 			this->_CardType3->Size = System::Drawing::Size(100, 20);
 			this->_CardType3->TabIndex = 34;
 			// 
@@ -500,6 +508,7 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 			this->_CardPower3->Location = System::Drawing::Point(509, 96);
 			this->_CardPower3->Name = L"_CardPower3";
 			this->_CardPower3->ReadOnly = true;
+			this->_CardPower3->UseSystemPasswordChar = true;
 			this->_CardPower3->Size = System::Drawing::Size(100, 20);
 			this->_CardPower3->TabIndex = 35;
 			// 
@@ -508,6 +517,7 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 			this->_CardType4->Location = System::Drawing::Point(666, 59);
 			this->_CardType4->Name = L"_CardType4";
 			this->_CardType4->ReadOnly = true;
+			this->_CardType4->UseSystemPasswordChar = true;
 			this->_CardType4->Size = System::Drawing::Size(100, 20);
 			this->_CardType4->TabIndex = 36;
 			// 
@@ -516,6 +526,7 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 			this->_CardPower4->Location = System::Drawing::Point(666, 96);
 			this->_CardPower4->Name = L"_CardPower4";
 			this->_CardPower4->ReadOnly = true;
+			this->_CardPower4->UseSystemPasswordChar = true;
 			this->_CardPower4->Size = System::Drawing::Size(100, 20);
 			this->_CardPower4->TabIndex = 37;
 			// 
@@ -651,11 +662,23 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 			this->listBox_A->Size = System::Drawing::Size(141, 160);
 			this->listBox_A->TabIndex = 54;
 			// 
+			// CheckOutButton
+			// 
+			this->CheckOutButton->Location = System::Drawing::Point(691, 2);
+			this->CheckOutButton->Name = L"CheckOutButton";
+			this->CheckOutButton->Size = System::Drawing::Size(75, 23);
+			this->CheckOutButton->TabIndex = 55;
+			this->CheckOutButton->Text = L"Check Out";
+			this->CheckOutButton->UseVisualStyleBackColor = true;
+			this->CheckOutButton->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::CheckOutPress);
+			this->CheckOutButton->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::CheckOutExit);
+			// 
 			// MainForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(985, 534);
+			this->Controls->Add(this->CheckOutButton);
 			this->Controls->Add(this->listBox_A);
 			this->Controls->Add(this->listBox_P);
 			this->Controls->Add(this->AddButton);
@@ -879,6 +902,8 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 				_CardType0, _CardPower0, playerHand, _aiHand, bool_P, bool_A, 0);
 
 			stealCardPlayed = true;
+			_CardType0->UseSystemPasswordChar = false;
+			_CardPower0->UseSystemPasswordChar = false;
 		}
 		logController(0, 0, stealCardPlayed);
 		stealCardPlayed = false;
@@ -919,6 +944,8 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 				_CardType1, _CardPower1, playerHand, _aiHand, bool_P, bool_A, 1);
 
 			stealCardPlayed = true;
+			_CardType1->UseSystemPasswordChar = false;
+			_CardPower1->UseSystemPasswordChar = false;
 		}
 		logController(0, 1, stealCardPlayed);
 		stealCardPlayed = false;
@@ -959,6 +986,8 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 				_CardType2, _CardPower2, playerHand, _aiHand, bool_P, bool_A, 2);
 
 			stealCardPlayed = true;
+			_CardType2->UseSystemPasswordChar = false;
+			_CardPower2->UseSystemPasswordChar = false;
 		}
 		logController(0, 2, stealCardPlayed);
 		stealCardPlayed = false;
@@ -999,6 +1028,8 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 				_CardType3, _CardPower3, playerHand, _aiHand, bool_P, bool_A, 3);
 
 			stealCardPlayed = true;
+			_CardType3->UseSystemPasswordChar = false;
+			_CardPower3->UseSystemPasswordChar = false;
 		}
 		logController(0, 3, stealCardPlayed);
 		stealCardPlayed = false;
@@ -1038,6 +1069,8 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 				_CardType4, _CardPower4, playerHand, _aiHand, bool_P, bool_A, 4);
 
 			stealCardPlayed = true;
+			_CardType4->UseSystemPasswordChar = false;
+			_CardPower4->UseSystemPasswordChar = false;
 		}
 		logController(0, 4, stealCardPlayed);
 		stealCardPlayed = false;
@@ -1048,6 +1081,29 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 	private: System::Void NewGame_Click(System::Object^  sender, System::EventArgs^  e) {
 
 		Application::Restart();
+	}
+	///
+	/// The next two function are used for show, and hide, the AI's cards.
+	///
+	private: System::Void CheckOutPress(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+
+		for (int i = 0; i < ARRAY_SIZE; i++)
+		{
+			typeTextBox_A[i]->UseSystemPasswordChar = false;
+			powerTextBox_A[i]->UseSystemPasswordChar = false;
+		}
+	}
+
+	private: System::Void CheckOutExit(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+
+		for (int i = 0; i < ARRAY_SIZE; i++)
+		{
+			if (typeTextBox_A[i]->Text != "STOLEN")
+			{
+				typeTextBox_A[i]->UseSystemPasswordChar = true;
+				powerTextBox_A[i]->UseSystemPasswordChar = true;
+			}
+		}
 	}
 
 	private: System::Void MainForm_Load(System::Object^  sender, System::EventArgs^  e) {
@@ -1089,6 +1145,7 @@ private: System::Windows::Forms::ListBox^  listBox_A;
 		for (int i = 0; i < ARRAY_SIZE; i++)
 			in[i] = -1;
 	}
+
 	private: System::Void MainForm_FormClosed(System::Object^  sender, System::Windows::Forms::FormClosedEventArgs^  e) {
 
 		sw->Close();

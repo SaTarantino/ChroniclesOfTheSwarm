@@ -14,7 +14,7 @@ void PowerUpCard::setDetail(int power)
 
 void PowerUpCard::setCardPower()
 {
-	cardPower = rand() % 9 + 11;
+	cardPower = rand() % 4 + 6;
 }
 
 void PowerUpCard::cardEffect(TextBox ^, TextBox ^, TextBox ^, TextBox ^,
@@ -35,7 +35,7 @@ int PowerUpCard::getCardPower()
 
 String ^PowerUpCard::getTypeString()
 {
-	String ^string = "Power Up";
+	String ^string = "Power Up  ";
 	return string;
 }
 

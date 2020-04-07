@@ -73,7 +73,7 @@ int StealCard::getCardPower()
 
 String ^StealCard::getTypeString()
 {
-	String ^string = "Steal";
+	String ^string = "Steal     ";
 	return string;
 }
 

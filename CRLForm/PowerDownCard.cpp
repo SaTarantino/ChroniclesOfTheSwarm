@@ -13,7 +13,7 @@ void PowerDownCard::setDetail(int power)
 
 void PowerDownCard::setCardPower()
 {
-	cardPower = rand() % 9 + 11;
+	cardPower = rand() % 4 + 6;
 }
 
 void PowerDownCard::cardEffect(TextBox ^, TextBox ^, TextBox ^, TextBox ^,
