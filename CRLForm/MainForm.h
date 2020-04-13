@@ -5,7 +5,6 @@
 #include <fstream>
 #include <cstdlib>
 #include <string>
-#include "Controller.h"
 #include "Player.h"
 #include "AiPlayer.h"
 #include "MatchClass.h"
@@ -743,7 +742,6 @@ namespace CRLForm {
 		}
 
 		private:
-			Controller cont;
 			MatchClass matchClass;
 			Player player;
 			AiPlayer _aiPlayer;

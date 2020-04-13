@@ -39,9 +39,6 @@
     <ClCompile Include="PowerUpCard.cpp">
       <Filter>Source Files\Cards</Filter>
     </ClCompile>
-    <ClCompile Include="Controller.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PowerDownCard.cpp">
       <Filter>Source Files\Cards</Filter>
     </ClCompile>
@@ -64,9 +61,6 @@
     </ClInclude>
     <ClInclude Include="PowerUpCard.h">
       <Filter>Header Files\Cards</Filter>
-    </ClInclude>
-    <ClInclude Include="Controller.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PowerDownCard.h">
       <Filter>Header Files\Cards</Filter>

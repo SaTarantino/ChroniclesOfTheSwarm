@@ -81,7 +81,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseCard.cpp" />
-    <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="MatchClass.cpp" />
     <ClCompile Include="MyForm.cpp" />
@@ -92,7 +91,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseCard.h" />
-    <ClInclude Include="Controller.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="MatchClass.h" />
     <ClInclude Include="MainForm.h">
